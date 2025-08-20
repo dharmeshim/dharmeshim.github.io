@@ -1,0 +1,255 @@
+{
+  "name": "Dhamesh Prasad",
+  "description": "Associate Engineer at Finzly Inc, delving into fintech solutions with a passion for reshaping finance for positive impact.",
+  "about": [
+    "Learn",
+    "Build",
+    "Share"
+  ],
+  "education": [
+    {
+      "institution": "Government College of Engineering, Dharmapuri",
+      "description": "B.E in Computer Science and Engineering",
+      "location": "Dharmapuri",
+      "duration": "2019-2023"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Finzly Inc.",
+      "role": "Associate Engineer",
+      "description": "Working as a software solutions engineer in fintech, contributing to banking applications.",
+      "location": "Chennai",
+      "duration": "2023-Present"
+    },
+    {
+      "company": "CDAC - Centre for Development of Advanced Computing",
+      "role": "Engineer Intern",
+      "description": "Cloud computing, virtualization, engineering purpose.",
+      "location": "Chennai",
+      "duration": "2022"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Student Information System",
+      "description": "the goal of this project is to simplify the process of storing and managing student information. interface for editing and managing student details.",
+      "duration": "2021",
+      "url": "https://www.finzly.com",
+      "technologies": [
+        "Visual Basic",
+        "Microsoft Access"
+      ]
+    },
+    {
+      "name": "Efficient Search Algorithm in PhoneBook",
+      "description": "The objective of this project is to improve the efficiency of retrieving contact details by utilizing the trie data structure.",
+      "duration": "2022",
+      "url": "https://www.finzly.com",
+      "technologies": [
+        "Python",
+        "Sqlite"
+      ]
+    },
+    {
+      "name": "Math riddles",
+      "description": "this project is an interactive and engaging mathematical quiz game, it presents a series of dynamic math questions. the scoring system validates and grades player's answers and as the player progresses and improves their score, the difficulty level of the questions increases, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of school students exhibition to make math learning more interactive and fun.",
+      "duration":"2022",
+      "url": "https://www.finzly.com",
+      "technologies": [
+        "Python",
+        "Sqlite"
+      ]
+    },
+    {
+      "name": "Global sales data analytics",
+      "description": "I collaborated with IBM on a project that allowed me to learn the foundations of data analytics.",
+      "duration": "2023",
+      "technologies": [
+        "Python",
+        "IBM Cognos",
+        "Git",
+        "Kanban"
+      ]
+    },
+    {
+      "name": "Global sales data analytics",
+      "description": "this project is an interactive and engaging mathematical quiz game, it presents a series of dynamic math questions. the scoring system validates and grades player's answers and as the player progresses and improves their score, the difficulty level of the questions increases, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of school students exhibition to make math learning more interactive and fun.",
+      "duration": "2022",
+      "url": "https://www.finzly.com",
+      "technologies": [
+        "Python",
+        "Sqlite"
+      ]
+    },
+    {
+      "name": "Smart Typing assistant",
+      "description": "this project is an interactive and engaging typing assistant application, it presents a series of dynamic typing exercises. the scoring system validates and grades user's typing speed and accuracy, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of helping users improve their typing skills in a fun and interactive way.",
+      "duration": "2022",
+      "url": "https://www.finzly.com",
+      "technologies": [
+        "Python",
+        "Machine Learning",
+        "Sqlite"
+      ]
+    }
+  ],
+  "knowledge": [
+    {
+      "name": "Full Stack Development",
+      "description": "I have a strong understanding of full stack development and I am able to build web applications from scratch.",
+      "type": "Technologies",
+      "keySkills": [
+        "Angular",
+        "Java"
+      ]
+    },
+    {
+      "name": "Cross border payments",
+      "description": "I have a strong understanding of cross border payments and I am able to build applications that support cross border payments.",
+      "type": "Domain",
+      "keySkills": [
+        "SWIFT Messaging",
+        "Payment Gateway"
+      ]
+    },
+    {
+      "name": "Payment Gateway",
+      "description": "I have a strong understanding of payment gateway integration and I am able to build applications that support payment processing.",
+      "type": "Domain",
+      "keySkills": [
+        "Payment Processing",
+        "Transaction Management"
+      ]
+    },
+    {
+      "name": "SWIFT Messaging",
+      "description": "I have a strong understanding of SWIFT messaging and I am able to build applications that support SWIFT messaging.",
+      "type": "Domain",
+      "keySkills": [
+        "Message Formatting",
+        "Interbank Messaging"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Java Certification",
+      "issuer": "Oracle",
+      "link": "https://www.java.com",
+      "year": "2024"
+    }
+  ],
+  "techStack": [
+    {
+      "name": "Angular",
+      "type": "framework",
+      "proficiency": "100"
+    },
+    {
+      "name": "Java",
+      "type": "programming language",
+      "proficiency": "100"
+    },
+    {
+      "name": "Git",
+      "type": "version control",
+      "proficiency": "100"
+    },
+    {
+      "name": "AWS",
+      "type": "cloud",
+      "proficiency": "20"
+    },
+    {
+      "name": "Docker",
+      "type": "containerization",
+      "proficiency": "50"
+    },
+    {
+      "name": "Typescript",
+      "type": "programming language",
+      "proficiency": "50"
+    },
+    {
+      "name": "MongoDB",
+      "type": "database",
+      "proficiency": "50"
+    },
+    {
+      "name": "MySQL",
+      "type": "database",
+      "proficiency": "50"
+    },
+    {
+      "name": "Redis",
+      "type": "database",
+      "proficiency": "50"
+    },
+    {
+      "name": "Postman",
+      "type": "Tool",
+      "proficiency": "50"
+    },
+    {
+      "name": "Figma",
+      "type": "Tool",
+      "proficiency": "50"
+    },
+    {
+      "name": "VsCode",
+      "type": "Tool",
+      "proficiency": "50"
+    },
+    {
+      "name": "Intellij",
+      "type": "Tool",
+      "proficiency": "50"
+    }
+  ],
+  "achievements": [],
+  "languages": [],
+  "publications": [],
+  "testimonials": [],
+  "hobbies": [
+    "Reading",
+    "capture Photos"
+  ],
+  "resume": {
+    "link": "https://yourdomain.com/resume.pdf"
+  },
+  "contact": {
+    "socialLinks": [
+      {
+        "name": "Instagram",
+        "profile": "dharmesh_im",
+        "link": "#"
+      },
+      {
+        "name": "LinkedIn",
+        "profile": "dharmeshprasadr",
+        "link": "https://www.linkedin.com/in/dharmeshprasadr/"
+      },
+      {
+        "name": "Medium",
+        "link": "https://medium.com/@dpr"
+      },
+      {
+        "name": "Mail",
+        "link": "mailto:dharmeshprasadr@gmail.com"
+      },
+      {
+        "name": "Leetcode",
+        "link": "https://leetcode.com/dharmeshprasadr/"
+      },
+      {
+        "name": "Twitter",
+        "link": "https://twitter.com/dharmeshprasadr"
+      },
+      {
+        "name": "GitHub",
+        "link": "https://github.com/dharmeshprasadr"
+      }
+    ]
+  }
+}
