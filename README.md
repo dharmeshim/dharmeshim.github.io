@@ -1,188 +1,125 @@
-# Dhamesh Prasad - Professional Portfolio
+# Dhamesh Prasad - Portfolio Website
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. This application showcases professional experience, projects, skills, and achievements in a clean, minimal monochrome design.
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS, showcasing software engineering skills, projects, and experience.
 
-## ✨ Features
+## 🚀 Live Demo
 
-- **Modern Design**: Clean, minimal monochrome aesthetic with smooth animations
-- **Responsive Layout**: Optimized for all devices and screen sizes
-- **Dark Mode**: Seamless light/dark theme switching
-- **Smooth Navigation**: Interactive navigation with section tracking
-- **Typewriter Effect**: Engaging text animations for better user experience
-- **Performance Optimized**: Fast loading with optimized animations and transitions
-- **Accessibility**: Built with accessibility best practices
-- **SEO Ready**: Optimized meta tags and structured content
+Visit the live portfolio at: [https://dharmeshim.github.io](https://dharmeshim.github.io)
 
-## 🚀 Technologies Used
+## 🛠️ Tech Stack
 
 - **Frontend**: React 18, TypeScript
-- **Styling**: Tailwind CSS with custom animations
-- **Icons**: Lucide React
-- **Fonts**: Inter (primary), JetBrains Mono (monospace)
+- **Styling**: Tailwind CSS
 - **Build Tool**: Vite
-- **Package Manager**: npm
-
-## 🎨 Design System
-
-### Color Scheme
-- **Light Mode**: Clean whites and grays with subtle shadows
-- **Dark Mode**: Deep grays and whites for optimal contrast
-- **Accents**: Minimal color usage for focus and interaction
-
-### Typography
-- **Primary Font**: Inter - Modern, readable sans-serif
-- **Monospace**: JetBrains Mono - For technical content
-- **Hierarchy**: Clear visual hierarchy with consistent sizing
-
-### Components
-- **Cards**: Glass-morphism effect with subtle shadows
-- **Buttons**: Interactive states with hover animations
-- **Navigation**: Sticky header with progress indicators
-- **Sections**: Full-screen sections with smooth transitions
-
-## 📱 Sections
-
-1. **Home**: Introduction with typewriter effect and call-to-action
-2. **Experience**: Professional work history with detailed cards
-3. **Projects**: Portfolio projects with technology tags
-4. **Education**: Academic background and qualifications
-5. **Skills**: Technical skills with proficiency indicators
-6. **Certifications**: Professional certifications and achievements
-7. **Tech Stack**: Tools and technologies used
-8. **Achievements**: Awards and recognitions
-9. **Languages**: Spoken and written language proficiency
-10. **Publications**: Research papers and articles
-11. **Testimonials**: Professional recommendations
-12. **Contact**: Social links and contact information
-
-## 🛠️ Getting Started
-
-### Prerequisites
-- Node.js 18+ 
-- npm 8+
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd project
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser and navigate to `http://localhost:5173`
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-The built files will be in the `dist` directory.
+- **Deployment**: GitHub Pages
+- **UI Components**: Radix UI, Lucide React Icons
 
 ## 📁 Project Structure
 
 ```
 src/
 ├── components/          # Reusable UI components
-│   ├── sections/       # Section-specific components
-│   ├── shared/         # Shared components (navigation, logo)
-│   └── ui/            # Base UI components (buttons, cards)
+│   ├── sections/       # Page sections (Home, About, Projects, etc.)
+│   ├── shared/         # Shared components (Navigation, Header, etc.)
+│   └── ui/            # Base UI components (Button, Card, etc.)
 ├── config/             # Configuration files
 ├── hooks/              # Custom React hooks
-├── lib/                # Utility functions
-├── screens/            # Main page components
-└── index.tsx           # Application entry point
+├── lib/                # Utility functions and navigation
+└── screens/            # Main page components
 ```
 
-## 🎯 Customization
+## 🚀 Getting Started
 
-### Profile Data
-Update `src/config/Profile.json` to customize:
-- Personal information
-- Experience details
-- Project descriptions
-- Skills and certifications
-- Contact information
+### Prerequisites
 
-### Styling
-Modify `src/config/site.ts` to adjust:
-- Color schemes
-- Typography
-- Spacing and layout
-- Animation settings
+- Node.js 18+ 
+- npm 8+
 
-### Content
-Edit section components in `src/screens/Page/sections/` to:
-- Modify section layouts
-- Add new content types
-- Customize visual elements
+### Installation
 
-## 🌟 Key Features Implementation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/dharmeshim/dharmeshim.github.io.git
+   cd dharmeshim.github.io
+   ```
 
-### Section Tracking
-- Real-time section detection
-- Progress indicators
-- Smooth scrolling navigation
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### Dark Mode
-- System preference detection
-- Smooth theme transitions
-- Persistent user preference
+3. Start development server:
+   ```bash
+   npm run dev
+   ```
 
-### Responsive Design
-- Mobile-first approach
-- Adaptive layouts
-- Touch-friendly interactions
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### Performance
-- Lazy loading sections
-- Optimized animations
-- Efficient re-renders
+## 📦 Available Scripts
 
-## 📱 Browser Support
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint errors
+- `npm run type-check` - Run TypeScript type checking
+- `npm run format` - Format code with Prettier
 
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
+## 🌐 Deployment
+
+This project is automatically deployed to GitHub Pages using GitHub Actions.
+
+### Automatic Deployment
+
+1. Push your changes to the `main` branch
+2. GitHub Actions will automatically build and deploy the site
+3. The site will be available at `https://dharmeshim.github.io`
+
+### Manual Deployment
+
+If you prefer manual deployment:
+
+```bash
+npm run build
+npm run deploy
+```
+
+## 🔧 Configuration
+
+- **Vite Config**: `vite.config.ts` - Build and development settings
+- **Tailwind Config**: `tailwind.config.js` - CSS framework configuration
+- **Profile Data**: `src/config/Profile.json` - Personal information and content
+
+## 📱 Features
+
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Dark/Light Mode**: Automatic theme switching based on system preference
+- **Smooth Scrolling**: Enhanced navigation experience
+- **TypeScript**: Full type safety and better development experience
+- **Performance**: Optimized with Vite for fast builds and hot reloading
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Contact
+## 👨‍💻 Author
 
-- **Name**: Dhamesh Prasad
-- **Email**: dpr@gmail.com
-- **LinkedIn**: [LinkedIn Profile]
-- **GitHub**: [GitHub Profile]
-- **Medium**: [Medium Profile]
+**Dhamesh Prasad** - Software Engineer & Full-Stack Developer
+
+- GitHub: [@dharmeshim](https://github.com/dharmeshim)
+- Portfolio: [https://dharmeshim.github.io](https://dharmeshim.github.io)
 
 ## 🙏 Acknowledgments
 
-- Icons by [Lucide](https://lucide.dev/)
-- Fonts by Google Fonts
-- Design inspiration from modern portfolio trends
-- Community contributions and feedback
-
----
-
-Built with ❤️ using React, TypeScript, and Tailwind CSS
+- Built with [React](https://reactjs.org/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- Icons from [Lucide React](https://lucide.dev/)
+- UI components from [Radix UI](https://www.radix-ui.com/)

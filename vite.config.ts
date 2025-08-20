@@ -5,10 +5,10 @@ import { defineConfig } from "vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/",
+  base: "/dharmeshim.github.io/",
   css: {
     postcss: {
-      plugins: [tailwind()],
+      plugins: [tailwind],
     },
   },
 });
