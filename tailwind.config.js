@@ -22,6 +22,7 @@ export default {
         'fade-in-down': 'fade-in-down 0.6s ease-out',
         'scale-in': 'scale-in 0.3s ease-out',
         'float': 'float 3s ease-in-out infinite',
+        'ripple': 'ripple 0.6s ease-out',
       },
       keyframes: {
         'scroll-bounce': {
@@ -107,6 +108,16 @@ export default {
           },
           '50%': {
             transform: 'translateY(-10px)',
+          },
+        },
+        'ripple': {
+          '0%': {
+            transform: 'scale(0)',
+            opacity: '0.5',
+          },
+          '100%': {
+            transform: 'scale(4)',
+            opacity: '0',
           },
         },
       },
