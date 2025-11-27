@@ -49,24 +49,40 @@ export const ProjectsSection = (): JSX.Element => {
                       <div className="flex items-center gap-3">
                         <Globe className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                         <span className={`${secondaryFont} text-base ${mutedColor}`}>
-                          {project.url ? 'Web Application' : 'Software Project'}
+                          {project.liveUrl ? 'Web Application' : 'Software Project'}
                         </span>
                       </div>
                     </div>
 
-                    {project.url && (
-                      <motion.a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 border border-gray-400 hover:border-blue-500 transition-all duration-300 rounded-lg dark:border-gray-600 dark:hover:border-green-400"
-                        aria-label={`Visit ${project.name}`}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <ExternalLink className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                      </motion.a>
-                    )}
+                    {/* Project Links */}
+                    <div className="flex gap-3">
+                      {project.sourceCode && (
+                        <motion.a
+                          href={project.sourceCode}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-3 border border-gray-400 hover:border-blue-500 transition-all duration-300 rounded-lg dark:border-gray-600 dark:hover:border-green-400"
+                          aria-label={`View ${project.name} source code`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Code className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                        </motion.a>
+                      )}
+                      {project.liveUrl && (
+                        <motion.a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-3 border border-gray-400 hover:border-blue-500 transition-all duration-300 rounded-lg dark:border-gray-600 dark:hover:border-green-400"
+                          aria-label={`Visit ${project.name}`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <ExternalLink className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                        </motion.a>
+                      )}
+                    </div>
                   </div>
                 </div>
 

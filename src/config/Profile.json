@@ -35,7 +35,8 @@
       "name": "Student Information System",
       "description": "the goal of this project is to simplify the process of storing and managing student information. interface for editing and managing student details.",
       "duration": "2021",
-      "url": "https://www.finzly.com",
+      "sourceCode": "https://github.com/dharmeshim",
+      "liveUrl": "https://www.finzly.com",
       "technologies": [
         "Visual Basic",
         "Microsoft Access"
@@ -45,7 +46,8 @@
       "name": "Efficient Search Algorithm in PhoneBook",
       "description": "The objective of this project is to improve the efficiency of retrieving contact details by utilizing the trie data structure.",
       "duration": "2022",
-      "url": "https://www.finzly.com",
+      "sourceCode": "https://github.com/dharmeshim",
+      "liveUrl": "https://www.finzly.com",
       "technologies": [
         "Python",
         "Sqlite"
@@ -55,7 +57,8 @@
       "name": "Math riddles",
       "description": "this project is an interactive and engaging mathematical quiz game, it presents a series of dynamic math questions. the scoring system validates and grades player's answers and as the player progresses and improves their score, the difficulty level of the questions increases, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of school students exhibition to make math learning more interactive and fun.",
       "duration": "2022",
-      "url": "https://www.finzly.com",
+      "sourceCode": "https://github.com/dharmeshim",
+      "liveUrl": "https://www.finzly.com",
       "technologies": [
         "Python",
         "Sqlite"
@@ -65,6 +68,8 @@
       "name": "Global sales data analytics",
       "description": "I collaborated with IBM on a project that allowed me to learn the foundations of data analytics.",
       "duration": "2023",
+      "sourceCode": "https://github.com/dharmeshim",
+      "liveUrl": "https://www.finzly.com",
       "technologies": [
         "Python",
         "IBM Cognos",
@@ -76,7 +81,8 @@
       "name": "Smart Typing assistant",
       "description": "this project is an interactive and engaging typing assistant application, it presents a series of dynamic typing exercises. the scoring system validates and grades user's typing speed and accuracy, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of helping users improve their typing skills in a fun and interactive way.",
       "duration": "2022",
-      "url": "https://www.finzly.com",
+      "sourceCode": "https://github.com/dharmeshim",
+      "liveUrl": "https://www.finzly.com",
       "technologies": [
         "Python",
         "Machine Learning",
@@ -133,73 +139,71 @@
   "techStack": [
     {
       "name": "Angular",
-      "type": "framework",
-      "proficiency": "100"
+      "type": "framework"
     },
     {
       "name": "Java",
-      "type": "programming language",
-      "proficiency": "100"
+      "type": "programming language"
     },
     {
       "name": "Git",
-      "type": "version control",
-      "proficiency": "100"
+      "type": "version control"
     },
     {
       "name": "AWS",
-      "type": "cloud",
-      "proficiency": "20"
+      "type": "cloud"
     },
     {
       "name": "Docker",
-      "type": "containerization",
-      "proficiency": "50"
+      "type": "containerization"
     },
     {
       "name": "Typescript",
-      "type": "programming language",
-      "proficiency": "50"
+      "type": "programming language"
     },
     {
       "name": "MongoDB",
-      "type": "database",
-      "proficiency": "50"
+      "type": "database"
     },
     {
       "name": "MySQL",
-      "type": "database",
-      "proficiency": "50"
+      "type": "database"
     },
     {
       "name": "Redis",
-      "type": "database",
-      "proficiency": "50"
+      "type": "database"
     },
     {
       "name": "Postman",
-      "type": "Tool",
-      "proficiency": "50"
+      "type": "Tool"
     },
     {
       "name": "Figma",
-      "type": "Tool",
-      "proficiency": "50"
+      "type": "Tool"
     },
     {
       "name": "VsCode",
-      "type": "Tool",
-      "proficiency": "50"
+      "type": "Tool"
     },
     {
       "name": "Intellij",
-      "type": "Tool",
-      "proficiency": "50"
+      "type": "Tool"
     }
   ],
   "achievements": [],
   "languages": [],
-  "publications": [],
+  "publications": [
+    {
+      "title": "",
+      "description": "",
+      "link": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "link": ""
+    }
+  ],
   "testimonials": [],
   "hobbies": [
     "Reading",

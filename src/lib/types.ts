@@ -11,7 +11,8 @@ export interface Project {
     name: string;
     description: string;
     duration: string;
-    url?: string;
+    sourceCode?: string;
+    liveUrl?: string;
     technologies: string[];
 }
 
@@ -32,7 +33,7 @@ export interface Certification {
 export interface TechStack {
     name: string;
     type: string;
-    proficiency: string;
+    proficiency?: string; // Now optional since it was removed from Profile.json
 }
 
 export interface Knowledge {
@@ -40,6 +41,12 @@ export interface Knowledge {
     description: string;
     type: string;
     keySkills: string[];
+}
+
+export interface Publication {
+    title: string;
+    description: string;
+    link: string;
 }
 
 export interface SocialLink {
