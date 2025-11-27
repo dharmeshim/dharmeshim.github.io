@@ -2,12 +2,13 @@ import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { ProfilePage } from "./screens/Page";
 import { Loader } from "./components/shared";
+import { LOADER_DURATION } from "./lib/constants";
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3000); // 3 seconds
+    const timer = setTimeout(() => setLoading(false), LOADER_DURATION);
     return () => clearTimeout(timer);
   }, []);
 

@@ -54,7 +54,7 @@
     {
       "name": "Math riddles",
       "description": "this project is an interactive and engaging mathematical quiz game, it presents a series of dynamic math questions. the scoring system validates and grades player's answers and as the player progresses and improves their score, the difficulty level of the questions increases, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of school students exhibition to make math learning more interactive and fun.",
-      "duration":"2022",
+      "duration": "2022",
       "url": "https://www.finzly.com",
       "technologies": [
         "Python",
@@ -70,16 +70,6 @@
         "IBM Cognos",
         "Git",
         "Kanban"
-      ]
-    },
-    {
-      "name": "Global sales data analytics",
-      "description": "this project is an interactive and engaging mathematical quiz game, it presents a series of dynamic math questions. the scoring system validates and grades player's answers and as the player progresses and improves their score, the difficulty level of the questions increases, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of school students exhibition to make math learning more interactive and fun.",
-      "duration": "2022",
-      "url": "https://www.finzly.com",
-      "technologies": [
-        "Python",
-        "Sqlite"
       ]
     },
     {
