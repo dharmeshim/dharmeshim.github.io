@@ -45,8 +45,8 @@ export const CertificationsSection = (): JSX.Element => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`relative px-5 py-2 rounded-lg font-medium transition-all duration-300 ${selectedYear === year
-                  ? "bg-gradient-to-r from-blue-500 to-purple-600 dark:from-green-400 dark:to-cyan-500 text-white shadow-lg"
-                  : "bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border-2 border-gray-200 dark:border-gray-700"
+                ? "bg-gradient-to-r from-blue-500 to-purple-600 dark:from-green-400 dark:to-cyan-500 text-white border-2 border-blue-600 dark:border-green-500"
+                : "bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border-2 border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-green-400"
                 }`}
             >
               <span className="flex items-center gap-2">
@@ -80,19 +80,19 @@ export const CertificationsSection = (): JSX.Element => {
                     whileHover={{ y: -4, scale: 1.02 }}
                   >
                     {/* Credential badge - looks like real certification */}
-                    <div className="relative h-full p-4 rounded-xl bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-900 border-2 border-blue-200/50 dark:border-green-400/30 shadow-lg overflow-hidden">
+                    <div className="relative h-full p-4 rounded-xl bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-900 border-2 border-blue-200/50 dark:border-green-400/30 overflow-hidden">
                       {/* Watermark pattern */}
                       <div className="absolute inset-0 opacity-5">
-                        <div className="absolute inset-0" style={{
+                        <div className="absolute inset-0 text-blue-500 dark:text-green-400" style={{
                           backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
                           backgroundSize: '15px 15px'
-                        }} className="text-blue-500 dark:text-green-400" />
+                        }} />
                       </div>
 
                       {/* Verified badge */}
                       <div className="absolute top-2 right-2 z-10">
                         <motion.div
-                          className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center shadow-lg"
+                          className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center border-2 border-green-600"
                           whileHover={{ rotate: 360 }}
                           transition={{ duration: 0.5 }}
                         >
@@ -102,7 +102,7 @@ export const CertificationsSection = (): JSX.Element => {
 
                       {/* Award icon */}
                       <div className="relative mb-3 flex justify-center">
-                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-md">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center border-2 border-yellow-600">
                           <Award className="w-6 h-6 text-white" />
                         </div>
                       </div>

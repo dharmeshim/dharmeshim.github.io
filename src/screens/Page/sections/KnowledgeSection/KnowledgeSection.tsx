@@ -39,10 +39,10 @@ export const KnowledgeSection = (): JSX.Element => {
                   >
                     <motion.div
                       layout
-                      className={`h-full cursor-pointer rounded-2xl overflow-hidden relative transition-shadow duration-300 ${isSelected
-                          ? 'bg-white dark:bg-gray-900 shadow-2xl ring-2 ring-blue-500 dark:ring-green-400'
-                          : 'bg-white/60 dark:bg-gray-900/60 hover:bg-white dark:hover:bg-gray-800 shadow-lg hover:shadow-xl'
-                        } backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50`}
+                      className={`h-full cursor-pointer rounded-2xl overflow-hidden relative transition-all duration-300 ${isSelected
+                        ? 'bg-white dark:bg-gray-900 ring-2 ring-blue-500 dark:ring-green-400 border-2 border-blue-500 dark:border-green-400'
+                        : 'bg-white/60 dark:bg-gray-900/60 hover:bg-white dark:hover:bg-gray-800 border-2 border-gray-200/50 dark:border-gray-700/50 hover:border-blue-400 dark:hover:border-green-400'
+                        } backdrop-blur-sm`}
                       whileHover={!isSelected ? { scale: 1.02 } : {}}
                       transition={{ type: "spring", stiffness: 300, damping: 25 }}
                     >
@@ -61,7 +61,7 @@ export const KnowledgeSection = (): JSX.Element => {
                           <motion.div
                             layout
                             className={`rounded-full flex items-center justify-center ${isSelected ? 'w-16 h-16' : 'w-12 h-12'
-                              } bg-gradient-to-br from-blue-500 to-purple-600 dark:from-green-400 dark:to-cyan-500 shadow-lg`}
+                              } bg-gradient-to-br from-blue-500 to-purple-600 dark:from-green-400 dark:to-cyan-500 border-2 border-blue-600 dark:border-green-500`}
                           >
                             <Brain className={`${isSelected ? 'w-8 h-8' : 'w-6 h-6'} text-white`} />
                           </motion.div>
