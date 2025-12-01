@@ -1,4 +1,5 @@
 export { NavigationMenu } from "./NavigationMenu";
+export { ThemeToggle } from "./ThemeToggle";
 export { AnimatedLogo } from "./AnimatedLogo";
 export { StickyHeader } from "./StickyHeader";
 export { Loader } from "./Loader";

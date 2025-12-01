@@ -1,5 +1,4 @@
-import React from "react";
-import { NavigationMenu } from "../../components/shared";
+import { ThemeToggle } from "../../components/shared";
 import { AnimatedLogo } from "../../components/shared/AnimatedLogo";
 import {
   ContactSection,
@@ -19,7 +18,7 @@ import { scrollToSection } from "../../lib/navigation";
 import { motion } from "framer-motion";
 
 export const ProfilePage = (): JSX.Element => {
-  const { activeSection, currentSectionIndex, sectionProgress } = useSectionTracking();
+  const { activeSection } = useSectionTracking();
   const { home } = siteConfig.sections;
   const { scrollButton } = siteConfig.layout;
   const { background } = siteConfig.styles.colors;
@@ -62,7 +61,7 @@ export const ProfilePage = (): JSX.Element => {
 
       {/* Content */}
       <div className="relative z-10">
-        <NavigationMenu activeSection={activeSection} progress={sectionProgress} />
+        <ThemeToggle />
         <AnimatedLogo />
 
         {activeSection === "home" && (

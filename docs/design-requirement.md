@@ -39,6 +39,7 @@ The portfolio must be expressive, story-driven, technically flexible, and deeply
   * Wire connection animations between sections
   * Computer boot-up sequences for section transitions
 * Animations should be impactful but not overwhelming.
+* i basically dont like cards, shadow animations, as its very regular and not unique.
 
 ---
 
@@ -71,7 +72,6 @@ Each section is driven directly from the JSON file and themed around the daily w
 ### 5.2 About
 
 * Pulled from the JSON `about` array (Learn, Build, Share).
-* Can be animated as rotating badges, flipping cards, or dynamic log lines.
 
 ### 5.3 Education
 
