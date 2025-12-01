@@ -17,12 +17,12 @@ export const TypewriterText: React.FC<TypewriterTextProps> = ({
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
-  
+
   // Use ref to avoid dependency issues
   const textsRef = useRef(texts);
   const speedRef = useRef(speed);
   const delayRef = useRef(delay);
-  
+
   // Update refs when props change
   useEffect(() => {
     textsRef.current = texts;
@@ -36,7 +36,7 @@ export const TypewriterText: React.FC<TypewriterTextProps> = ({
     }
 
     const currentText = textsRef.current[currentTextIndex];
-    
+
     if (isTyping && currentCharIndex < currentText.length) {
       // Typing current word character by character
       const timeout = setTimeout(() => {
@@ -61,9 +61,13 @@ export const TypewriterText: React.FC<TypewriterTextProps> = ({
       {completedTexts.map((text, index) => (
         <div key={index} className="leading-tight animate-in fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
           {text}
+          {/* Show blinking cursor at the end of the last line when all are done */}
+          {index === completedTexts.length - 1 && currentTextIndex >= textsRef.current.length && (
+            <span className="inline-block w-0.5 h-6 bg-current ml-1 animate-blink" />
+          )}
         </div>
       ))}
-      
+
       {/* Currently typing word with cursor inline */}
       {currentTextIndex < textsRef.current.length && (
         <div className="leading-tight animate-in fade-in-up">
@@ -71,13 +75,6 @@ export const TypewriterText: React.FC<TypewriterTextProps> = ({
           <span className="inline-block w-0.5 h-6 bg-current ml-1 animate-blink" />
         </div>
       )}
-      
-      {/* Show blinking cursor at the end when all are done */}
-      {currentTextIndex >= textsRef.current.length && completedTexts.length > 0 && (
-        <div className="leading-tight">
-          <span className="inline-block w-0.5 h-6 bg-current ml-1 animate-blink" />
-        </div>
-      )}
     </div>
   );
-}; 
+};
