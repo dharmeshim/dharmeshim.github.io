@@ -20,7 +20,14 @@
       "role": "Associate Engineer",
       "description": "Working as a software solutions engineer in fintech, contributing to banking applications.",
       "location": "Chennai",
-      "duration": "2023-Present"
+      "duration": "2024-Present"
+    },
+    {
+      "company": "Finzly Inc.",
+      "role": "Trainee Engineer",
+      "description": "Working as a software solutions engineer in fintech, contributing to banking applications.",
+      "location": "Chennai",
+      "duration": "2023-2024"
     },
     {
       "company": "CDAC - Centre for Development of Advanced Computing",
@@ -84,7 +91,7 @@
     {
       "name": "Smart Typing assistant",
       "description": "this project is an interactive and engaging typing assistant application, it presents a series of dynamic typing exercises. the scoring system validates and grades user's typing speed and accuracy, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of helping users improve their typing skills in a fun and interactive way.",
-      "duration": "2022",
+      "duration": "2023",
       "sourceCode": "https://github.com/dharmeshim",
       "liveUrl": "https://www.finzly.com",
       "technologies": [
@@ -101,44 +108,47 @@
       "description": "I have a strong understanding of full stack development and I am able to build web applications from scratch.",
       "type": "Technologies",
       "keySkills": [
-        "Angular",
-        "Java"
+        "Web Development",
+        "API Design",
+        "Database Management"
       ]
     },
     {
-      "name": "Cross border payments",
+      "name": "Banking Solutions",
       "description": "I have a strong understanding of cross border payments and I am able to build applications that support cross border payments.",
       "type": "Domain",
       "keySkills": [
         "SWIFT Messaging",
-        "Payment Gateway"
-      ]
-    },
-    {
-      "name": "Payment Gateway",
-      "description": "I have a strong understanding of payment gateway integration and I am able to build applications that support payment processing.",
-      "type": "Domain",
-      "keySkills": [
-        "Payment Processing",
-        "Transaction Management"
-      ]
-    },
-    {
-      "name": "SWIFT Messaging",
-      "description": "I have a strong understanding of SWIFT messaging and I am able to build applications that support SWIFT messaging.",
-      "type": "Domain",
-      "keySkills": [
-        "Message Formatting",
-        "Interbank Messaging"
+        "Payment Gateway",
+        "Cross Border Payments",
+        "Banking Solutions"
       ]
     }
   ],
   "certifications": [
     {
-      "name": "Java Certification",
-      "issuer": "Oracle",
-      "link": "https://www.java.com",
-      "year": "2024"
+      "name": "Forex Treasury Management & Operations",
+      "issuer": "Udemy",
+      "link": "https://www.udemy.com/certificate/UC-357ec3d9-42fe-4e8e-9722-64fa310ace2e/",
+      "year": "2025"
+    },
+    {
+      "name": "Introduction to Cross Border Payments",
+      "issuer": "Udemy",
+      "link": "https://www.udemy.com/certificate/UC-6d1b2563-6985-48e0-ae62-ebcfc6a611e8/",
+      "year": "2025"
+    },
+    {
+      "name": "Java Programming Masterclass",
+      "issuer": "Udemy",
+      "link": "https://www.udemy.com/certificate/UC-5e4ae84b-9407-4fc7-9ee3-dd8103686c08/",
+      "year": "2025"
+    },
+    {
+      "name": "Project on Global Sales Data Analytics",
+      "issuer": "IBM",
+      "link": "https://courses.ictacademy.skillsnetwork.site/certificates/d54ed9f5b813408292db7de49de95e73?trk=public_profile_see-credential",
+      "year": "2023"
     }
   ],
   "techStack": [
@@ -149,6 +159,26 @@
     {
       "name": "Java",
       "type": "programming language"
+    },
+    {
+      "name": "Spring Boot",
+      "type": "framework"
+    },
+    {
+      "name": "Python",
+      "type": "programming language"
+    },
+    {
+      "name": "Design Patterns",
+      "type": "Concept"
+    },
+    {
+      "name": "Data Structures",
+      "type": "Concept"
+    },
+    {
+      "name": "System Design",
+      "type": "Concept"
     },
     {
       "name": "Git",
@@ -197,6 +227,7 @@
   ],
   "achievements": [],
   "languages": [],
+  "learning": [],
   "publications": [
     {
       "title": "",
