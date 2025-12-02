@@ -40,7 +40,8 @@
       "technologies": [
         "Visual Basic",
         "Microsoft Access"
-      ]
+      ],
+      "summary": "Simplified student data management with intuitive editing interface"
     },
     {
       "name": "Efficient Search Algorithm in PhoneBook",
@@ -51,7 +52,8 @@
       "technologies": [
         "Python",
         "Sqlite"
-      ]
+      ],
+      "summary": "Optimized contact retrieval using trie data structure"
     },
     {
       "name": "Math riddles",
@@ -62,7 +64,8 @@
       "technologies": [
         "Python",
         "Sqlite"
-      ]
+      ],
+      "summary": "Interactive math quiz game with adaptive difficulty for students"
     },
     {
       "name": "Global sales data analytics",
@@ -75,7 +78,8 @@
         "IBM Cognos",
         "Git",
         "Kanban"
-      ]
+      ],
+      "summary": "IBM collaboration project for learning data analytics foundations"
     },
     {
       "name": "Smart Typing assistant",
@@ -87,7 +91,8 @@
         "Python",
         "Machine Learning",
         "Sqlite"
-      ]
+      ],
+      "summary": "ML-powered typing assistant for improving speed and accuracy"
     }
   ],
   "knowledge": [
