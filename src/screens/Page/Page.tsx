@@ -59,6 +59,7 @@ export const ProfilePage = (): JSX.Element => {
         />
       </div>
 
+
       {/* Content */}
       <div className="relative z-10">
         <ThemeToggle />
