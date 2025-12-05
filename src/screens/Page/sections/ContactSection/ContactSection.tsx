@@ -144,7 +144,7 @@ export const ContactSection = (): JSX.Element => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Download className="w-4 h-4 group-hover:animate-bounce" />
-                    <span>Initiating download sequence...</span>
+                    <span>Dharmeshprasad_resume.pdf</span>
                   </motion.a>
                 </motion.div>
               )}

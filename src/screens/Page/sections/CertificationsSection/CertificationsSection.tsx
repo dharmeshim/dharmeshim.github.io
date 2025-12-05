@@ -147,21 +147,20 @@ export const CertificationsSection = (): JSX.Element => {
                               <h4 className={`${primaryFont} font-light ${primaryColor} text-lg md:text-xl tracking-tight group-hover:text-blue-500 dark:group-hover:text-green-400 transition-colors`}>
                                 {cert.name}
                               </h4>
-                              {cert.issuer && (
-                                <p className={`${secondaryFont} text-sm ${mutedColor} mt-1`}>
-                                  issued by <span className="font-medium">{cert.issuer}</span>
-                                </p>
-                              )}
+                              {/* Issuer info moved to metadata */}
                             </div>
                           </div>
 
                           {/* Metadata - styled like git commit info */}
                           <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
                             {/* Commit hash style */}
-                            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-                              <Hash className="w-3 h-3" />
-                              <span className="text-blue-600 dark:text-green-400">{hash}</span>
-                            </div>
+                            {/* Issuer (Hash style) */}
+                            {cert.issuer && (
+                              <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+                                <Hash className="w-3 h-3" />
+                                <span className="text-blue-600 dark:text-green-400">issued by {cert.issuer}</span>
+                              </div>
+                            )}
 
                             {/* Date */}
                             <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
@@ -169,11 +168,7 @@ export const CertificationsSection = (): JSX.Element => {
                               <span>{cert.year}</span>
                             </div>
 
-                            {/* Verified badge */}
-                            <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-300 dark:border-green-700">
-                              <CheckCircle2 className="w-3 h-3" />
-                              <span>verified</span>
-                            </div>
+
                           </div>
 
                           {/* View link */}

@@ -39,10 +39,10 @@ export const ThemeToggle = (): JSX.Element => {
             {/* Theme Toggle Button */}
             <motion.button
                 onClick={handleToggle}
-                className={`fixed top-8 right-8 z-50 p-3 md:p-4 border-2 border-solid font-light cursor-pointer transition-all duration-400 rounded-full shadow-lg hover:shadow-xl
+                className={`fixed top-8 right-8 z-50 p-2 cursor-pointer transition-all duration-400 rounded-full
           ${isDarkMode
-                        ? 'border-white bg-white text-black hover:bg-gray-100 hover:scale-110'
-                        : 'border-blue-500 bg-blue-500 text-white hover:bg-blue-600 hover:scale-110'
+                        ? 'text-white hover:bg-white/10'
+                        : 'text-gray-900 hover:bg-black/5'
                     }`}
                 aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
                 whileHover={{ scale: 1.1 }}

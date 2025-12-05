@@ -127,6 +127,18 @@
   ],
   "certifications": [
     {
+      "name": "BPMN - Business Process Model and Notation 2.0",
+      "issuer": "Udemy",
+      "link": "",
+      "year": "2025"
+    },
+    {
+      "name": "Java Clean Code",
+      "issuer": "Udemy",
+      "link": "",
+      "year": "2025"
+    },
+    {
       "name": "Forex Treasury Management & Operations",
       "issuer": "Udemy",
       "link": "https://www.udemy.com/certificate/UC-357ec3d9-42fe-4e8e-9722-64fa310ace2e/",
@@ -142,7 +154,7 @@
       "name": "Java Programming Masterclass",
       "issuer": "Udemy",
       "link": "https://www.udemy.com/certificate/UC-5e4ae84b-9407-4fc7-9ee3-dd8103686c08/",
-      "year": "2025"
+      "year": "2024"
     },
     {
       "name": "Project on Global Sales Data Analytics",
@@ -152,24 +164,78 @@
     }
   ],
   "techStack": [
-    { "name": "Angular", "type": "framework" },
-    { "name": "Java", "type": "programming language" },
-    { "name": "Spring Boot", "type": "framework" },
-    { "name": "Python", "type": "programming language" },
-    { "name": "Design Patterns", "type": "Concept" },
-    { "name": "Data Structures", "type": "Concept" },
-    { "name": "System Design", "type": "Concept" },
-    { "name": "Git", "type": "version control" },
-    { "name": "AWS", "type": "cloud" },
-    { "name": "Docker", "type": "containerization" },
-    { "name": "Typescript", "type": "programming language" },
-    { "name": "MongoDB", "type": "database" },
-    { "name": "MySQL", "type": "database" },
-    { "name": "Redis", "type": "database" },
-    { "name": "Postman", "type": "Tool" },
-    { "name": "Figma", "type": "Tool" },
-    { "name": "VsCode", "type": "Tool" },
-    { "name": "Intellij", "type": "Tool" }
+    {
+      "name": "Angular",
+      "type": "framework"
+    },
+    {
+      "name": "Java",
+      "type": "programming language"
+    },
+    {
+      "name": "Spring Boot",
+      "type": "framework"
+    },
+    {
+      "name": "Python",
+      "type": "programming language"
+    },
+    {
+      "name": "Design Patterns",
+      "type": "Concept"
+    },
+    {
+      "name": "Data Structures",
+      "type": "Concept"
+    },
+    {
+      "name": "System Design",
+      "type": "Concept"
+    },
+    {
+      "name": "Git",
+      "type": "version control"
+    },
+    {
+      "name": "AWS",
+      "type": "cloud"
+    },
+    {
+      "name": "Docker",
+      "type": "containerization"
+    },
+    {
+      "name": "Typescript",
+      "type": "programming language"
+    },
+    {
+      "name": "MongoDB",
+      "type": "database"
+    },
+    {
+      "name": "MySQL",
+      "type": "database"
+    },
+    {
+      "name": "Redis",
+      "type": "database"
+    },
+    {
+      "name": "Postman",
+      "type": "Tool"
+    },
+    {
+      "name": "Figma",
+      "type": "Tool"
+    },
+    {
+      "name": "VsCode",
+      "type": "Tool"
+    },
+    {
+      "name": "Intellij",
+      "type": "Tool"
+    }
   ],
   "achievements": [],
   "languages": [],
@@ -192,7 +258,7 @@
     "Photography"
   ],
   "resume": {
-    "link": "https://yourdomain.com/resume.pdf"
+    "link": "/assets/Dharmeshprasad_Resume.pdf"
   },
   "contact": {
     "socialLinks": [

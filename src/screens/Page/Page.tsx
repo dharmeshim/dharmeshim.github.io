@@ -72,8 +72,8 @@ export const ProfilePage = (): JSX.Element => {
             transition={{ delay: 2 }}
           >
             <Button
-              variant="default"
-              className={`${scrollButton.size} p-0 rounded-xl shadow-xl hover:shadow-2xl`}
+              variant="ghost"
+              className={`${scrollButton.size} p-0 rounded-full hover:bg-transparent`}
               aria-label={home.scrollButton.label}
               onClick={handleScrollToNext}
               ripple={true}
