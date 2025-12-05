@@ -15,41 +15,21 @@ export const TechStackSection = (): JSX.Element => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
 
-  // Group by type
-  const groupedTech = techStack.items.reduce((acc: any, item: any) => {
-    const type = item.type || 'other';
-    if (!acc[type]) acc[type] = [];
-    acc[type].push(item);
-    return acc;
-  }, {});
-
-  // Sort groups by count (descending), then by priority
-  const typeOrder = ['programming language', 'framework', 'database', 'cloud', 'containerization', 'version control', 'Tool'];
-  const sortedGroups = Object.entries(groupedTech).sort(([typeA, itemsA]: [string, any], [typeB, itemsB]: [string, any]) => {
-    const countDiff = itemsB.length - itemsA.length;
-    if (countDiff !== 0) return countDiff;
-
-    const aIndex = typeOrder.indexOf(typeA);
-    const bIndex = typeOrder.indexOf(typeB);
-    // If not in priority list, push to end
-    if (aIndex === -1 && bIndex === -1) return 0;
-    if (aIndex === -1) return 1;
-    if (bIndex === -1) return -1;
-    return aIndex - bIndex;
-  });
-
   // Get icon for type based on keywords
   const getIconForType = (type: string) => {
     const lowerType = type.toLowerCase();
     if (lowerType.includes('language')) return Code2;
     if (lowerType.includes('framework')) return Layers;
     if (lowerType.includes('database') || lowerType.includes('db')) return Database;
-    if (lowerType.includes('cloud')) return Cloud;
+    if (lowerType.includes('cloud') || lowerType.includes('devops')) return Cloud;
     if (lowerType.includes('container')) return Box;
     if (lowerType.includes('version') || lowerType.includes('control')) return GitBranch;
     if (lowerType.includes('tool')) return Wrench;
     return Code2; // default
   };
+
+  // Calculate total items for footer
+  const totalItems = techStack.items.reduce((acc: number, group: any) => acc + group.items.length, 0);
 
   return (
     <BaseSection title={techStack.title}>
@@ -60,12 +40,12 @@ export const TechStackSection = (): JSX.Element => {
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
-          {sortedGroups.map(([type, items]: [string, any], groupIndex) => {
-            const Icon = getIconForType(type);
+          {techStack.items.map((group: any, groupIndex: number) => {
+            const Icon = getIconForType(group.type);
 
             return (
               <motion.div
-                key={type}
+                key={group.type}
                 variants={staggerItem}
                 className="group relative"
               >
@@ -100,17 +80,17 @@ export const TechStackSection = (): JSX.Element => {
                     <div className="space-y-2">
                       <h3 className={`
                         ${primaryFont} font-light ${primaryColor} 
-                        text-xl md:text-2xl tracking-tight lowercase
+                        text-xl md:text-2xl tracking-tight
                         transition-colors duration-200
                         group-hover:text-blue-500 dark:group-hover:text-green-400
                       `}>
-                        {type}
+                        {group.type}
                       </h3>
                     </div>
 
                     {/* Skills */}
                     <div className="flex flex-wrap gap-3">
-                      {(items as any[]).map((tech: any, index: number) => {
+                      {group.items.map((techName: string, index: number) => {
                         const itemKey = `${groupIndex}-${index}`;
                         const isHovered = hoveredIndex === itemKey;
 
@@ -146,7 +126,7 @@ export const TechStackSection = (): JSX.Element => {
                               hover:shadow-md
                               cursor-default
                             `}>
-                              {tech.name}
+                              {techName}
                             </div>
                           </motion.div>
                         );
@@ -162,7 +142,7 @@ export const TechStackSection = (): JSX.Element => {
         {/* Footer */}
         <div className={`mt-16 text-center ${secondaryFont} text-sm ${mutedColor}`}>
           <p className="font-mono">
-            {techStack.items.length} {techStack.items.length === 1 ? 'technology' : 'technologies'}
+            {totalItems} {totalItems === 1 ? 'technology' : 'technologies'}
           </p>
         </div>
       </div>

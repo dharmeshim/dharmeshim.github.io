@@ -165,84 +165,63 @@
   ],
   "techStack": [
     {
-      "name": "Angular",
-      "type": "framework"
+      "type": "Programming Language",
+      "items": [
+        "Java",
+        "Python",
+        "TypeScript",
+        "HTML",
+        "CSS"
+      ]
     },
     {
-      "name": "Java",
-      "type": "programming language"
+      "type": "Framework",
+      "items": [
+        "Angular",
+        "Spring Boot"
+      ]
     },
     {
-      "name": "HTML",
-      "type": "programming language"
+      "type": "Database",
+      "items": [
+        "MongoDB",
+        "MySQL",
+        "Redis"
+      ]
     },
     {
-      "name": "CSS",
-      "type": "programming language"
+      "type": "Cloud Services",
+      "items": [
+        "SQS",
+        "SNS",
+        "S3",
+        "Lambda",
+        "API Gateway",
+        "CloudWatch"
+      ]
     },
     {
-      "name": "Spring Boot",
-      "type": "framework"
+      "type": "Version Control",
+      "items": [
+        "Git"
+      ]
     },
     {
-      "name": "Python",
-      "type": "programming language"
+      "type": "Concepts",
+      "items": [
+        "Design Patterns",
+        "Data Structures",
+        "System Design"
+      ]
     },
     {
-      "name": "Design Patterns",
-      "type": "Concept"
-    },
-    {
-      "name": "Data Structures",
-      "type": "Concept"
-    },
-    {
-      "name": "System Design",
-      "type": "Concept"
-    },
-    {
-      "name": "Git",
-      "type": "version control"
-    },
-    {
-      "name": "AWS",
-      "type": "cloud"
-    },
-    {
-      "name": "Docker",
-      "type": "containerization"
-    },
-    {
-      "name": "Typescript",
-      "type": "programming language"
-    },
-    {
-      "name": "MongoDB",
-      "type": "database"
-    },
-    {
-      "name": "MySQL",
-      "type": "database"
-    },
-    {
-      "name": "Redis",
-      "type": "database"
-    },
-    {
-      "name": "Postman",
-      "type": "Tool"
-    },
-    {
-      "name": "Figma",
-      "type": "Tool"
-    },
-    {
-      "name": "VsCode",
-      "type": "Tool"
-    },
-    {
-      "name": "Intellij",
-      "type": "Tool"
+      "type": "Tools",
+      "items": [
+        "Postman",
+        "Figma",
+        "VsCode",
+        "Intellij"
+      ]
     }
   ],
   "achievements": [],
