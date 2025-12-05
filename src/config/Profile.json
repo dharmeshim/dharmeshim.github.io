@@ -108,9 +108,9 @@
       "description": "Strong understanding of full-stack development, capable of building scalable web applications from scratch.",
       "type": "Technologies",
       "keySkills": [
-        "Web Development",
+        "Scalable Applications",
         "API Design",
-        "Database Management"
+        "Microservices"
       ]
     },
     {
@@ -170,6 +170,14 @@
     },
     {
       "name": "Java",
+      "type": "programming language"
+    },
+    {
+      "name": "HTML",
+      "type": "programming language"
+    },
+    {
+      "name": "CSS",
       "type": "programming language"
     },
     {

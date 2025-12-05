@@ -40,15 +40,15 @@ export const CertificationsSection = (): JSX.Element => {
       <div className={`${itemGap}`} ref={ref}>
         {/* Terminal-style header */}
         <motion.div
-          className="mb-8 p-4 rounded-lg bg-gray-900 dark:bg-black border border-gray-700 dark:border-gray-800 font-mono text-sm"
+          className="mb-8 p-4 rounded-lg bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 font-mono text-sm"
           initial={{ opacity: 0, y: -10 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
         >
           <div className="flex items-center gap-2 mb-2">
-            <Terminal className="w-4 h-4 text-green-400" />
-            <span className="text-green-400">~/certifications</span>
+            <Terminal className="w-4 h-4 text-blue-600 dark:text-green-400" />
+            <span className="text-blue-600 dark:text-green-400">~/certifications</span>
             <span className="text-gray-500">$</span>
-            <span className="text-gray-300">ls -la --year={selectedYear}</span>
+            <span className="text-gray-700 dark:text-gray-300">ls -la --year={selectedYear}</span>
           </div>
           <div className="text-gray-500 text-xs">
             total {groupedCerts[selectedYear]?.length || 0} verified credentials
@@ -210,14 +210,14 @@ export const CertificationsSection = (): JSX.Element => {
 
         {/* Terminal-style footer */}
         <motion.div
-          className="mt-8 p-3 rounded-lg bg-gray-900 dark:bg-black border border-gray-700 dark:border-gray-800 font-mono text-xs"
+          className="mt-8 p-3 rounded-lg bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 font-mono text-xs"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.5 }}
         >
           <div className="flex items-center gap-2 text-gray-400">
-            <Shield className="w-3 h-3 text-green-400" />
-            <span className="text-green-400">{certifications.items.length}</span>
+            <Shield className="w-3 h-3 text-blue-600 dark:text-green-400" />
+            <span className="text-blue-600 dark:text-green-400">{certifications.items.length}</span>
             <span>professional certifications verified</span>
             <span className="text-gray-600">•</span>
             <span>{sortedYears.length} years</span>

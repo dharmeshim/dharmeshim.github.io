@@ -51,10 +51,10 @@ export const ContactSection = (): JSX.Element => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="w-full max-w-4xl mx-auto"
+          className="w-full mx-auto"
         >
           {/* Terminal Window */}
-          <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0c0c0c] shadow-2xl font-mono text-sm md:text-base transition-colors duration-300">
+          <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0c0c0c] font-mono text-sm md:text-base transition-colors duration-300">
             {/* Terminal Header */}
             <div className="bg-gray-100 dark:bg-gray-800/50 px-4 py-2 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
               <div className="flex items-center gap-2">
