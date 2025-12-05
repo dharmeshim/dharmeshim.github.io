@@ -9,7 +9,7 @@
   "education": [
     {
       "institution": "Government College of Engineering, Dharmapuri",
-      "description": "B.E in Computer Science and Engineering",
+      "description": "B.E. in Computer Science and Engineering",
       "location": "Dharmapuri",
       "duration": "2019-2023"
     }
@@ -25,14 +25,14 @@
     {
       "company": "Finzly Inc.",
       "role": "Trainee Engineer",
-      "description": "Working as a software solutions engineer in fintech, contributing to banking applications.",
+      "description": "Trained in fintech application development and gained hands-on experience in modern banking platforms.",
       "location": "Chennai",
       "duration": "2023-2024"
     },
     {
       "company": "CDAC - Centre for Development of Advanced Computing",
       "role": "Engineer Intern",
-      "description": "Cloud computing, virtualization, engineering purpose.",
+      "description": "Explored cloud computing, virtualization, and engineering concepts through practical learning and hands-on projects.",
       "location": "Chennai",
       "duration": "2022"
     }
@@ -40,72 +40,72 @@
   "projects": [
     {
       "name": "Student Information System",
-      "description": "the goal of this project is to simplify the process of storing and managing student information. interface for editing and managing student details.",
+      "description": "Designed to simplify storing and managing student information with an intuitive interface for editing and maintaining student records.",
       "duration": "2021",
       "sourceCode": "https://github.com/dharmeshim",
-      "liveUrl": "https://www.finzly.com",
+      "liveUrl": "",
       "technologies": [
         "Visual Basic",
         "Microsoft Access"
       ],
-      "summary": "Simplified student data management with intuitive editing interface"
+      "summary": "Simplified student data management with a clean, user-friendly interface."
     },
     {
       "name": "Efficient Search Algorithm in PhoneBook",
-      "description": "The objective of this project is to improve the efficiency of retrieving contact details by utilizing the trie data structure.",
+      "description": "Developed an efficient contact retrieval system using a trie-based search algorithm to significantly improve lookup speed.",
       "duration": "2022",
       "sourceCode": "https://github.com/dharmeshim",
-      "liveUrl": "https://www.finzly.com",
+      "liveUrl": "",
       "technologies": [
         "Python",
         "Sqlite"
       ],
-      "summary": "Optimized contact retrieval using trie data structure"
+      "summary": "Optimized phonebook search performance using trie data structures."
     },
     {
-      "name": "Math riddles",
-      "description": "this project is an interactive and engaging mathematical quiz game, it presents a series of dynamic math questions. the scoring system validates and grades player's answers and as the player progresses and improves their score, the difficulty level of the questions increases, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of school students exhibition to make math learning more interactive and fun.",
+      "name": "Math Riddles",
+      "description": "An interactive mathematical quiz game that generates dynamic questions. Features an adaptive difficulty system and scoring logic to make math learning engaging for school students.",
       "duration": "2022",
       "sourceCode": "https://github.com/dharmeshim",
-      "liveUrl": "https://www.finzly.com",
+      "liveUrl": "",
       "technologies": [
         "Python",
         "Sqlite"
       ],
-      "summary": "Interactive math quiz game with adaptive difficulty for students"
+      "summary": "Interactive math quiz with adaptive difficulty for student learning."
     },
     {
-      "name": "Global sales data analytics",
-      "description": "I collaborated with IBM on a project that allowed me to learn the foundations of data analytics.",
+      "name": "Global Sales Data Analytics",
+      "description": "Collaborated with IBM on a project focused on learning foundational concepts in data analytics, including data handling and visualization.",
       "duration": "2023",
       "sourceCode": "https://github.com/dharmeshim",
-      "liveUrl": "https://www.finzly.com",
+      "liveUrl": "",
       "technologies": [
         "Python",
         "IBM Cognos",
         "Git",
         "Kanban"
       ],
-      "summary": "IBM collaboration project for learning data analytics foundations"
+      "summary": "IBM collaboration project focused on data analytics fundamentals."
     },
     {
-      "name": "Smart Typing assistant",
-      "description": "this project is an interactive and engaging typing assistant application, it presents a series of dynamic typing exercises. the scoring system validates and grades user's typing speed and accuracy, providing a challenging and dynamic learning experience. this project was specifically designed for the purpose of helping users improve their typing skills in a fun and interactive way.",
+      "name": "Smart Typing Assistant",
+      "description": "A typing assistant application designed to help users improve their speed and accuracy through dynamic exercises. Uses machine learning and scoring algorithms to deliver personalized learning experiences.",
       "duration": "2023",
       "sourceCode": "https://github.com/dharmeshim",
-      "liveUrl": "https://www.finzly.com",
+      "liveUrl": "",
       "technologies": [
         "Python",
         "Machine Learning",
         "Sqlite"
       ],
-      "summary": "ML-powered typing assistant for improving speed and accuracy"
+      "summary": "Machine learning–powered typing assistant for speed and accuracy improvement."
     }
   ],
   "knowledge": [
     {
       "name": "Full Stack Development",
-      "description": "I have a strong understanding of full stack development and I am able to build web applications from scratch.",
+      "description": "Strong understanding of full-stack development, capable of building scalable web applications from scratch.",
       "type": "Technologies",
       "keySkills": [
         "Web Development",
@@ -115,7 +115,7 @@
     },
     {
       "name": "Banking Solutions",
-      "description": "I have a strong understanding of cross border payments and I am able to build applications that support cross border payments.",
+      "description": "Good understanding of cross-border payments and the ability to build applications supporting international payment workflows.",
       "type": "Domain",
       "keySkills": [
         "SWIFT Messaging",
@@ -152,78 +152,24 @@
     }
   ],
   "techStack": [
-    {
-      "name": "Angular",
-      "type": "framework"
-    },
-    {
-      "name": "Java",
-      "type": "programming language"
-    },
-    {
-      "name": "Spring Boot",
-      "type": "framework"
-    },
-    {
-      "name": "Python",
-      "type": "programming language"
-    },
-    {
-      "name": "Design Patterns",
-      "type": "Concept"
-    },
-    {
-      "name": "Data Structures",
-      "type": "Concept"
-    },
-    {
-      "name": "System Design",
-      "type": "Concept"
-    },
-    {
-      "name": "Git",
-      "type": "version control"
-    },
-    {
-      "name": "AWS",
-      "type": "cloud"
-    },
-    {
-      "name": "Docker",
-      "type": "containerization"
-    },
-    {
-      "name": "Typescript",
-      "type": "programming language"
-    },
-    {
-      "name": "MongoDB",
-      "type": "database"
-    },
-    {
-      "name": "MySQL",
-      "type": "database"
-    },
-    {
-      "name": "Redis",
-      "type": "database"
-    },
-    {
-      "name": "Postman",
-      "type": "Tool"
-    },
-    {
-      "name": "Figma",
-      "type": "Tool"
-    },
-    {
-      "name": "VsCode",
-      "type": "Tool"
-    },
-    {
-      "name": "Intellij",
-      "type": "Tool"
-    }
+    { "name": "Angular", "type": "framework" },
+    { "name": "Java", "type": "programming language" },
+    { "name": "Spring Boot", "type": "framework" },
+    { "name": "Python", "type": "programming language" },
+    { "name": "Design Patterns", "type": "Concept" },
+    { "name": "Data Structures", "type": "Concept" },
+    { "name": "System Design", "type": "Concept" },
+    { "name": "Git", "type": "version control" },
+    { "name": "AWS", "type": "cloud" },
+    { "name": "Docker", "type": "containerization" },
+    { "name": "Typescript", "type": "programming language" },
+    { "name": "MongoDB", "type": "database" },
+    { "name": "MySQL", "type": "database" },
+    { "name": "Redis", "type": "database" },
+    { "name": "Postman", "type": "Tool" },
+    { "name": "Figma", "type": "Tool" },
+    { "name": "VsCode", "type": "Tool" },
+    { "name": "Intellij", "type": "Tool" }
   ],
   "achievements": [],
   "languages": [],
@@ -243,7 +189,7 @@
   "testimonials": [],
   "hobbies": [
     "Reading",
-    "capture Photos"
+    "Photography"
   ],
   "resume": {
     "link": "https://yourdomain.com/resume.pdf"
