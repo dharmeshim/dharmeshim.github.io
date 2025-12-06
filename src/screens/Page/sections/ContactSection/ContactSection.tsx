@@ -137,8 +137,7 @@ export const ContactSection = (): JSX.Element => {
 
                   <motion.a
                     href={contact.resume.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download="Dharmeshprasad_resume.pdf"
                     className="inline-flex items-center gap-2 px-4 py-2 mt-2 bg-blue-50 dark:bg-green-500/10 border border-blue-200 dark:border-green-500/30 rounded text-blue-600 dark:text-green-400 hover:bg-blue-100 dark:hover:bg-green-500/20 hover:border-blue-300 dark:hover:border-green-500 transition-all group"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}

@@ -8,7 +8,7 @@ import { useInView } from "../../../../hooks/useInView";
 export const EducationSection = (): JSX.Element => {
   const { education } = siteConfig.sections;
   const { primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
-  const { primary: primaryColor, accent: accentColor } = siteConfig.styles.colors;
+  const { primary: primaryColor, secondary: secondaryColor, accent: accentColor } = siteConfig.styles.colors;
   const { itemGap } = siteConfig.styles.spacing;
   const { normal: normalTransition } = siteConfig.styles.transitions;
 
@@ -44,17 +44,22 @@ export const EducationSection = (): JSX.Element => {
                 <div className="space-y-4">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
                     <div className="space-y-3">
-                      <motion.h3
-                        className={`${primaryFont} font-light ${primaryColor} text-2xl md:text-3xl lg:text-4xl tracking-tight`}
-                        whileHover={{ x: 4 }}
-                      >
-                        {item.institution}
-                      </motion.h3>
-                      {item.description && (
-                        <p className={`${secondaryFont} font-medium ${accentColor} text-base md:text-lg`}>
-                          {item.description}
+                      {item.course && (
+                        <motion.h3
+                          className={`${primaryFont} font-light ${primaryColor} text-2xl md:text-3xl lg:text-4xl tracking-tight`}
+                          whileHover={{ x: 4 }}
+                        >
+                          {item.course}
+                        </motion.h3>
+                      )}
+                      {item.branch && (
+                        <p className={`${primaryFont} font-light ${secondaryColor} text-base md:text-lg leading-relaxed max-w-5xl`}>
+                          {item.branch}
                         </p>
                       )}
+                      <p className={`${secondaryFont} font-medium ${accentColor} text-base md:text-lg`}>
+                        {item.institution}
+                      </p>
                     </div>
                   </div>
                 </div>

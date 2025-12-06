@@ -1,6 +1,6 @@
 {
   "name": "Dhamesh Prasad",
-  "description": "Associate Engineer at Finzly Inc, delving into fintech solutions with a passion for reshaping finance for positive impact.",
+  "description": "Associate Engineer at Finzly Inc., delving into fintech solutions with a passion for reshaping finance for positive impact.",
   "about": [
     "Learn",
     "Build",
@@ -9,7 +9,8 @@
   "education": [
     {
       "institution": "Government College of Engineering, Dharmapuri",
-      "description": "B.E. in Computer Science and Engineering",
+      "course": "Bachelor of Engineering",
+      "branch": "Computer Science and Engineering",
       "location": "Dharmapuri",
       "duration": "2019-2023"
     }
@@ -58,7 +59,7 @@
       "liveUrl": "",
       "technologies": [
         "Python",
-        "Sqlite"
+        "SQLite"
       ],
       "summary": "Optimized phonebook search performance using trie data structures."
     },
@@ -70,7 +71,7 @@
       "liveUrl": "",
       "technologies": [
         "Python",
-        "Sqlite"
+        "SQLite"
       ],
       "summary": "Interactive math quiz with adaptive difficulty for student learning."
     },
@@ -97,7 +98,7 @@
       "technologies": [
         "Python",
         "Machine Learning",
-        "Sqlite"
+        "SQLite"
       ],
       "summary": "Machine learning–powered typing assistant for speed and accuracy improvement."
     }
@@ -219,8 +220,8 @@
       "items": [
         "Postman",
         "Figma",
-        "VsCode",
-        "Intellij"
+        "VS Code",
+        "IntelliJ IDEA"
       ]
     }
   ],
@@ -264,11 +265,15 @@
         "link": "https://medium.com/@dpr"
       },
       {
+        "name": "DEV",
+        "link": "https://dev.to/dharmesh"
+      },
+      {
         "name": "Mail",
         "link": "mailto:dharmeshprasadr@gmail.com"
       },
       {
-        "name": "Leetcode",
+        "name": "LeetCode",
         "link": "https://leetcode.com/dharmeshprasadr/"
       },
       {
