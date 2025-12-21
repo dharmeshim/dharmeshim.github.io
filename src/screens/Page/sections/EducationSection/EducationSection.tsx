@@ -1,6 +1,6 @@
 import { BaseSection } from "../../../../components/sections/BaseSection";
 import { siteConfig } from "../../../../config/site";
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar, MapPin, GraduationCap, School } from "lucide-react";
 import { motion } from "framer-motion";
 import { staggerContainer, staggerItem } from "../../../../lib/animations";
 import { useInView } from "../../../../hooks/useInView";
@@ -8,84 +8,70 @@ import { useInView } from "../../../../hooks/useInView";
 export const EducationSection = (): JSX.Element => {
   const { education } = siteConfig.sections;
   const { primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
-  const { primary: primaryColor, secondary: secondaryColor, accent: accentColor } = siteConfig.styles.colors;
-  const { itemGap } = siteConfig.styles.spacing;
-  const { normal: normalTransition } = siteConfig.styles.transitions;
+  const { primary: primaryColor } = siteConfig.styles.colors;
 
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
     <BaseSection title={education.title}>
-      <div className={`${itemGap}`} ref={ref}>
+      <div className="w-full max-w-5xl mx-auto py-12" ref={ref}>
         <motion.div
-          className="space-y-24"
+          className="space-y-20 relative"
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
+          {/* Vertical Connecting Line */}
+          <div className="absolute left-[23px] md:left-[31px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-transparent dark:from-green-400/20 dark:via-cyan-400/20 block" />
+
           {education.items.map((item, index) => (
             <motion.div
               key={index}
-              className={`group relative border-l-2 border-gray-300 pl-16 md:pl-20 lg:pl-24 hover:border-blue-500 transition-all duration-500 dark:border-gray-600 dark:hover:border-green-400 ${normalTransition} rounded-r-lg`}
               variants={staggerItem}
-              whileHover={{ x: 4 }}
+              className="group relative flex flex-row gap-6 md:gap-8 items-start"
             >
-              {/* Timeline dot - animated on scroll */}
-              <motion.div
-                className="absolute left-0 top-0 w-5 h-5 bg-gray-400 rounded-full border-4 border-white group-hover:bg-blue-500 transition-all duration-500 transform -translate-x-2.5 dark:bg-gray-600 dark:border-black dark:group-hover:bg-green-400"
-                initial={{ scale: 0 }}
-                animate={inView ? { scale: 1 } : { scale: 0 }}
-                transition={{ delay: index * 0.2, type: "spring", stiffness: 260, damping: 20 }}
-              />
+              {/* Visual Node */}
+              <div className="relative z-10 flex-shrink-0">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl md:rounded-[2rem] bg-white dark:bg-neutral-900 border-2 border-blue-500/20 dark:border-green-400/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-500/10 dark:group-hover:bg-green-400/10 transition-all duration-500 shadow-xl dark:shadow-none">
+                  <GraduationCap className="w-5 h-5 md:w-6 md:h-6 text-blue-500 dark:text-green-400" />
+                </div>
+              </div>
 
-              {/* Content */}
-              <div className="space-y-6">
-                {/* Header */}
-                <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-                    <div className="space-y-3">
-                      {item.course && (
-                        <motion.h3
-                          className={`${primaryFont} font-light ${primaryColor} text-2xl md:text-3xl lg:text-4xl tracking-tight`}
-                          whileHover={{ x: 4 }}
-                        >
-                          {item.course}
-                        </motion.h3>
-                      )}
-                      {item.branch && (
-                        <p className={`${primaryFont} font-light ${secondaryColor} text-base md:text-lg leading-relaxed max-w-5xl`}>
-                          {item.branch}
-                        </p>
-                      )}
-                      <p className={`${secondaryFont} font-medium ${accentColor} text-base md:text-lg`}>
-                        {item.institution}
-                      </p>
-                    </div>
+              {/* Content Area */}
+              <div className="flex-1 space-y-4 md:space-y-6 pt-1 md:pt-2">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 md:gap-3">
+                    <School className="w-3 h-3 md:w-4 h-4 text-gray-400" />
+                    <span className={`${secondaryFont} text-[10px] md:text-sm font-bold uppercase tracking-widest text-gray-500`}>
+                      {item.institution}
+                    </span>
+                  </div>
+
+                  <h3 className={`${primaryFont} text-xl md:text-3xl lg:text-4xl font-black ${primaryColor} tracking-tight leading-tight group-hover:text-blue-500 dark:group-hover:text-green-400 transition-colors`}>
+                    {item.course}
+                  </h3>
+
+                  {item.branch && (
+                    <p className={`${primaryFont} text-sm md:text-lg lg:text-xl text-gray-500 dark:text-gray-400 font-medium`}>
+                      {item.branch}
+                    </p>
+                  )}
+                </div>
+
+                {/* Metadata Footer (Integrated) */}
+                <div className="flex flex-wrap gap-4 md:gap-8 items-center text-[10px] md:text-xs font-mono text-gray-400 pt-2 md:pt-4">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-3 h-3 md:w-4 h-4 opacity-40" />
+                    <span>{item.duration}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-3 h-3 md:w-4 h-4 opacity-40" />
+                    <span>{item.location}</span>
                   </div>
                 </div>
 
-                {/* Footer */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-6 pt-8 border-t border-gray-200 dark:border-gray-700 rounded-b-lg">
-                  {item.duration && (
-                    <motion.div
-                      className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400"
-                      whileHover={{ x: 2 }}
-                    >
-                      <Calendar className="w-4 h-4" />
-                      <span className="font-mono">{item.duration}</span>
-                    </motion.div>
-                  )}
-
-                  {item.location && (
-                    <motion.div
-                      className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400"
-                      whileHover={{ x: 2 }}
-                    >
-                      <MapPin className="w-4 h-4" />
-                      <span>{item.location}</span>
-                    </motion.div>
-                  )}
-                </div>
+                {/* Decorative Accent Background */}
+                <div className="absolute inset-0 -mx-8 -my-6 rounded-[3rem] bg-gradient-to-r from-blue-500/[0.03] dark:from-green-400/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
               </div>
             </motion.div>
           ))}

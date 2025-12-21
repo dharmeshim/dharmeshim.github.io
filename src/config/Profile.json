@@ -1,11 +1,10 @@
 {
   "name": "Dhamesh Prasad",
-  "description": "Associate Engineer at Finzly Inc., delving into fintech solutions with a passion for reshaping finance for positive impact.",
+  "description": "Associate Engineer at Finzly, delving into fintech solutions with a passion for reshaping finance for positive impact.",
   "about": [
-    "Learn",
-    "Build",
-    "Share"
+    "Hello,"
   ],
+  "tagLine": "I Learn, Build, Share",
   "education": [
     {
       "institution": "Government College of Engineering, Dharmapuri",
@@ -100,7 +99,7 @@
         "Machine Learning",
         "SQLite"
       ],
-      "summary": "Machine learning–powered typing assistant for speed and accuracy improvement."
+      "summary": "Machine learning-powered typing assistant for speed and accuracy improvement."
     }
   ],
   "knowledge": [
@@ -128,15 +127,15 @@
   ],
   "certifications": [
     {
-      "name": "BPMN - Business Process Model and Notation 2.0",
+      "name": " The Practical BPMN 2.0 Master Class",
       "issuer": "Udemy",
-      "link": "",
+      "link": "https://www.udemy.com/certificate/UC-84474933-0c7d-43bf-9582-d027c47d3317/",
       "year": "2025"
     },
     {
-      "name": "Java Clean Code",
+      "name": "Docker for Java Developers",
       "issuer": "Udemy",
-      "link": "",
+      "link": "https://www.udemy.com/certificate/UC-26f35304-f086-4cec-a3b1-91271fad89ca/",
       "year": "2025"
     },
     {
@@ -152,6 +151,12 @@
       "year": "2025"
     },
     {
+      "name": "Java Best Practices",
+      "issuer": "Udemy",
+      "link": "",
+      "year": "2025"
+    },
+    {
       "name": "Java Programming Masterclass",
       "issuer": "Udemy",
       "link": "https://www.udemy.com/certificate/UC-5e4ae84b-9407-4fc7-9ee3-dd8103686c08/",
@@ -162,15 +167,40 @@
       "issuer": "IBM",
       "link": "https://courses.ictacademy.skillsnetwork.site/certificates/d54ed9f5b813408292db7de49de95e73?trk=public_profile_see-credential",
       "year": "2023"
+    },
+    {
+      "name": "HTML & CSS - Course completion certification",
+      "issuer": "Udemy",
+      "link": "https://www.udemy.com/certificate/UC-19a928ff-87c4-44a8-8616-89f62a2e92c5/",
+      "year": "2022"
+    },
+    {
+      "name": "Scientific computing with python",
+      "issuer": "freeCodeCamp",
+      "link": "https://freecodecamp.org/certification/Dharmeshim/scientific-computing-with-python-v7",
+      "year": "2022"
+    },
+    {
+      "name": "Scientific computing with python",
+      "issuer": "freeCodeCamp",
+      "link": "https://freecodecamp.org/certification/Dharmeshim/scientific-computing-with-python-v7",
+      "year": "2022"
+    },
+    {
+      "name": "SQL (Intermediate)",
+      "issuer": "hackerrank",
+      "link": "https://www.hackerrank.com/certificates/6b36ae93b497",
+      "year": "2022"
     }
   ],
   "techStack": [
     {
-      "type": "Programming Language",
+      "type": "Languages",
       "items": [
         "Java",
         "Python",
         "TypeScript",
+        "Rust",
         "HTML",
         "CSS"
       ]

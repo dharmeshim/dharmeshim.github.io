@@ -3,6 +3,10 @@ import profile from "./Profile.json";
 export const siteConfig = {
   name: profile.name,
   description: profile.description,
+
+  /* -----------------------------
+   * Navigation
+   * ----------------------------- */
   navigation: {
     items: [
       { label: "Home", href: "#home" },
@@ -15,6 +19,10 @@ export const siteConfig = {
       { label: "Contact", href: "#contact" },
     ],
   },
+
+  /* -----------------------------
+   * Sections
+   * ----------------------------- */
   sections: {
     home: {
       id: "home",
@@ -25,36 +33,43 @@ export const siteConfig = {
         targetSection: "experience",
       },
     },
+
     experience: {
       id: "experience",
       title: "Professional Journey",
       items: profile.experience,
     },
+
     projects: {
       id: "projects",
       title: "Things I Built",
       items: profile.projects,
     },
+
     education: {
       id: "education",
       title: "Academics",
       items: profile.education,
     },
+
     knowledge: {
       id: "knowledge",
       title: "Knowledge",
       items: profile.knowledge,
     },
+
     techStack: {
       id: "techStack",
       title: "Tech Stack",
       items: profile.techStack,
     },
+
     certifications: {
       id: "certifications",
       title: "Certifications",
       items: profile.certifications,
     },
+
     contact: {
       id: "contact",
       title: "Let's Connect",
@@ -62,6 +77,10 @@ export const siteConfig = {
       resume: profile.resume,
     },
   },
+
+  /* -----------------------------
+   * Layout
+   * ----------------------------- */
   layout: {
     logo: {
       scrolledPosition: { top: "top-6", left: "left-8" },
@@ -69,39 +88,55 @@ export const siteConfig = {
       scrolledSize: "2.5rem",
       centeredSize: "12rem",
     },
+
     scrollButton: {
       position: { bottom: "bottom-12", left: "left-1/2" },
       size: "h-14 w-14",
     },
+
     navigation: {
       position: { top: "top-8", right: "right-8" },
     },
+
     sectionCounter: {
       position: { top: "top-1/3", left: "left-8" },
     },
   },
+
+  /* -----------------------------
+   * Styles (Design System Tokens)
+   * ----------------------------- */
   styles: {
+    /* Fonts */
     fonts: {
-      primary: "font-['JetBrains_Mono',monospace]",
+      primary: "font-['Inter',system-ui,sans-serif]",
       secondary: "font-['JetBrains_Mono',monospace]",
       display: "font-['JetBrains_Mono',monospace]",
     },
+
+    /* Colors */
     colors: {
-      // Light mode: Clean, light theme
-      // Dark mode: Black and green terminal theme
-      primary: "text-gray-800 dark:text-green-400",
-      secondary: "text-gray-600 dark:text-gray-300",
+      primary: "text-gray-900 dark:text-green-400",
+      secondary: "text-gray-700 dark:text-gray-300",
       muted: "text-gray-500 dark:text-gray-500",
+
       background: "bg-gray-50 dark:bg-black",
-      surface: "bg-white dark:bg-gray-900",
-      border: "border-gray-200 dark:border-gray-600",
+      surface: "bg-white dark:bg-neutral-900/80",
+
+      border: "border-gray-200 dark:border-green-400/20",
+
       accent: "text-blue-600 dark:text-cyan-400",
-      hover: "hover:bg-gray-100 dark:hover:bg-gray-800",
+      accentSoft: "bg-blue-50 dark:bg-cyan-400/10",
+
+      hover: "hover:bg-gray-100 dark:hover:bg-white/5",
       focus: "focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400",
+
       success: "text-green-600 dark:text-green-400",
       warning: "text-yellow-600 dark:text-yellow-400",
       error: "text-red-600 dark:text-red-400",
     },
+
+    /* Spacing */
     spacing: {
       sectionPadding: "px-12 sm:px-16 md:px-20 lg:px-24 xl:px-32",
       sectionMaxWidth: "max-w-none",
@@ -109,16 +144,26 @@ export const siteConfig = {
       itemGap: "space-y-12 md:space-y-16",
       containerGap: "space-y-16 md:space-y-20",
     },
+
+    /* Shadows */
     shadows: {
-      none: "shadow-none",
+      soft: "shadow-sm dark:shadow-[0_0_0_1px_rgba(34,197,94,0.15)]",
+      medium: "shadow-md dark:shadow-[0_8px_32px_rgba(34,197,94,0.15)]",
     },
+
+    /* Motion */
     transitions: {
-      fast: "transition-all duration-200 ease-out",
-      normal: "transition-all duration-400 ease-out",
-      slow: "transition-all duration-600 ease-out",
-      bounce: "transition-all duration-300 cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+      fast: "transition-all duration-150 ease-out",
+      normal: "transition-all duration-300 ease-out",
+      slow: "transition-all duration-500 ease-out",
+
+      playful:
+        "transition-all duration-400 cubic-bezier(0.34,1.56,0.64,1)",
+
+      ambient:
+        "transition-transform duration-[1200ms] ease-in-out",
     },
   },
 } as const;
 
-export type SiteConfig = typeof siteConfig; 
+export type SiteConfig = typeof siteConfig;

@@ -6,3 +6,7 @@ export { Loader } from "./Loader";
 export { MetadataItem } from "./MetadataItem";
 export { TimelineItem } from "./TimelineItem";
 export { AnimatedCard } from "./AnimatedCard";
+export { SmoothScroll } from "./SmoothScroll";
+export { ParticleBackground } from "./ParticleBackground";
+export { MagneticCursor } from "./MagneticCursor";
+export { ProjectCard } from "./ProjectCard";

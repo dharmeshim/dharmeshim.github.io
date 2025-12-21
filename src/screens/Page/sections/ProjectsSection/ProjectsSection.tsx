@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BaseSection } from "../../../../components/sections/BaseSection";
 import { siteConfig } from "../../../../config/site";
-import { ChevronRight, ChevronDown, ExternalLink, Code } from "lucide-react";
+import { ExternalLink, Code, Calendar, Sparkles, Files, ChevronRight, Hash } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { staggerContainer, staggerItem } from "../../../../lib/animations";
 import { useInView } from "../../../../hooks/useInView";
@@ -10,204 +10,190 @@ export const ProjectsSection = (): JSX.Element => {
   const { projects } = siteConfig.sections;
   const { primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
   const { primary: primaryColor, secondary: secondaryColor, muted: mutedColor } = siteConfig.styles.colors;
-  const { itemGap } = siteConfig.styles.spacing;
 
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
-  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const toggleProject = (index: number) => {
-    setExpandedProject(expandedProject === index ? null : index);
-  };
+  const activeProject = projects.items[activeIndex];
 
   return (
     <BaseSection title={projects.title}>
-      <div className={`${itemGap}`} ref={ref}>
+      <div className="w-full" ref={ref}>
         <motion.div
-          className="space-y-0"
+          className="flex flex-col lg:flex-row gap-0 lg:gap-12 min-h-[600px] bg-white/30 dark:bg-neutral-900/30 backdrop-blur-md rounded-3xl border border-gray-200/50 dark:border-gray-800/50 overflow-hidden shadow-2xl"
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
-          {projects.items.map((project, index) => {
-            const isExpanded = expandedProject === index;
-            const projectNumber = String(index + 1).padStart(2, '0');
-            const hasDescription = project.description && project.summary;
+          {/* Left Sidebar: Project Navigator */}
+          <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-r border-gray-200/50 dark:border-gray-800/50 bg-gray-50/50 dark:bg-black/20 p-4 lg:p-6 space-y-4 lg:space-y-8">
+            <div className="flex items-center gap-3 mb-2 lg:mb-8">
+              <Files className="w-4 h-4 text-blue-500 dark:text-green-400" />
+              <h3 className={`${secondaryFont} text-[10px] lg:text-sm font-bold uppercase tracking-widest text-gray-500`}>Explorer</h3>
+            </div>
 
-            return (
+            <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 no-scrollbar">
+              {projects.items.map((project, index) => {
+                const isActive = activeIndex === index;
+                return (
+                  <motion.button
+                    key={index}
+                    onClick={() => setActiveIndex(index)}
+                    className={`
+                      flex-shrink-0 flex items-center justify-between px-4 py-2 lg:py-3 rounded-xl transition-all duration-300
+                      ${isActive
+                        ? 'bg-blue-500/10 dark:bg-green-400/10 border border-blue-500/20 dark:border-green-400/20 shadow-sm'
+                        : 'hover:bg-gray-100 dark:hover:bg-white/5 opacity-60 hover:opacity-100'}
+                    `}
+                    whileHover={{ x: 4 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <Hash className={`w-3 h-3 lg:w-4 h-4 ${isActive ? 'text-blue-500 dark:text-green-400' : 'text-gray-400'}`} />
+                      <span className={`${primaryFont} text-xs lg:text-sm font-medium ${isActive ? primaryColor : 'text-gray-500'}`}>
+                        {project.name}
+                      </span>
+                    </div>
+                    {isActive && (
+                      <motion.div layoutId="activeArrow" className="hidden lg:block">
+                        <ChevronRight className="w-4 h-4 text-blue-500 dark:text-green-400" />
+                      </motion.div>
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Area: Project Workspace */}
+          <div className="flex-1 p-6 lg:p-12 relative overflow-hidden">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={index}
-                variants={staggerItem}
-                className="group relative"
+                key={activeIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                className="space-y-8 lg:space-y-12 h-full flex flex-col"
               >
-                {/* Clickable area */}
-                <div
-                  onClick={() => hasDescription && toggleProject(index)}
-                  className={`
-                    flex items-start gap-8 py-10 
-                    border-b border-gray-200/30 dark:border-gray-800/30
-                    ${hasDescription ? 'cursor-pointer' : ''}
-                    transition-all duration-200
-                  `}
-                >
-                  {/* Left side: Number with accent line */}
-                  <div className="flex items-start gap-4 min-w-[4rem]">
-                    {/* Vertical accent line */}
-                    <div className="relative pt-2">
-                      <div className={`
-                        w-0.5 h-6 transition-all duration-300
-                        ${isExpanded
-                          ? 'bg-blue-500 dark:bg-green-400'
-                          : 'bg-gray-300 dark:bg-gray-700 group-hover:bg-blue-400 dark:group-hover:bg-green-500'
-                        }
-                      `} />
-                    </div>
-
-                    {/* Project number */}
-                    <div className={`
-                      ${secondaryFont} font-mono text-base
-                      ${isExpanded
-                        ? 'text-blue-500 dark:text-green-400'
-                        : `${mutedColor} group-hover:text-blue-500 dark:group-hover:text-green-400`
-                      }
-                      transition-colors duration-200 pt-1
-                    `}>
-                      {projectNumber}
-                    </div>
+                {/* Header Area */}
+                <div className="space-y-4 lg:space-y-6">
+                  <div className="flex flex-wrap items-center gap-4">
+                    <span className="px-3 py-1 bg-gray-100 dark:bg-white/5 rounded-full text-[10px] font-mono uppercase tracking-tighter text-gray-500">
+                      Project {String(activeIndex + 1).padStart(2, '0')}
+                    </span>
+                    {activeProject.duration && (
+                      <div className="flex items-center gap-2 text-[10px] font-mono text-gray-400">
+                        <Calendar className="w-3 h-3" />
+                        <span>{activeProject.duration}</span>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Main content */}
-                  <div className="flex-1 space-y-5">
-                    {/* Title and summary */}
-                    <div className="space-y-2">
-                      <h3 className={`
-                        ${primaryFont} font-light ${primaryColor} 
-                        text-2xl md:text-3xl tracking-tight
-                        transition-colors duration-200
-                        ${hasDescription ? 'group-hover:text-blue-500 dark:group-hover:text-green-400' : ''}
-                      `}>
-                        {project.name}
-                      </h3>
-                      <p className={`${secondaryFont} text-base ${secondaryColor} leading-relaxed`}>
-                        {project.summary}
-                        <span className={`${mutedColor} mx-2`}>•</span>
-                        <span className={`${secondaryFont} font-mono text-sm ${mutedColor}`}>
-                          {project.duration}
-                        </span>
-                      </p>
+                  <h2 className={`${primaryFont} text-2xl md:text-4xl lg:text-5xl font-bold ${primaryColor} tracking-tight`}>
+                    {activeProject.name}
+                  </h2>
+                </div>
+
+                {/* Main Content Area */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 flex-1">
+                  <div className="lg:col-span-12 space-y-8 lg:space-y-12">
+                    {/* Summary & Description */}
+                    <div className="space-y-4 lg:space-y-6">
+                      <div className="flex items-start gap-4 p-4 lg:p-6 rounded-2xl bg-blue-500/5 dark:bg-green-400/5 border border-blue-500/10 dark:border-green-400/10">
+                        <Sparkles className="w-5 h-5 lg:w-6 h-6 text-blue-500 dark:text-green-400 flex-shrink-0 mt-1" />
+                        <p className={`${primaryFont} text-base lg:text-xl leading-relaxed ${secondaryColor}`}>
+                          {activeProject.summary}
+                        </p>
+                      </div>
+
+                      {activeProject.description && (
+                        <div className={`${primaryFont} text-sm lg:text-base leading-relaxed ${mutedColor} pl-4 border-l-2 border-gray-200 dark:border-gray-800`}>
+                          {activeProject.description}
+                        </div>
+                      )}
                     </div>
 
-                    {/* Technologies */}
-                    {project.technologies && project.technologies.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech: string, i: number) => (
-                          <span
-                            key={i}
-                            className={`
-                              ${secondaryFont} font-mono text-xs ${mutedColor}
-                              px-3 py-1.5 
-                              bg-gray-50 dark:bg-gray-900/50
-                              border border-gray-200/50 dark:border-gray-800/50
-                              rounded-md
-                              transition-colors duration-200
-                              group-hover:border-gray-300 dark:group-hover:border-gray-700
-                            `}
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                    {/* Tech Stack Chips (Fluid) */}
+                    {activeProject.technologies && (
+                      <div className="space-y-3 lg:space-y-4">
+                        <h4 className={`${secondaryFont} text-[10px] lg:text-xs font-bold uppercase tracking-widest text-gray-400`}>Technologies</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {activeProject.technologies.map((tech, i) => (
+                            <motion.span
+                              key={i}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: i * 0.05 }}
+                              className="px-3 md:px-4 py-1.5 md:py-2 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-gray-800 text-[10px] md:text-xs font-mono font-medium hover:border-blue-500/30 dark:hover:border-green-400/30 transition-all shadow-sm"
+                            >
+                              {tech}
+                            </motion.span>
+                          ))}
+                        </div>
                       </div>
                     )}
 
-                    {/* Links */}
-                    <div className="flex gap-6 text-sm">
-                      {project.sourceCode && (
-                        <a
-                          href={project.sourceCode}
+                    {/* CTA Actions */}
+                    <div className="flex flex-wrap gap-3 lg:gap-4 pt-4 lg:pt-8 mt-auto">
+                      {activeProject.sourceCode && (
+                        <motion.a
+                          href={activeProject.sourceCode}
                           target="_blank"
                           rel="noopener noreferrer"
-                          onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                          className={`
-                            flex items-center gap-2 ${mutedColor}
-                            hover:text-blue-500 dark:hover:text-green-400
-                            transition-colors duration-200
-                          `}
+                          className="px-4 lg:px-6 py-2.5 lg:py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl lg:rounded-2xl text-sm lg:text-base font-bold flex items-center gap-2 lg:gap-3 transition-transform"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          <Code className="w-4 h-4" />
-                          <span className="font-mono">source</span>
-                        </a>
+                          <Code className="w-4 h-4 lg:w-5 h-5" />
+                          <span>Source Code</span>
+                        </motion.a>
                       )}
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
+                      {activeProject.liveUrl && (
+                        <motion.a
+                          href={activeProject.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                          className={`
-                            flex items-center gap-2 ${mutedColor}
-                            hover:text-blue-500 dark:hover:text-green-400
-                            transition-colors duration-200
-                          `}
+                          className="px-4 lg:px-6 py-2.5 lg:py-3 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-xl lg:rounded-2xl text-sm lg:text-base font-bold flex items-center gap-2 lg:gap-3 transition-transform"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          <ExternalLink className="w-4 h-4" />
-                          <span className="font-mono">live</span>
-                        </a>
+                          <ExternalLink className="w-4 h-4 lg:w-5 h-5" />
+                          <span>View Live</span>
+                        </motion.a>
                       )}
                     </div>
-
-                    {/* Expandable description */}
-                    {hasDescription && (
-                      <AnimatePresence initial={false}>
-                        {isExpanded && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                            animate={{ height: "auto", opacity: 1, marginTop: 20 }}
-                            exit={{ height: 0, opacity: 0, marginTop: 0 }}
-                            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                            className="overflow-hidden"
-                          >
-                            <div className={`
-                              ${secondaryFont} text-sm ${secondaryColor} leading-relaxed
-                              pl-6 border-l-2 border-blue-500/30 dark:border-green-400/30
-                            `}>
-                              {project.description}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    )}
                   </div>
-
-                  {/* Chevron indicator */}
-                  {hasDescription && (
-                    <div className={`
-                      pt-1 transition-all duration-200
-                      ${isExpanded
-                        ? 'text-blue-500 dark:text-green-400'
-                        : `${mutedColor} group-hover:text-blue-500 dark:group-hover:text-green-400`
-                      }
-                    `}>
-                      <motion.div
-                        animate={{ rotate: isExpanded ? 90 : 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <ChevronRight className="w-5 h-5" />
-                      </motion.div>
-                    </div>
-                  )}
                 </div>
+
+                {/* Decorative background accent */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] lg:w-[500px] h-[300px] lg:h-[500px] bg-blue-500/5 dark:bg-green-400/5 rounded-full blur-[80px] lg:blur-[120px] pointer-events-none -z-10" />
               </motion.div>
-            );
-          })}
+            </AnimatePresence>
+          </div>
         </motion.div>
 
-        {/* Footer info */}
-        <div className={`mt-12 text-center ${secondaryFont} text-sm ${mutedColor}`}>
-          <p className="font-mono">
-            {projects.items.length} {projects.items.length === 1 ? 'project' : 'projects'}
-            <span className="mx-2">•</span>
-            click to expand details
-          </p>
-        </div>
+        {/* Floating Context Stats */}
+        <motion.div
+          className="mt-12 flex justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <div className="flex gap-12 text-center items-center">
+            <div>
+              <div className={`${secondaryFont} text-3xl font-bold ${primaryColor}`}>{projects.items.length}</div>
+              <div className={`${secondaryFont} text-[10px] font-bold uppercase tracking-wide text-gray-500`}>Total Projects</div>
+            </div>
+            <div className="w-px h-12 bg-gray-200 dark:bg-gray-800" />
+            <div>
+              <div className={`${secondaryFont} text-3xl font-bold ${primaryColor}`}>
+                {Array.from(new Set(projects.items.flatMap(p => p.technologies || []))).length}
+              </div>
+              <div className={`${secondaryFont} text-[10px] font-bold uppercase tracking-wide text-gray-500`}>Technologies Used</div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </BaseSection>
   );

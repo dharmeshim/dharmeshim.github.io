@@ -1,22 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BaseSection } from "../../../../components/sections/BaseSection";
 import { siteConfig } from "../../../../config/site";
-import { Calendar, Award, ExternalLink, Shield, CheckCircle2, Terminal, FileCode, Hash } from "lucide-react";
+import { Award, ExternalLink, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { staggerContainer, staggerItem } from "../../../../lib/animations";
+import { staggerContainer, staggerItem, fadeInUp } from "../../../../lib/animations";
 import { useInView } from "../../../../hooks/useInView";
 
 export const CertificationsSection = (): JSX.Element => {
   const { certifications } = siteConfig.sections;
   const { primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
-  const { primary: primaryColor, secondary: secondaryColor, muted: mutedColor, accent: accentColor } = siteConfig.styles.colors;
-  const { itemGap } = siteConfig.styles.spacing;
+  const { primary: primaryColor } = siteConfig.styles.colors;
 
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
-  // Group by year
-  const groupedCerts = certifications.items.reduce((acc: any, cert: any) => {
-    const year = cert.year;
+  // Group certifications by year
+  const groupedByYear = certifications.items.reduce((acc: any, cert: any) => {
+    const year = cert.year || 'Other';
     if (!acc[year]) {
       acc[year] = [];
     }
@@ -24,203 +23,132 @@ export const CertificationsSection = (): JSX.Element => {
     return acc;
   }, {});
 
-  const sortedYears = Object.keys(groupedCerts).sort((a, b) => parseInt(b) - parseInt(a));
-  const [selectedYear, setSelectedYear] = useState<string>(sortedYears[0] || "");
-
-  // Generate a pseudo-hash for each certification (for visual effect)
-  const generateHash = (name: string, index: number) => {
-    const hash = (name + index).split('').reduce((acc, char) => {
-      return ((acc << 5) - acc) + char.charCodeAt(0);
-    }, 0);
-    return Math.abs(hash).toString(16).substring(0, 7);
-  };
+  const years = Object.keys(groupedByYear).sort((a, b) => b.localeCompare(a));
+  const [activeYear, setActiveYear] = useState(years[0]);
 
   return (
     <BaseSection title={certifications.title}>
-      <div className={`${itemGap}`} ref={ref}>
-        {/* Terminal-style header */}
+      <div className="w-full max-w-5xl mx-auto py-12" ref={ref}>
+        {/* Year Navigator (Swiftable) */}
         <motion.div
-          className="mb-8 p-4 rounded-lg bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 font-mono text-sm"
-          initial={{ opacity: 0, y: -10 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-        >
-          <div className="flex items-center gap-2 mb-2">
-            <Terminal className="w-4 h-4 text-blue-600 dark:text-green-400" />
-            <span className="text-blue-600 dark:text-green-400">~/certifications</span>
-            <span className="text-gray-500">$</span>
-            <span className="text-gray-700 dark:text-gray-300">ls -la --year={selectedYear}</span>
-          </div>
-          <div className="text-gray-500 text-xs">
-            total {groupedCerts[selectedYear]?.length || 0} verified credentials
-          </div>
-        </motion.div>
-
-        {/* Year selector - styled as git tags */}
-        <motion.div
-          className="flex flex-wrap gap-3 mb-8"
+          className="flex flex-wrap justify-center gap-4 mb-20"
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
-          {sortedYears.map((year) => (
+          {years.map((year) => (
             <motion.button
               key={year}
-              onClick={() => setSelectedYear(year)}
               variants={staggerItem}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className={`relative px-4 py-2 rounded-md font-mono text-sm transition-all duration-300 ${selectedYear === year
-                ? "bg-blue-500 dark:bg-green-500 text-white shadow-lg shadow-blue-500/30 dark:shadow-green-500/30"
-                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-                }`}
+              onClick={() => setActiveYear(year)}
+              className={`
+                relative px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300
+                ${activeYear === year
+                  ? 'text-white dark:text-black z-10'
+                  : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'}
+              `}
             >
-              <span className="flex items-center gap-2">
-                <Hash className="w-3 h-3" />
-                {year}
-              </span>
+              {activeYear === year && (
+                <motion.div
+                  layoutId="activeYearBg"
+                  className="absolute inset-0 bg-blue-500 dark:bg-green-400 rounded-full -z-10"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {year}
             </motion.button>
           ))}
         </motion.div>
 
-        {/* Certifications as code files */}
         <AnimatePresence mode="wait">
-          {selectedYear && (
-            <motion.div
-              key={selectedYear}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className="space-y-0"
-                variants={staggerContainer}
-                initial="hidden"
-                animate="visible"
-              >
-                {groupedCerts[selectedYear].map((cert: any, index: number) => {
-                  const hash = generateHash(cert.name, index);
-                  const certNumber = String(index + 1).padStart(2, '0');
+          <motion.div
+            key={activeYear}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.4, ease: "circOut" }}
+            className="space-y-12"
+          >
+            {/* Year Indicator (Fluid Background) */}
+            <div className="relative">
+              <div className={`${secondaryFont} text-7xl lg:text-[12rem] font-black opacity-[0.03] dark:opacity-[0.05] absolute -left-8 -top-16 lg:-top-32 pointer-events-none select-none`}>
+                {activeYear}
+              </div>
 
-                  return (
-                    <motion.div
-                      key={index}
-                      variants={staggerItem}
-                      className="group relative"
-                    >
-                      {/* Code file style layout */}
-                      <div
-                        className={`
-                          flex items-start gap-6 py-6 px-4
-                          border-b border-gray-200/30 dark:border-gray-800/30
-                          hover:bg-gray-50/50 dark:hover:bg-gray-900/30
-                          transition-all duration-200
-                          cursor-default
-                        `}
-                      >
-                        {/* Left side: Line number and accent */}
-                        <div className="flex items-start gap-4 min-w-[3rem]">
-                          {/* Vertical accent line */}
-                          <div className="relative pt-2">
-                            <div className={`
-                              w-0.5 h-6 transition-all duration-300
-                              bg-gray-300 dark:bg-gray-700 group-hover:bg-blue-400 dark:group-hover:bg-green-500
-                            `} />
-                          </div>
-
-                          {/* Line number */}
-                          <div className={`
-                            ${secondaryFont} font-mono text-sm
-                            ${mutedColor} group-hover:text-blue-500 dark:group-hover:text-green-400
-                            transition-colors duration-200 pt-1
-                          `}>
-                            {certNumber}
-                          </div>
-                        </div>
-
-                        {/* Main content */}
-                        <div className="flex-1 space-y-3">
-                          {/* File icon and name */}
-                          <div className="flex items-start gap-3">
-                            <FileCode className={`w-5 h-5 mt-1 ${accentColor} group-hover:text-blue-500 dark:group-hover:text-green-400 transition-colors`} />
-                            <div className="flex-1">
-                              <h4 className={`${primaryFont} font-light ${primaryColor} text-lg md:text-xl tracking-tight group-hover:text-blue-500 dark:group-hover:text-green-400 transition-colors`}>
-                                {cert.name}
-                              </h4>
-                              {/* Issuer info moved to metadata */}
-                            </div>
-                          </div>
-
-                          {/* Metadata - styled like git commit info */}
-                          <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
-                            {/* Commit hash style */}
-                            {/* Issuer (Hash style) */}
-                            {cert.issuer && (
-                              <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-                                <Hash className="w-3 h-3" />
-                                <span className="text-blue-600 dark:text-green-400">issued by {cert.issuer}</span>
-                              </div>
-                            )}
-
-                            {/* Date */}
-                            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-                              <Calendar className="w-3 h-3" />
-                              <span>{cert.year}</span>
-                            </div>
-
-
-                          </div>
-
-                          {/* View link */}
-                          {cert.link && (
-                            <a
-                              href={cert.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={`
-                                inline-flex items-center gap-2 text-sm font-mono
-                                ${mutedColor} hover:text-blue-500 dark:hover:text-green-400
-                                transition-colors duration-200
-                              `}
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                              <span>view credential</span>
-                            </a>
-                          )}
-                        </div>
-
-                        {/* Award icon on right */}
-                        <div className="hidden sm:block">
-                          <motion.div
-                            className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center opacity-20 group-hover:opacity-100 transition-opacity duration-300"
-                            whileHover={{ rotate: 360 }}
-                            transition={{ duration: 0.5 }}
-                          >
-                            <Award className="w-5 h-5 text-white" />
-                          </motion.div>
-                        </div>
+              {/* Certifications for selected year */}
+              <div className="space-y-12 relative z-10">
+                {groupedByYear[activeYear].map((cert: any, index: number) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="group flex flex-row gap-6 md:gap-8 items-center relative"
+                  >
+                    {/* Visual Marker */}
+                    <div className="flex-shrink-0 relative">
+                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl md:rounded-3xl bg-blue-500/5 dark:bg-green-400/5 border border-blue-500/10 dark:border-green-400/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-500/10 dark:group-hover:bg-green-400/10 transition-all duration-500">
+                        <Award className="w-5 h-5 md:w-6 md:h-6 text-blue-500 dark:text-green-400 group-hover:rotate-12 transition-transform" />
                       </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            </motion.div>
-          )}
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 space-y-2 md:space-y-3">
+                      <div className="flex items-center gap-3 md:gap-4 text-gray-400">
+                        <span className={`${secondaryFont} text-[9px] md:text-[10px] font-bold uppercase tracking-widest`}>{cert.issuer}</span>
+                        <Minus className="w-3 md:w-4 h-[1px] opacity-20" />
+                        <span className="font-mono text-[9px] md:text-[10px]">{cert.year}</span>
+                      </div>
+
+                      <h3 className={`${primaryFont} text-xl md:text-2xl lg:text-3xl font-bold ${primaryColor} tracking-tight group-hover:text-blue-500 dark:group-hover:text-green-400 transition-colors`}>
+                        {cert.name}
+                      </h3>
+
+                      {cert.link && (
+                        <motion.a
+                          href={cert.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 md:gap-3 text-[10px] md:text-xs font-bold text-gray-400 hover:text-blue-500 dark:hover:text-green-400 transition-colors uppercase tracking-widest pt-1 md:pt-2"
+                          whileHover={{ x: 5 }}
+                        >
+                          <span>Verify Credential</span>
+                          <ExternalLink className="w-2.5 h-2.5 md:w-3 h-3" />
+                        </motion.a>
+                      )}
+                    </div>
+
+                    {/* Accent Background (Fluid) */}
+                    <div className="absolute inset-0 -mx-6 -my-4 rounded-[40px] bg-blue-500/[0.02] dark:bg-green-400/[0.02] opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </AnimatePresence>
 
-        {/* Terminal-style footer */}
+        {/* Knowledge-style Stats Footer */}
         <motion.div
-          className="mt-8 p-3 rounded-lg bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 font-mono text-xs"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 0.5 }}
+          className="mt-24 pt-12 border-t border-gray-200 dark:border-gray-800 flex flex-wrap justify-between items-center gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
         >
-          <div className="flex items-center gap-2 text-gray-400">
-            <Shield className="w-3 h-3 text-blue-600 dark:text-green-400" />
-            <span className="text-blue-600 dark:text-green-400">{certifications.items.length}</span>
-            <span>professional certifications verified</span>
-            <span className="text-gray-600">•</span>
-            <span>{sortedYears.length} years</span>
+          <div className="flex items-center gap-4 text-gray-500">
+            <span className="w-8 h-[2px] bg-blue-500 dark:bg-green-400" />
+            <span className={`${secondaryFont} text-xs font-bold uppercase tracking-[0.3em]`}>Continuous Validation</span>
+          </div>
+
+          <div className="flex gap-8">
+            <div className="text-center">
+              <div className={`${secondaryFont} text-2xl font-bold ${primaryColor}`}>{certifications.items.length}</div>
+              <div className="text-[9px] uppercase tracking-widest text-gray-500">Achievements</div>
+            </div>
+            <div className="text-center">
+              <div className={`${secondaryFont} text-2xl font-bold ${primaryColor}`}>{years.length}</div>
+              <div className="text-[9px] uppercase tracking-widest text-gray-500">Year Volumes</div>
+            </div>
           </div>
         </motion.div>
       </div>
