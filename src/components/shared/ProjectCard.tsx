@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '../ui/button';
+import { siteConfig } from '../../config/site';
 
 interface Project {
     name: string;
@@ -20,6 +21,7 @@ interface ProjectCardProps {
 
 export const ProjectCard = ({ project, index }: ProjectCardProps): JSX.Element => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const { display: displayFont, secondary: secondaryFont } = siteConfig.styles.fonts;
 
     return (
         <motion.div
@@ -29,15 +31,35 @@ export const ProjectCard = ({ project, index }: ProjectCardProps): JSX.Element =
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             whileHover={{ y: -5 }}
+            onMouseEnter={() => {
+                window.dispatchEvent(new CustomEvent('portfolio-inspect', {
+                    detail: {
+                        visible: true,
+                        data: {
+                            name: project.name,
+                            type: 'Project',
+                            stack: project.technologies,
+                            year: project.duration,
+                            status: project.liveUrl ? 'Deployed' : 'Local/Private',
+                            id: `0x${index.toString(16).padStart(2, '0')}`
+                        }
+                    }
+                }));
+            }}
+            onMouseLeave={() => {
+                window.dispatchEvent(new CustomEvent('portfolio-inspect', { detail: { visible: false } }));
+            }}
         >
             <div className="p-6">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-green-400 mb-2">
+                        <h3
+                            className={`${displayFont} text-2xl font-bold text-gray-900 dark:text-green-400 mb-2 tracking-tighter cursor-zoom-in hover:underline decoration-blue-500/30 dark:decoration-green-400/30`}
+                        >
                             {project.name}
                         </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">
+                        <p className={`text-xs ${secondaryFont} text-gray-500 dark:text-gray-400 uppercase tracking-widest`}>
                             {project.duration}
                         </p>
                     </div>
@@ -65,7 +87,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps): JSX.Element =
                         {project.technologies.map((tech, idx) => (
                             <motion.span
                                 key={tech}
-                                className="px-3 py-1 bg-blue-50 dark:bg-cyan-400/10 text-blue-700 dark:text-cyan-400 rounded-full text-xs font-mono border border-blue-200 dark:border-cyan-400/30"
+                                className={`px-3 py-1 bg-blue-50 dark:bg-cyan-400/10 text-blue-700 dark:text-cyan-400 rounded-sm text-[10px] ${secondaryFont} font-medium border border-blue-200 dark:border-cyan-400/30 uppercase tracking-wider`}
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}

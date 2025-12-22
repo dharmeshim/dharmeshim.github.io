@@ -7,7 +7,7 @@ import { useInView } from "../../../../hooks/useInView";
 
 export const EducationSection = (): JSX.Element => {
   const { education } = siteConfig.sections;
-  const { primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
+  const { display: displayFont, primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
   const { primary: primaryColor } = siteConfig.styles.colors;
 
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -47,12 +47,12 @@ export const EducationSection = (): JSX.Element => {
                     </span>
                   </div>
 
-                  <h3 className={`${primaryFont} text-xl md:text-3xl lg:text-4xl font-black ${primaryColor} tracking-tight leading-tight group-hover:text-blue-500 dark:group-hover:text-green-400 transition-colors`}>
+                  <h3 className={`${displayFont} text-2xl md:text-4xl lg:text-5xl font-bold ${primaryColor} tracking-tighter leading-none group-hover:text-blue-500 dark:group-hover:text-green-400 transition-colors`}>
                     {item.course}
                   </h3>
 
                   {item.branch && (
-                    <p className={`${primaryFont} text-sm md:text-lg lg:text-xl text-gray-500 dark:text-gray-400 font-medium`}>
+                    <p className={`${primaryFont} text-lg md:text-xl lg:text-2xl text-gray-500 dark:text-gray-400 font-medium tracking-tight`}>
                       {item.branch}
                     </p>
                   )}

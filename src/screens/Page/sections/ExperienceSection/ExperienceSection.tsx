@@ -104,11 +104,31 @@ export const ExperienceSection = (): JSX.Element => {
 };
 
 const ExperienceContent = ({ companyExp, align }: { companyExp: any, align: 'left' | 'right' }) => {
-  const { primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
+  const { display: displayFont, primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
   const { primary: primaryColor, secondary: secondaryColor, muted: mutedColor } = siteConfig.styles.colors;
 
   return (
-    <div className={`space-y-6 ${align === 'right' ? 'lg:items-end' : 'lg:items-start'}`}>
+    <div
+      className={`space-y-6 ${align === 'right' ? 'lg:items-end' : 'lg:items-start'} group/exp`}
+      onMouseEnter={() => {
+        window.dispatchEvent(new CustomEvent('portfolio-inspect', {
+          detail: {
+            visible: true,
+            data: {
+              company: companyExp.company,
+              location: companyExp.location,
+              roles: companyExp.roles.map((r: any) => r.role),
+              type: 'Experience',
+              status: 'Verified',
+              source: 'usr/dharmesh/history'
+            }
+          }
+        }));
+      }}
+      onMouseLeave={() => {
+        window.dispatchEvent(new CustomEvent('portfolio-inspect', { detail: { visible: false } }));
+      }}
+    >
       {/* Company Tag */}
       <motion.div
         className={`flex items-center gap-2 ${secondaryFont} text-xs font-bold uppercase tracking-widest ${mutedColor}`}
@@ -122,10 +142,10 @@ const ExperienceContent = ({ companyExp, align }: { companyExp: any, align: 'lef
       <div className="space-y-8">
         {companyExp.roles.map((roleData: any, roleIndex: number) => (
           <div key={roleIndex} className="space-y-3">
-            <h3 className={`${primaryFont} text-2xl lg:text-3xl font-bold ${primaryColor} tracking-tight`}>
+            <h3 className={`${displayFont} text-3xl lg:text-4xl font-bold ${primaryColor} tracking-tighter`}>
               {roleData.role}
             </h3>
-            <div className={`flex items-center gap-3 font-mono text-[10px] ${mutedColor} ${align === 'right' ? 'lg:justify-end' : ''}`}>
+            <div className={`flex items-center gap-3 ${secondaryFont} text-[10px] uppercase tracking-wider ${mutedColor} ${align === 'right' ? 'lg:justify-end' : ''}`}>
               <Calendar className="w-3 h-3" />
               <span>{roleData.duration}</span>
               {companyExp.location && (
@@ -137,7 +157,7 @@ const ExperienceContent = ({ companyExp, align }: { companyExp: any, align: 'lef
               )}
             </div>
             {roleData.description && (
-              <p className={`${primaryFont} text-sm lg:text-base leading-relaxed text-gray-500 dark:text-gray-400 max-w-md ${align === 'right' ? 'lg:ml-auto' : ''}`}>
+              <p className={`${primaryFont} text-base lg:text-lg leading-relaxed text-gray-500 dark:text-gray-400 max-w-xl ${align === 'right' ? 'lg:ml-auto' : ''}`}>
                 {roleData.description}
               </p>
             )}

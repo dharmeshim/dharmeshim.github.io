@@ -82,24 +82,9 @@ export const siteConfig = {
    * Layout
    * ----------------------------- */
   layout: {
-    logo: {
-      scrolledPosition: { top: "top-6", left: "left-8" },
-      centeredPosition: { top: "top-1/3", left: "left-1/2" },
-      scrolledSize: "2.5rem",
-      centeredSize: "12rem",
-    },
-
     scrollButton: {
       position: { bottom: "bottom-12", left: "left-1/2" },
       size: "h-14 w-14",
-    },
-
-    navigation: {
-      position: { top: "top-8", right: "right-8" },
-    },
-
-    sectionCounter: {
-      position: { top: "top-1/3", left: "left-8" },
     },
   },
 

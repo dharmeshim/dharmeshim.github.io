@@ -1,12 +1,9 @@
 export { NavigationMenu } from "./NavigationMenu";
 export { ThemeToggle } from "./ThemeToggle";
 export { AnimatedLogo } from "./AnimatedLogo";
-export { StickyHeader } from "./StickyHeader";
 export { Loader } from "./Loader";
-export { MetadataItem } from "./MetadataItem";
-export { TimelineItem } from "./TimelineItem";
-export { AnimatedCard } from "./AnimatedCard";
-export { SmoothScroll } from "./SmoothScroll";
 export { ParticleBackground } from "./ParticleBackground";
 export { MagneticCursor } from "./MagneticCursor";
 export { ProjectCard } from "./ProjectCard";
+export { SystemDock } from "./SystemDock";
+export { Inspector } from "./Inspector";

@@ -1,6 +1,5 @@
-import { ThemeToggle } from "../../components/shared";
+import { ThemeToggle, SystemDock, Inspector } from "../../components/shared";
 import { AnimatedLogo } from "../../components/shared/AnimatedLogo";
-import { SmoothScroll } from "../../components/shared/SmoothScroll";
 import { ParticleBackground } from "../../components/shared/ParticleBackground";
 import { MagneticCursor } from "../../components/shared/MagneticCursor";
 import {
@@ -13,113 +12,63 @@ import {
   TechStackSection,
   CertificationsSection
 } from "../../components/sections";
-import { ArrowDownIcon } from "lucide-react";
-import { Button } from "../../components/ui/button";
-import { useSectionTracking } from "../../hooks/useSectionTracking";
 import { useKeyboardShortcuts } from "../../hooks/useKeyboardShortcuts";
 import { siteConfig } from "../../config/site";
-import { scrollToSection } from "../../lib/navigation";
-import { motion } from "framer-motion";
+import { useRef } from "react";
 
 export const ProfilePage = (): JSX.Element => {
-  const { activeSection } = useSectionTracking();
-  const { home } = siteConfig.sections;
-  const { scrollButton } = siteConfig.layout;
   const { background } = siteConfig.styles.colors;
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Enable keyboard shortcuts
   useKeyboardShortcuts();
 
-  const handleScrollToNext = () => {
-    scrollToSection(home.scrollButton.targetSection);
-  };
-
   return (
-    <SmoothScroll>
-      <div className={`${background} w-full transition-colors duration-400 relative overflow-hidden`}>
-        {/* Particle background */}
-        <ParticleBackground />
+    <div
+      ref={scrollContainerRef}
+      className={`${background} w-full transition-colors duration-400 relative overflow-hidden h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth custom-scrollbar`}
+    >
+      {/* Blueprint Grid Background */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.07] z-0"
+        style={{
+          backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px), linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+          backgroundSize: '40px 40px, 40px 40px, 40px 40px',
+          color: 'inherit'
+        }}
+      />
 
-        {/* Custom cursor */}
-        <MagneticCursor />
+      {/* Particle background */}
+      <ParticleBackground />
 
-        {/* Animated gradient background orbs */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 dark:from-green-400/10 dark:via-cyan-400/10 dark:to-blue-400/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
+      {/* Custom cursor */}
+      <MagneticCursor />
 
-          <motion.div
-            className="absolute -top-20 -right-20 w-80 h-80 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-orange-500/20 dark:from-cyan-400/10 dark:via-blue-400/10 dark:to-purple-400/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-        </div>
+      {/* Content */}
+      <div className="relative z-10">
+        <ThemeToggle />
+        <AnimatedLogo />
+        <SystemDock containerRef={scrollContainerRef} />
+        <Inspector />
 
+        <div id="home" className="snap-start w-full min-h-screen"><HomeSection /></div>
+        <div id="experience" className="snap-start w-full min-h-screen"><ExperienceSection /></div>
+        <div id="projects" className="snap-start w-full min-h-screen"><ProjectsSection /></div>
+        <div id="education" className="snap-start w-full min-h-screen"><EducationSection /></div>
+        <div id="knowledge" className="snap-start w-full min-h-screen"><KnowledgeSection /></div>
+        <div id="techStack" className="snap-start w-full min-h-screen"><TechStackSection /></div>
+        <div id="certifications" className="snap-start w-full min-h-screen"><CertificationsSection /></div>
+        <div id="contact" className="snap-start w-full min-h-screen"><ContactSection /></div>
 
-        {/* Content */}
-        <div className="relative z-10">
-          <ThemeToggle />
-          <AnimatedLogo />
-
-          {activeSection === "home" && (
-            <motion.div
-              className="fixed bottom-12 right-8 z-50"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2 }}
-            >
-              <Button
-                variant="ghost"
-                className={`${scrollButton.size} p-0 rounded-full hover:bg-transparent`}
-                aria-label={home.scrollButton.label}
-                onClick={handleScrollToNext}
-                ripple={true}
-              >
-                <ArrowDownIcon className="w-7 h-7 animate-bounce" />
-              </Button>
-            </motion.div>
-          )}
-
-          <div className="w-full">
-            <div id="home"><HomeSection /></div>
-            <div id="experience"><ExperienceSection /></div>
-            <div id="projects"><ProjectsSection /></div>
-            <div id="education"><EducationSection /></div>
-            <div id="knowledge"><KnowledgeSection /></div>
-            <div id="techStack"><TechStackSection /></div>
-            <div id="certifications"><CertificationsSection /></div>
-            <div id="contact"><ContactSection /></div>
-          </div>
-
-          <footer className="relative w-full py-8 border-t border-gray-200/50 dark:border-gray-700/50">
-            <div className="container mx-auto px-12 sm:px-16 md:px-20 lg:px-24 xl:px-32">
-              <div className="text-center">
-                <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">
-                  © 2024 {siteConfig.name}. All rights reserved.
-                </p>
-              </div>
+        <footer className="snap-start relative w-full py-12 border-t border-gray-200/50 dark:border-gray-700/50 bg-white/50 dark:bg-black/50 backdrop-blur-sm">
+          <div className="container mx-auto px-12 sm:px-16 md:px-20 lg:px-24 xl:px-32">
+            <div className="text-center">
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">
+                © 2024 {siteConfig.name}. All rights reserved.
+              </p>
             </div>
-          </footer>
-        </div>
+          </div>
+        </footer>
       </div>
-    </SmoothScroll>
+    </div>
   );
 };

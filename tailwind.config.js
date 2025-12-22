@@ -8,9 +8,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace'],
+        'display': ['JetBrains Mono', 'monospace'],
         'inter': ['Inter', 'system-ui', 'sans-serif'],
         'jetbrains': ['JetBrains Mono', 'monospace'],
-        'display': ['Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
         'scroll-bounce': 'scroll-bounce 2s infinite',

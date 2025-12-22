@@ -66,7 +66,7 @@ export const AnimatedLogo = (): JSX.Element => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <span className={`${primaryColor} text-sm md:text-base lg:text-lg font-semibold tracking-tight dark:text-green-400 transition-all duration-500`}>
+              <span className={`font-mono ${primaryColor} text-sm md:text-base lg:text-lg font-bold tracking-tight dark:text-green-400 transition-all duration-500`}>
                 {name}
               </span>
             </motion.div>
