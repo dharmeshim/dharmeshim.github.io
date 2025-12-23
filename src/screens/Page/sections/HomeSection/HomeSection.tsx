@@ -19,7 +19,7 @@ export const HomeSection = (): JSX.Element => {
       >
 
         {/* Bottom-Right Information Layer */}
-        <div className="mt-auto ml-auto max-w-[95%] md:max-w-2xl text-right flex flex-col items-end space-y-8 md:space-y-12 pb-20 md:pb-32">
+        <div className="mt-auto ml-auto max-w-[95%] md:max-w-2xl text-right flex flex-col items-end space-y-8 md:space-y-12 pb-32 md:pb-32">
           {/* Typewriter Tagline */}
           <div className={`${primaryFont} text-xl sm:text-3xl md:text-5xl font-medium ${secondaryColor} tracking-tight leading-tight border-r-4 border-blue-500/30 dark:border-green-400/30 pr-6 md:pr-8 text-right`}>
             <TypewriterText

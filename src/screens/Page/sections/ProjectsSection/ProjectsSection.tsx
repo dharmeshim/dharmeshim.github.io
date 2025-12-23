@@ -20,16 +20,16 @@ export const ProjectsSection = (): JSX.Element => {
     <BaseSection title={projects.title}>
       <div className="w-full" ref={ref}>
         <motion.div
-          className="flex flex-col lg:flex-row gap-0 lg:gap-12 min-h-[600px] bg-white/30 dark:bg-neutral-900/30 backdrop-blur-md rounded-3xl border border-gray-200/50 dark:border-gray-800/50 overflow-hidden shadow-2xl"
+          className="flex flex-col lg:flex-row gap-8 lg:gap-16 min-h-[600px]"
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
           {/* Left Sidebar: Project Navigator */}
-          <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-r border-gray-200/50 dark:border-gray-800/50 bg-gray-50/50 dark:bg-black/20 p-4 lg:p-6 space-y-4 lg:space-y-8">
-            <div className="flex items-center gap-3 mb-2 lg:mb-8">
+          <div className="w-full lg:w-80 p-0 space-y-6 lg:space-y-10">
+            <div className="flex items-center gap-3 mb-2 lg:mb-4">
               <Files className="w-4 h-4 text-blue-500 dark:text-green-400" />
-              <h3 className={`${secondaryFont} text-[10px] lg:text-sm font-bold uppercase tracking-widest text-gray-500`}>Explorer</h3>
+              <h3 className={`${secondaryFont} text-[10px] lg:text-sm font-bold uppercase tracking-widest text-gray-400/60`}>Explorer</h3>
             </div>
 
             <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 no-scrollbar">
@@ -66,7 +66,7 @@ export const ProjectsSection = (): JSX.Element => {
           </div>
 
           {/* Right Area: Project Workspace */}
-          <div className="flex-1 p-6 lg:p-12 relative overflow-hidden">
+          <div className="flex-1 p-0 relative overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}

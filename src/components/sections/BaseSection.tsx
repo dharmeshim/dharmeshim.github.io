@@ -16,7 +16,7 @@ export const BaseSection: React.FC<BaseSectionProps> = ({
   showTitle = true,
   variant = "default"
 }) => {
-  const { sectionPadding, sectionMaxWidth, sectionGap, containerGap } = siteConfig.styles.spacing;
+  const { sectionPadding, sectionMaxWidth, sectionGap, containerGap, containerMaxWidth } = siteConfig.styles.spacing;
   const { display: displayFont } = siteConfig.styles.fonts;
 
   const getVariantClasses = () => {
@@ -35,27 +35,18 @@ export const BaseSection: React.FC<BaseSectionProps> = ({
   const getTitleClasses = () => {
     switch (variant) {
       case "centered":
-        return "text-center mx-auto max-w-6xl";
+        return `text-center mx-auto ${containerMaxWidth}`;
       case "minimal":
-        return "text-left max-w-5xl";
+        return `text-left ${containerMaxWidth}`;
       case "fullscreen":
-        return "text-center mx-auto max-w-7xl";
+        return `text-center mx-auto ${containerMaxWidth}`;
       default:
-        return "text-left max-w-6xl";
+        return `text-left ${containerMaxWidth}`;
     }
   };
 
   const getContentWidth = () => {
-    switch (variant) {
-      case "centered":
-        return "max-w-7xl";
-      case "minimal":
-        return "max-w-8xl";
-      case "fullscreen":
-        return "max-w-[1440px]";
-      default:
-        return "max-w-[1440px]";
-    }
+    return containerMaxWidth;
   };
 
   const verticalPadding = variant === "fullscreen" ? "py-0" : "py-16 md:py-24 lg:py-32";

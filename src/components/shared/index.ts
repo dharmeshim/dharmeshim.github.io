@@ -1,7 +1,6 @@
 export { NavigationMenu } from "./NavigationMenu";
 export { ThemeToggle } from "./ThemeToggle";
 export { AnimatedLogo } from "./AnimatedLogo";
-export { Loader } from "./Loader";
 export { ParticleBackground } from "./ParticleBackground";
 export { MagneticCursor } from "./MagneticCursor";
 export { ProjectCard } from "./ProjectCard";

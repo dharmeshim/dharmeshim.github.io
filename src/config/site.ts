@@ -123,7 +123,8 @@ export const siteConfig = {
 
     /* Spacing */
     spacing: {
-      sectionPadding: "px-12 sm:px-16 md:px-20 lg:px-24 xl:px-32",
+      sectionPadding: "px-6 sm:px-12 md:px-16 lg:px-24",
+      containerMaxWidth: "max-w-7xl",
       sectionMaxWidth: "max-w-none",
       sectionGap: "space-y-16 md:space-y-20 lg:space-y-24",
       itemGap: "space-y-12 md:space-y-16",

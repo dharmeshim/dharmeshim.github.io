@@ -60,7 +60,7 @@ export const ProfilePage = (): JSX.Element => {
         <div id="contact" className="snap-start w-full min-h-screen"><ContactSection /></div>
 
         <footer className="snap-start relative w-full py-12 border-t border-gray-200/50 dark:border-gray-700/50 bg-white/50 dark:bg-black/50 backdrop-blur-sm">
-          <div className="container mx-auto px-12 sm:px-16 md:px-20 lg:px-24 xl:px-32">
+          <div className={`${siteConfig.styles.spacing.containerMaxWidth} mx-auto ${siteConfig.styles.spacing.sectionPadding}`}>
             <div className="text-center">
               <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">
                 © 2024 {siteConfig.name}. All rights reserved.

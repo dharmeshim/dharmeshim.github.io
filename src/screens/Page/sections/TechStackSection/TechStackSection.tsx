@@ -31,16 +31,16 @@ export const TechStackSection = (): JSX.Element => {
       <div className="w-full" ref={ref}>
         {/* Main Workspace Frame */}
         <motion.div
-          className="flex flex-col lg:flex-row min-h-[500px] bg-white/20 dark:bg-black/20 backdrop-blur-3xl rounded-[3rem] border border-white/20 dark:border-white/5 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] dark:shadow-none overflow-hidden"
+          className="flex flex-col lg:flex-row gap-8 lg:gap-16 min-h-[500px]"
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
           {/* Sidebar: Schema Navigation */}
-          <div className="w-full lg:w-72 border-b lg:border-b-0 lg:border-r border-gray-200/30 dark:border-white/5 p-8 flex flex-col gap-8 bg-gray-50/10 dark:bg-transparent">
-            <div className="flex items-center gap-3 mb-4">
-              <Binary className="w-5 h-5 text-blue-500 dark:text-green-400" />
-              <span className={`${secondaryFont} text-[10px] font-bold uppercase tracking-[0.3em] opacity-40`}>Modules</span>
+          <div className="w-full lg:w-72 p-0 flex flex-col gap-10">
+            <div className="flex items-center gap-4 mb-4">
+              <Binary className="w-6 h-6 text-blue-500 dark:text-green-400" />
+              <span className={`${secondaryFont} text-[11px] font-bold uppercase tracking-[0.4em] opacity-50`}>Modules</span>
             </div>
 
             <nav className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 no-scrollbar">
@@ -73,10 +73,9 @@ export const TechStackSection = (): JSX.Element => {
             </nav>
           </div>
 
-          {/* Main Visual Editor Workspace */}
           <motion.div
             layout
-            className="flex-1 p-6 lg:p-16 relative"
+            className="flex-1 p-0 relative"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -136,8 +135,8 @@ export const TechStackSection = (): JSX.Element => {
             </AnimatePresence>
 
             {/* Background Decoration */}
-            <div className="absolute bottom-12 right-12 opacity-[0.03] dark:opacity-[0.05] pointer-events-none -z-10">
-              <Code2 className="w-80 h-80 rotate-12" />
+            <div className="absolute top-0 right-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none -z-10 translate-x-20 -translate-y-20">
+              <Code2 className="w-[32rem] h-[32rem] rotate-12" />
             </div>
           </motion.div>
         </motion.div>

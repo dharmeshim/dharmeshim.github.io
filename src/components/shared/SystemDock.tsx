@@ -68,7 +68,7 @@ export const SystemDock: React.FC<SystemDockProps> = ({ containerRef }): JSX.Ele
         <AnimatePresence>
             {isVisible && (
                 <motion.div
-                    className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100]"
+                    className="fixed bottom-6 inset-x-0 mx-auto w-fit z-[100]"
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 100, opacity: 0 }}
@@ -107,7 +107,7 @@ export const SystemDock: React.FC<SystemDockProps> = ({ containerRef }): JSX.Ele
                         ))}
 
                         {/* Ambient indicator */}
-                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-1 bg-blue-500/20 dark:bg-green-400/20 rounded-full blur-sm" />
+                        <div className="absolute -bottom-1 inset-x-0 mx-auto w-8 h-1 bg-blue-500/20 dark:bg-green-400/20 rounded-full blur-sm" />
                     </div>
                 </motion.div>
             )}
