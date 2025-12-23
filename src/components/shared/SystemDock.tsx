@@ -3,7 +3,7 @@ import {
     Home,
     User,
     Briefcase,
-    Download,
+    Share2,
     Mail
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
@@ -14,7 +14,7 @@ const dockItems = [
     { id: "home", icon: Home, label: "Home", target: "#home" },
     { id: "experience", icon: User, label: "Exp", target: "#experience" },
     { id: "projects", icon: Briefcase, label: "Work", target: "#projects" },
-    { id: "resume", icon: Download, label: "CV", target: "resume" },
+    { id: "share", icon: Share2, label: "Share", target: "share" },
     { id: "contact", icon: Mail, label: "Mail", target: "#contact" },
 ];
 
@@ -56,9 +56,26 @@ export const SystemDock: React.FC<SystemDockProps> = ({ containerRef }): JSX.Ele
         };
     }, []);
 
-    const handleAction = (item: typeof dockItems[0]) => {
-        if (item.id === "resume") {
-            window.open(siteConfig.sections.contact.resume.link, "_blank");
+    const handleAction = async (item: typeof dockItems[0]) => {
+        if (item.id === "share") {
+            const shareData = {
+                title: siteConfig.name,
+                text: `Check out ${siteConfig.name}'s portfolio! ${siteConfig.description}`,
+                url: window.location.origin
+            };
+
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    // Fallback to copying link or opening mail
+                    const shareUrl = `${window.location.origin}\n\nResume: ${window.location.origin}${siteConfig.sections.contact.resume.link}`;
+                    await navigator.clipboard.writeText(shareUrl);
+                    alert("Portfolio and Resume links copied to clipboard!");
+                }
+            } catch (err) {
+                console.error("Error sharing:", err);
+            }
         } else {
             scrollToSection(item.id);
         }
