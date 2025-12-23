@@ -53,32 +53,36 @@ export const ContactSection = (): JSX.Element => {
           variants={staggerContainer}
           className="w-full mx-auto"
         >
-          {/* Terminal Window */}
-          <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0c0c0c] font-mono text-sm md:text-base transition-colors duration-300">
-            {/* Terminal Header */}
-            <div className="bg-gray-100 dark:bg-gray-800/50 px-4 py-2 flex items-center justify-between border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+          {/* Integrated Terminal Experience */}
+          <div className="relative font-mono text-sm md:text-base">
+            {/* Terminal Header - Minimalist */}
+            <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200/30 dark:border-white/5">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-red-500/40" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
+                  <div className="w-2 h-2 rounded-full bg-green-500/40" />
+                </div>
+                <div className="text-gray-400 dark:text-gray-500 text-[10px] uppercase tracking-[0.2em] font-bold">
+                  Connection: Stable
+                </div>
               </div>
-              <div className="text-gray-500 dark:text-gray-400 text-xs flex items-center gap-2">
+              <div className="text-gray-400 dark:text-gray-500 text-[10px] flex items-center gap-2 uppercase tracking-[0.2em] font-bold">
                 <Terminal className="w-3 h-3" />
-                <span>user@portfolio: ~/contact</span>
+                <span>~/contact</span>
               </div>
-              <div className="w-10" /> {/* Spacer for centering */}
             </div>
 
             {/* Terminal Content */}
-            <div className="p-4 md:p-6 text-gray-600 dark:text-gray-300 min-h-[400px] font-mono">
+            <div className="text-gray-600 dark:text-gray-300 min-h-[300px] space-y-12">
               {/* Command 1: Introduction */}
-              <motion.div variants={staggerItem} className="mb-6">
-                <div className="flex flex-wrap gap-2 text-blue-600 dark:text-green-400 mb-2">
-                  <span>user@portfolio:~/contact$</span>
-                  <span className="text-gray-800 dark:text-white">cat README.md</span>
+              <motion.div variants={staggerItem} className="space-y-4">
+                <div className="flex flex-wrap gap-2 text-blue-600 dark:text-green-400">
+                  <span className="opacity-50">sh</span>
+                  <span className="text-gray-800 dark:text-white">cat README_INTENT.md</span>
                 </div>
-                <div className="pl-4 border-l-2 border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-400 italic">
-                  <p>
+                <div className="pl-6 border-l border-blue-500/20 dark:border-green-400/20 text-gray-500 dark:text-gray-400">
+                  <p className="max-w-2xl leading-relaxed">
                     I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.
                     Feel free to execute any of the connection protocols below.
                   </p>
@@ -86,18 +90,13 @@ export const ContactSection = (): JSX.Element => {
               </motion.div>
 
               {/* Command 2: List Socials */}
-              <motion.div variants={staggerItem} className="mb-6">
-                <div className="flex flex-wrap gap-2 text-blue-600 dark:text-green-400 mb-4">
-                  <span>user@portfolio:~/contact$</span>
-                  <span className="text-gray-800 dark:text-white">ls -la ./connections</span>
+              <motion.div variants={staggerItem} className="space-y-6">
+                <div className="flex flex-wrap gap-2 text-blue-600 dark:text-green-400">
+                  <span className="opacity-50">sh</span>
+                  <span className="text-gray-800 dark:text-white">ls -la ./protocols</span>
                 </div>
 
-                <div className="space-y-2">
-                  <div className="grid grid-cols-[auto_1fr] gap-4 text-gray-400 dark:text-gray-500 text-xs border-b border-gray-200 dark:border-gray-800 pb-2 mb-2 px-2">
-                    <span>permissions &nbsp; user &nbsp; size &nbsp; date</span>
-                    <span>name</span>
-                  </div>
-
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {contact.socialLinks.map((link, index) => {
                     const Icon = getIconComponent(link.name);
                     return (
@@ -106,19 +105,16 @@ export const ContactSection = (): JSX.Element => {
                         href={link.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="grid grid-cols-[auto_1fr] gap-4 items-center px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-800/50 rounded transition-colors group"
+                        className="group flex items-center gap-4 p-3 rounded-xl hover:bg-blue-500/5 dark:hover:bg-green-400/5 transition-all duration-300 border border-transparent hover:border-blue-500/10 dark:hover:border-green-400/10"
                         whileHover={{ x: 4 }}
                       >
-                        <span className="text-gray-400 dark:text-gray-600 text-xs font-mono hidden sm:block">
-                          {getPermissionString(index)} &nbsp; user &nbsp; 4096 &nbsp; {getDateString()}
-                        </span>
-                        <div className="flex items-center gap-3">
-                          <Icon className="w-4 h-4 text-blue-500 dark:text-blue-400 group-hover:text-blue-600 dark:group-hover:text-green-400 transition-colors" />
-                          <span className="text-blue-600 dark:text-blue-300 group-hover:text-blue-700 dark:group-hover:text-green-300 transition-colors">
-                            {link.name.toLowerCase()}
-                          </span>
-                          <span className="text-gray-400 dark:text-gray-600 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                            -&gt; {link.link}
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-50 dark:bg-white/5 group-hover:bg-blue-500/10 dark:group-hover:bg-green-400/10 transition-colors">
+                          <Icon className="w-5 h-5 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-green-400 transition-colors" />
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <span className="text-[10px] text-gray-400 dark:text-gray-600 font-bold uppercase tracking-widest truncate">{link.name}</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-white transition-colors truncate">
+                            {link.link.replace(/^https?:\/\/(www\.)?/, '')}
                           </span>
                         </div>
                       </motion.a>
@@ -129,30 +125,37 @@ export const ContactSection = (): JSX.Element => {
 
               {/* Command 3: Resume */}
               {contact.resume && (
-                <motion.div variants={staggerItem} className="mb-6">
-                  <div className="flex flex-wrap gap-2 text-blue-600 dark:text-green-400 mb-2">
-                    <span>user@portfolio:~/contact$</span>
-                    <span className="text-gray-800 dark:text-white">./download_resume.sh</span>
+                <motion.div variants={staggerItem} className="space-y-4">
+                  <div className="flex flex-wrap gap-2 text-blue-600 dark:text-green-400">
+                    <span className="opacity-50">sh</span>
+                    <span className="text-gray-800 dark:text-white">./init_download --target=resume</span>
                   </div>
 
                   <motion.a
                     href={contact.resume.link}
                     download="Dharmeshprasad_resume.pdf"
-                    className="inline-flex items-center gap-2 px-4 py-2 mt-2 bg-blue-50 dark:bg-green-500/10 border border-blue-200 dark:border-green-500/30 rounded text-blue-600 dark:text-green-400 hover:bg-blue-100 dark:hover:bg-green-500/20 hover:border-blue-300 dark:hover:border-green-500 transition-all group"
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-blue-500/5 dark:bg-green-400/5 border border-blue-500/20 dark:border-green-400/20 rounded-2xl text-blue-600 dark:text-green-400 hover:bg-blue-500/10 dark:hover:bg-green-400/10 hover:border-blue-500/40 dark:hover:border-green-400/40 transition-all group"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Download className="w-4 h-4 group-hover:animate-bounce" />
-                    <span>Dharmeshprasad_resume.pdf</span>
+                    <span className="font-bold uppercase tracking-wider text-xs">Download Resume (PDF)</span>
                   </motion.a>
                 </motion.div>
               )}
 
-              {/* Active Prompt */}
-              <motion.div variants={staggerItem} className="mt-8">
-                <div className="flex flex-wrap gap-2 text-blue-600 dark:text-green-400">
-                  <span>user@portfolio:~/contact$</span>
-                  <span className={`${cursorVisible ? 'opacity-100' : 'opacity-0'} bg-gray-400 w-2.5 h-5 inline-block align-middle`} />
+              {/* Active Prompt & Status Metadata */}
+              <motion.div variants={staggerItem} className="pt-12 flex flex-wrap items-center justify-between gap-8 border-t border-gray-200/30 dark:border-white/5 opacity-50">
+                <div className="flex items-center gap-3 text-blue-600 dark:text-green-400">
+                  <span className="animate-pulse">&gt;_</span>
+                  <span className={`${cursorVisible ? 'opacity-100' : 'opacity-0'} bg-blue-500 dark:bg-green-400 w-2.5 h-4 inline-block align-middle`} />
+                </div>
+                <div className="flex items-center gap-8 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                    <span>Live Secure</span>
+                  </div>
+                  <span>v2.1.0_PROD</span>
                 </div>
               </motion.div>
             </div>
