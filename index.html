@@ -1,74 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Dhamesh Prasad - Software Engineer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-    content="Professional portfolio of Dhamesh Prasad, a Software Engineer specializing in React, Node.js, Angular, and modern web technologies. View projects, experience, and skills." />
-  <meta name="keywords"
-    content="software engineer, full-stack developer, React, Node.js, Angular, TypeScript, portfolio, web development" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- SEO -->
+  <title>Dhamesh Prasad — Portfolio</title>
+  <meta name="description" content="Dhamesh Prasad — Associate Engineer at Finzly. A cinematic portfolio experience." />
   <meta name="author" content="Dhamesh Prasad" />
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dhamesh Prasad — Portfolio" />
+  <meta property="og:description" content="Associate Engineer at Finzly. A cinematic portfolio experience." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dharmeshim.github.io/" />
-  <meta property="og:title" content="Dhamesh Prasad - Software Engineer" />
-  <meta property="og:description"
-    content="Professional portfolio showcasing software engineering skills, projects, and experience in modern web technologies." />
-  <meta property="og:image" content="https://dharmeshim.github.io/og-image.jpg" />
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://dharmeshim.github.io/" />
-  <meta property="twitter:title" content="Dhamesh Prasad - Software Engineer" />
-  <meta property="twitter:description"
-    content="Professional portfolio showcasing software engineering skills, projects, and experience in modern web technologies." />
-  <meta property="twitter:image" content="https://dharmeshim.github.io/og-image.jpg" />
+  <meta property="og:url" content="https://dharmeshim.github.io" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap"
+    rel="stylesheet" />
 
-  <!-- Styles -->
+  <style>
+    /* ── Color tokens ── */
+    :root,
+    [data-theme="dark"] {
+      --c-bg: #0a0a0a;
+      --c-bg-warm: #1a1410;
+      --c-bg-mid: #0d0c0a;
+      --c-text: #f5f0e8;
+      --c-text-sub: #d4c8b8;
+      --c-text-muted: #a89880;
+      --c-text-dim: #6a5f52;
+      --c-text-ghost: #5a4f42;
+      --c-text-faint: #3a3028;
+      --c-text-ultra: #2e2820;
+      --c-accent: #c8a96e;
+      --c-accent-dim: rgba(200, 169, 110, 0.25);
+      --c-accent-faint: rgba(200, 169, 110, 0.08);
+      --c-border: rgba(255, 255, 255, 0.06);
+      --c-border-subtle: rgba(255, 255, 255, 0.03);
+      --c-scrollbar: rgba(200, 169, 110, 0.2) transparent;
+      --c-grain-opacity: 0.18;
+    }
 
-  <!-- Theme color -->
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)" />
-  <script type="module" crossorigin src="/assets/index-CFh7b5jn.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DpNoFRpP.css">
+    [data-theme="light"] {
+      --c-bg: #f0ebe0;
+      --c-bg-warm: #e4ddd0;
+      --c-bg-mid: #ece7dc;
+      --c-text: #1a1208;
+      --c-text-sub: #3a2e20;
+      --c-text-muted: #6b5a42;
+      --c-text-dim: #8a7a65;
+      --c-text-ghost: #9a8c7a;
+      --c-text-faint: #b0a492;
+      --c-text-ultra: #c4baa8;
+      --c-accent: #8b5a2b;
+      --c-accent-dim: rgba(139, 90, 43, 0.22);
+      --c-accent-faint: rgba(139, 90, 43, 0.07);
+      --c-border: rgba(0, 0, 0, 0.07);
+      --c-border-subtle: rgba(0, 0, 0, 0.04);
+      --c-scrollbar: rgba(139, 90, 43, 0.2) transparent;
+      --c-grain-opacity: 0.07;
+    }
+
+    /* Reset & base */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body,
+    #app {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--c-bg);
+      color: var(--c-text);
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      cursor: default;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    /* Scene scrollable zones — thin accent scrollbar */
+    .film-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: var(--c-scrollbar);
+    }
+
+    .film-scroll::-webkit-scrollbar {
+      width: 2px;
+      background: transparent;
+    }
+
+    .film-scroll::-webkit-scrollbar-thumb {
+      background: var(--c-accent-dim);
+      border-radius: 2px;
+    }
+
+    /* Hide scrollbars on non-scrollable zones */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    * {
+      scrollbar-width: none;
+    }
+
+    .film-scroll {
+      scrollbar-width: thin;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-DgAlvXlk.js"></script>
 </head>
 
 <body>
   <div id="app"></div>
-
-  <!-- Developer Easter Egg -->
-  <script>
-    console.log('%c👋 Hello, Developer!', 'font-size: 24px; font-weight: bold; color: #22c55e;');
-    console.log('%c╔═══════════════════════════════════════════════════════════╗', 'color: #22c55e;');
-    console.log('%c║                                                           ║', 'color: #22c55e;');
-    console.log('%c║   Welcome to my portfolio! 🚀                            ║', 'color: #22c55e;');
-    console.log('%c║                                                           ║', 'color: #22c55e;');
-    console.log('%c║   I see you\'re curious about how things work.            ║', 'color: #22c55e;');
-    console.log('%c║   That\'s exactly the kind of mindset I appreciate!       ║', 'color: #22c55e;');
-    console.log('%c║                                                           ║', 'color: #22c55e;');
-    console.log('%c║   Built with: React + TypeScript + Tailwind CSS          ║', 'color: #22c55e;');
-    console.log('%c║   Animations: Framer Motion + GSAP + Lenis               ║', 'color: #22c55e;');
-    console.log('%c║                                                           ║', 'color: #22c55e;');
-    console.log('%c║   Want to work together? Let\'s connect!                  ║', 'color: #22c55e;');
-    console.log('%c║   📧 dharmeshprasadr@gmail.com                           ║', 'color: #22c55e;');
-    console.log('%c║                                                           ║', 'color: #22c55e;');
-    console.log('%c╚═══════════════════════════════════════════════════════════╝', 'color: #22c55e;');
-    console.log('%c\nPro tip: Press 1-8 to jump between sections, or Ctrl/Cmd+K for quick navigation!', 'font-style: italic; color: #6b7280;');
-  </script>
 </body>
 
 </html>
