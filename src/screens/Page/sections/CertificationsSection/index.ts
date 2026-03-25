@@ -1,1 +1,0 @@
-export { CertificationsSection } from "./CertificationsSection";

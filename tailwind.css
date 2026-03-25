@@ -4,9 +4,7 @@
 
 /* Base styles - Dual theme support */
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  /* html scroll-behavior: smooth removed to prevent conflicts with Lenis JS Scrolling */
 
   body {
     font-family: 'Inter', system-ui, sans-serif;

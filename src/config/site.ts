@@ -82,6 +82,9 @@ export const siteConfig = {
    * Layout
    * ----------------------------- */
   layout: {
+    navigation: {
+      position: { top: "top-8", right: "right-8" },
+    },
     scrollButton: {
       position: { bottom: "bottom-12", left: "left-1/2" },
       size: "h-14 w-14",

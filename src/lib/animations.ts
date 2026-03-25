@@ -1,237 +1,213 @@
 import { Variants } from 'framer-motion';
 
 /**
- * Reusable animation variants for framer-motion
- * Maintains consistency across the application
+ * Shared Framer Motion variants.
+ * All easing uses [0.16, 1, 0.3, 1] — the "expo out" curve used by
+ * award-winning studios. Runs only transform + opacity (GPU-composited).
  */
 
-// Fade animations
+const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
+const EASE_OUT = [0.22, 1, 0.36, 1] as const;
+
+// ─── Fade ──────────────────────────────────────────────────────────────────
+
 export const fadeIn: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { duration: 0.5, ease: 'easeOut' }
-    }
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
 export const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EXPO_OUT } },
 };
 
 export const fadeInDown: Variants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
+  hidden: { opacity: 0, y: -32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EXPO_OUT } },
 };
 
 export const fadeInLeft: Variants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-        opacity: 1,
-        x: 0,
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
+  hidden: { opacity: 0, x: -32 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EXPO_OUT } },
 };
 
 export const fadeInRight: Variants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: {
-        opacity: 1,
-        x: 0,
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
+  hidden: { opacity: 0, x: 32 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EXPO_OUT } },
 };
 
-// Scale animations
+// ─── Scale ─────────────────────────────────────────────────────────────────
+
 export const scaleIn: Variants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
-    }
+  hidden: { opacity: 0, scale: 0.92 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: EASE_OUT } },
 };
 
 export const scaleInSpring: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-            type: 'spring',
-            stiffness: 260,
-            damping: 20
-        }
-    }
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 280, damping: 18 },
+  },
 };
 
-// Slide animations
+// ─── Stagger containers ────────────────────────────────────────────────────
+
+/** Use on the parent; children inherit stagger via their own variants */
+export const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+  },
+};
+
+export const staggerFast: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.04, delayChildren: 0 },
+  },
+};
+
+/** Item used inside staggerContainer */
+export const staggerItem: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: EXPO_OUT },
+  },
+};
+
+// ─── Hero page-load sequence ───────────────────────────────────────────────
+
+/** Background / canvas layer */
+export const heroBackground: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: 'easeIn' } },
+};
+
+/** Headline reveal */
+export const heroHeadline: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: EXPO_OUT, delay: 0.2 } },
+};
+
+/** Sub-text */
+export const heroSubtext: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EXPO_OUT, delay: 0.5 } },
+};
+
+/** CTA spring pop */
+export const heroCta: Variants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 260, damping: 16, delay: 0.85 },
+  },
+};
+
+/** Scroll indicator — fades + bobs */
+export const scrollIndicator: Variants = {
+  hidden: { opacity: 0, y: -8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut', delay: 1.2 },
+  },
+};
+
+// ─── Slide ─────────────────────────────────────────────────────────────────
+
 export const slideInLeft: Variants = {
-    hidden: { x: -100, opacity: 0 },
-    visible: {
-        x: 0,
-        opacity: 1,
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
-    }
+  hidden: { x: -80, opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.6, ease: EXPO_OUT } },
 };
 
 export const slideInRight: Variants = {
-    hidden: { x: 100, opacity: 0 },
-    visible: {
-        x: 0,
-        opacity: 1,
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
-    }
+  hidden: { x: 80, opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.6, ease: EXPO_OUT } },
 };
 
-// Stagger children animation
-export const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.1
-        }
-    }
-};
+// ─── Hover ─────────────────────────────────────────────────────────────────
 
-export const staggerItem: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5 }
-    }
-};
-
-// Hover animations
 export const hoverLift = {
-    rest: { y: 0, scale: 1 },
-    hover: {
-        y: -8,
-        scale: 1.02,
-        transition: {
-            type: 'spring',
-            stiffness: 400,
-            damping: 10
-        }
-    }
+  rest: { y: 0, scale: 1 },
+  hover: {
+    y: -6,
+    scale: 1.02,
+    transition: { type: 'spring', stiffness: 400, damping: 14 },
+  },
 };
 
 export const hoverScale = {
-    rest: { scale: 1 },
-    hover: {
-        scale: 1.05,
-        transition: {
-            type: 'spring',
-            stiffness: 400,
-            damping: 10
-        }
-    }
+  rest: { scale: 1 },
+  hover: {
+    scale: 1.05,
+    transition: { type: 'spring', stiffness: 400, damping: 14 },
+  },
 };
 
 export const hoverGlow = {
-    rest: {
-        boxShadow: '0 0 0 rgba(0, 0, 0, 0)'
-    },
-    hover: {
-        boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
-        transition: { duration: 0.3 }
-    }
+  rest: { boxShadow: '0 0 0 rgba(0,0,0,0)' },
+  hover: { boxShadow: '0 12px 40px rgba(0,0,0,0.12)', transition: { duration: 0.3 } },
 };
 
-// Tap animations
-export const tapScale = {
-    scale: 0.95,
-    transition: { duration: 0.1 }
-};
+// ─── Tap ───────────────────────────────────────────────────────────────────
 
-// Rotation animations
-export const rotate360: Variants = {
-    hidden: { rotate: 0 },
-    visible: {
-        rotate: 360,
-        transition: { duration: 0.6, ease: 'easeInOut' }
-    }
-};
+export const tapScale = { scale: 0.96, transition: { duration: 0.08 } };
 
-// Custom spring configurations
-export const springConfigs = {
-    gentle: { type: 'spring' as const, stiffness: 120, damping: 14 },
-    wobbly: { type: 'spring' as const, stiffness: 180, damping: 12 },
-    stiff: { type: 'spring' as const, stiffness: 260, damping: 20 },
-    slow: { type: 'spring' as const, stiffness: 80, damping: 20 },
-    molasses: { type: 'spring' as const, stiffness: 50, damping: 20 }
-};
+// ─── Page transition ────────────────────────────────────────────────────────
 
-// Easing functions
-export const easings = {
-    easeOutExpo: [0.19, 1, 0.22, 1],
-    easeOutCubic: [0.33, 1, 0.68, 1],
-    easeInOutCubic: [0.65, 0, 0.35, 1],
-    easeOutQuart: [0.25, 1, 0.5, 1]
-};
-
-// Page transition variants
 export const pageTransition: Variants = {
-    initial: { opacity: 0, y: 20 },
-    animate: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.4, ease: easings.easeOutCubic }
-    },
-    exit: {
-        opacity: 0,
-        y: -20,
-        transition: { duration: 0.3, ease: easings.easeOutCubic }
-    }
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EXPO_OUT } },
+  exit: { opacity: 0, y: -12, transition: { duration: 0.3, ease: EASE_OUT } },
 };
 
-// Shimmer effect for loading states
+// ─── Loading states ────────────────────────────────────────────────────────
+
 export const shimmer: Variants = {
-    initial: { backgroundPosition: '-200% 0' },
-    animate: {
-        backgroundPosition: '200% 0',
-        transition: {
-            duration: 1.5,
-            ease: 'linear',
-            repeat: Infinity
-        }
-    }
+  initial: { backgroundPosition: '-200% 0' },
+  animate: {
+    backgroundPosition: '200% 0',
+    transition: { duration: 1.5, ease: 'linear', repeat: Infinity },
+  },
 };
 
-// Pulse animation
 export const pulse: Variants = {
-    initial: { scale: 1, opacity: 1 },
-    animate: {
-        scale: [1, 1.05, 1],
-        opacity: [1, 0.8, 1],
-        transition: {
-            duration: 2,
-            ease: 'easeInOut',
-            repeat: Infinity
-        }
-    }
+  initial: { scale: 1, opacity: 1 },
+  animate: {
+    scale: [1, 1.04, 1],
+    opacity: [1, 0.75, 1],
+    transition: { duration: 2, ease: 'easeInOut', repeat: Infinity },
+  },
 };
 
-// Bounce animation
 export const bounce: Variants = {
-    initial: { y: 0 },
-    animate: {
-        y: [-10, 0, -10],
-        transition: {
-            duration: 1.5,
-            ease: 'easeInOut',
-            repeat: Infinity
-        }
-    }
+  initial: { y: 0 },
+  animate: {
+    y: [-8, 0, -8],
+    transition: { duration: 1.6, ease: 'easeInOut', repeat: Infinity },
+  },
+};
+
+// ─── Utilities ─────────────────────────────────────────────────────────────
+
+export const springConfigs = {
+  gentle:   { type: 'spring' as const, stiffness: 100, damping: 14 },
+  wobbly:   { type: 'spring' as const, stiffness: 180, damping: 10 },
+  stiff:    { type: 'spring' as const, stiffness: 300, damping: 22 },
+  slow:     { type: 'spring' as const, stiffness: 70,  damping: 20 },
+};
+
+export const easings = {
+  expoOut:    EXPO_OUT,
+  easeOut:    EASE_OUT,
+  easeInOut:  [0.65, 0, 0.35, 1] as const,
+  backOut:    [0.34, 1.56, 0.64, 1] as const,
 };

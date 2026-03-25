@@ -1,1 +1,0 @@
-export { PublicationsSection } from "./PublicationsSection";

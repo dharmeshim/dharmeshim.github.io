@@ -1,1 +1,0 @@
-export { KnowledgeSection } from "./KnowledgeSection";
