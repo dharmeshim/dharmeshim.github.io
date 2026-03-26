@@ -27,24 +27,55 @@ export const App = (): JSX.Element => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
-  const [statusIndex, setStatusIndex] = useState(0);
 
   useKeyboardShortcuts();
 
-  // Boot sequence simulation
+  // Functional Asset & Document Loader
   useEffect(() => {
-    const stepDuration = 320;
-    const steps = BOOT_STEPS.length;
+    let currentProgress = 0;
+    let targetProgress = 10;
+    let frameId: number;
 
-    BOOT_STEPS.forEach((_, i) => {
-      setTimeout(() => {
-        setStatusIndex(i);
-        setLoadProgress(Math.round(((i + 1) / steps) * 100));
-        if (i === steps - 1) {
-          setTimeout(() => setIsLoading(false), 400);
+    // Promise resolves when Fonts and DOM are fully ready
+    Promise.all([
+      document.fonts.ready,
+      new Promise((resolve) => {
+        if (document.readyState === 'complete') {
+          resolve(true);
+        } else {
+          window.addEventListener('load', resolve);
         }
-      }, i * stepDuration);
+      })
+    ]).then(() => {
+      targetProgress = 100;
     });
+
+    const updateProgress = () => {
+      if (currentProgress < targetProgress) {
+        currentProgress += (targetProgress - currentProgress) * 0.1;
+        if (targetProgress === 100 && currentProgress > 99.5) {
+          currentProgress = 100;
+        }
+
+        // if it's lagging but not loaded yet, slowly creep up
+        if (targetProgress < 100 && targetProgress < 90) {
+           targetProgress += 0.2; 
+        }
+
+        setLoadProgress(currentProgress);
+      }
+      
+      if (currentProgress >= 100) {
+        setLoadProgress(100);
+        setTimeout(() => setIsLoading(false), 600); // 600ms hold at 100%
+      } else {
+        frameId = requestAnimationFrame(updateProgress);
+      }
+    };
+
+    frameId = requestAnimationFrame(updateProgress);
+    
+    return () => cancelAnimationFrame(frameId);
   }, []);
 
   return (
@@ -52,11 +83,7 @@ export const App = (): JSX.Element => {
       {/* Cinematic boot loader */}
       <AnimatePresence>
         {isLoading && (
-          <Loader
-            progress={loadProgress}
-            status={BOOT_STEPS[statusIndex]}
-            isVisible={isLoading}
-          />
+          <Loader progress={loadProgress} />
         )}
       </AnimatePresence>
 

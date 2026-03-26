@@ -1,71 +1,90 @@
 import { BaseSection } from '../components/BaseSection';
 import { siteConfig } from '../config/site';
 import profile from '../config/Profile.json';
-import { motion, useReducedMotion } from 'framer-motion';
-import { TypewriterText } from '../components/TypewriterText';
+import { motion } from 'framer-motion';
+import { Signature } from '../components/Signature';
 import {
-  heroBackground,
   heroHeadline,
   heroSubtext,
-  scrollIndicator,
 } from '../lib/animations';
+import { WireframeTerminal } from '../components/svgs/WireframeTerminal';
 
 export const HomeSection = (): JSX.Element => {
-  const { primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
-  const { secondary: secondaryColor } = siteConfig.styles.colors;
-  const shouldReduceMotion = useReducedMotion();
+  const { display: displayFont, secondary: secondaryFont } = siteConfig.styles.fonts;
+  const { primary: primaryColor, secondary: secondaryColor } = siteConfig.styles.colors;
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.4,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const taglineParts = profile.tagLine.split(',');
 
   return (
     <BaseSection title="Home" showTitle={false} variant="fullscreen">
       <motion.div
-        className="flex flex-col min-h-[100dvh] w-full relative overflow-hidden px-6 md:px-12"
+        className="flex flex-col min-h-[100dvh] w-full relative overflow-hidden selection:bg-green-400 selection:text-black py-8 md:py-16"
         initial="hidden"
         animate="visible"
-        variants={heroBackground}
+        variants={containerVariants}
       >
-        {/* Bottom-right information layer */}
-        <div className="mt-auto ml-auto max-w-[95%] md:max-w-2xl text-right flex flex-col items-end space-y-8 md:space-y-12 pb-32 md:pb-32">
 
-          {/* Typewriter tagline */}
-          <motion.div
-            variants={shouldReduceMotion ? undefined : heroHeadline}
-            className={`${primaryFont} text-xl sm:text-3xl md:text-5xl font-medium ${secondaryColor} tracking-tight leading-tight border-r-4 border-blue-500/30 dark:border-green-400/30 pr-6 md:pr-8 text-right`}
-          >
-            <TypewriterText
-              texts={[profile.tagLine]}
-              speed={40}
-              pauseMs={1500}
-              repeat={1}
-              className="text-right"
-            />
-          </motion.div>
-
-          {/* Minimal description */}
-          <motion.div
-            variants={shouldReduceMotion ? undefined : heroSubtext}
-            className="flex items-center gap-3 md:gap-4 justify-end"
-          >
-            <p className="font-mono text-[9px] sm:text-xs uppercase tracking-[0.3em] md:tracking-[0.5em] text-gray-400 dark:text-gray-500 max-w-[250px] md:max-w-none">
-              {siteConfig.description.split('.')[0]}
-            </p>
-            <div className="h-[1px] w-8 md:w-12 bg-gray-200 dark:bg-white/10" />
-          </motion.div>
-        </div>
-
-        {/* Scroll hint */}
+        {/* Awwwards Architectural Graphic: Wireframe Computer Terminal */}
         <motion.div
-          variants={shouldReduceMotion ? undefined : scrollIndicator}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-[20%] z-0 pointer-events-none opacity-10 dark:opacity-20 mix-blend-overlay"
+          animate={{ y: [0, -15, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className={`${secondaryFont} text-[8px] md:text-[9px] font-bold uppercase tracking-[0.8em] text-gray-300 dark:text-gray-600`}>
-            Explore
-          </span>
-          <motion.div
-            className="w-px h-12 md:h-16 bg-gradient-to-b from-blue-500/20 dark:from-green-400/20 to-transparent"
-            animate={shouldReduceMotion ? {} : { scaleY: [1, 0.6, 1], opacity: [1, 0.4, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          />
+          <WireframeTerminal className={`w-[600px] h-[600px] md:w-[1100px] md:h-[1100px] ${secondaryColor}`} />
         </motion.div>
+
+        {/* 1. Primary Tagline - Top Left */}
+        <motion.div
+          className="relative z-20 max-w-full md:max-w-5xl mt-8 md:mt-12"
+          variants={heroHeadline}
+        >
+          <h1 className={`${displayFont} text-4xl sm:text-6xl lg:text-8xl font-black ${primaryColor} leading-[0.9] tracking-tighter uppercase`}>
+            {taglineParts[0]}
+            {taglineParts[1] && (
+              <span className="block opacity-40">
+                {taglineParts[1]}
+              </span>
+            )}
+          </h1>
+
+        </motion.div>
+
+        {/* @ {profile.experience[0].company} */}
+        <motion.div
+          className="relative z-20 max-w-full md:max-w-5xl mt-4"
+          variants={heroSubtext}
+        >
+          <h2 className={`${secondaryFont} text-xl sm:text-2xl lg:text-3xl font-medium ${secondaryColor} tracking-widest uppercase opacity-80`}>
+            @ {profile.experience[0].company}
+          </h2>
+        </motion.div>
+
+        {/* 2. Signature "Sign-Off" - Bottom Right */}
+        <motion.div
+          className="mt-auto relative z-20 flex flex-col items-end self-end gap-2 mb-12"
+          variants={heroSubtext}
+        >
+          <Signature name={profile.name} className={`w-48 md:w-80 -mb-2 opacity-90 ${secondaryColor}`} />
+
+          <div className={`flex flex-col items-end border-r border-gray-300 dark:border-green-400/20 pr-4 py-1`}>
+            <span className={`${secondaryFont} text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 text-right`}>
+              {profile.experience[0].role}
+            </span>
+          </div>
+        </motion.div>
+
+
       </motion.div>
     </BaseSection>
   );
