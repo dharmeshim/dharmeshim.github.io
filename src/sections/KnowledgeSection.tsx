@@ -15,29 +15,9 @@ export const KnowledgeSection = (): JSX.Element => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [activeCategory, setActiveCategory] = useState<number | null>(0);
 
-  const getIconForType = (type: string) => {
-    const lowerType = type.toLowerCase();
-    if (lowerType.includes('tech')) return Zap;
-    if (lowerType.includes('domain')) return Lightbulb;
-    if (lowerType.includes('system')) return Cpu;
-    if (lowerType.includes('tools')) return Terminal;
-    return Codepen;
-  };
-
   return (
     <BaseSection title={knowledge.title}>
       <div className="w-full relative py-12" ref={ref}>
-        {/* Background Network Pattern (Subtle) */}
-        <div className="absolute inset-0 pointer-events-none opacity-5 dark:opacity-10">
-          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1" fill="currentColor" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
 
         <motion.div
           className="relative grid grid-cols-1 lg:grid-cols-12 gap-12"
@@ -46,17 +26,16 @@ export const KnowledgeSection = (): JSX.Element => {
           variants={staggerContainer}
         >
           <div className="lg:col-span-12">
-            <MinimalHeader 
-              title={knowledge.title} 
-              index="04" 
-              subtitle="Core Competencies" 
+            <MinimalHeader
+              title={knowledge.title}
+              index="04"
+              subtitle="Core Competencies"
             />
           </div>
 
           {/* Left Side: Navigation Nodes */}
           <div className="lg:col-span-5 space-y-8 relative">
             {knowledge.items.map((item: any, index: number) => {
-              const Icon = getIconForType(item.type);
               const isActive = activeCategory === index;
 
               return (
@@ -81,7 +60,6 @@ export const KnowledgeSection = (): JSX.Element => {
                         ? 'bg-blue-500 dark:bg-green-400 text-white dark:text-black shadow-lg'
                         : 'bg-gray-200 dark:bg-white/5 text-gray-400'}
                       `}>
-                      <Icon className="w-5 h-5 lg:w-6 h-6" />
                     </div>
 
                     <div className="flex-1">
@@ -145,7 +123,6 @@ export const KnowledgeSection = (): JSX.Element => {
                                   group-hover:border-blue-500 dark:group-hover:border-green-400
                                   group-hover:text-blue-600 dark:group-hover:text-green-400
                                 `}>
-                              <Sparkles className="w-2.5 h-2.5 lg:w-3 h-3 transition-transform group-hover:scale-125" />
                               {skill}
                             </span>
 
