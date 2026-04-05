@@ -40,7 +40,7 @@ export const Signature: React.FC<SignatureProps> = ({ name, className }) => {
           variants={drawAction}
           initial="hidden"
           animate="visible"
-          className="text-blue-500 dark:text-green-400"
+          className="opacity-90"
         />
         <text
           x="50%"

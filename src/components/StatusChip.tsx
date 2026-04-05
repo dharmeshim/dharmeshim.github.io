@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { siteConfig } from '../config/site';
 
 interface StatusChipProps {
     status: 'available' | 'learning' | 'custom';
@@ -11,6 +12,8 @@ export const StatusChip = ({
     label,
     className = '',
 }: StatusChipProps): JSX.Element => {
+    const { accent, accentSoft, accentBg, accentBorder } = siteConfig.styles.colors;
+
     const getStatusConfig = () => {
         switch (status) {
             case 'available':
@@ -22,8 +25,8 @@ export const StatusChip = ({
             case 'learning':
                 return {
                     text: label || 'Currently learning',
-                    color: 'bg-blue-100 dark:bg-cyan-400/10 text-blue-700 dark:text-cyan-400 border-blue-300 dark:border-cyan-400/30',
-                    dotColor: 'bg-blue-500 dark:bg-cyan-400',
+                    color: `${accentSoft} ${accent} ${accentBorder} dark:bg-cyan-400/10 dark:text-cyan-400 dark:border-cyan-400/30`,
+                    dotColor: `${accentBg} dark:bg-cyan-400`,
                 };
             case 'custom':
                 return {

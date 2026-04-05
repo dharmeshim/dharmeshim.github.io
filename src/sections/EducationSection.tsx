@@ -1,5 +1,5 @@
 import { BaseSection } from "../components/BaseSection";
-import { MinimalHeader } from "../components/MinimalHeader";
+import { SectionHeader } from "../components/SectionHeader";
 import { siteConfig } from "../config/site";
 import { Calendar, MapPin, GraduationCap, School } from "lucide-react";
 import { motion } from "framer-motion";
@@ -22,7 +22,7 @@ export const EducationSection = (): JSX.Element => {
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
-          <MinimalHeader 
+          <SectionHeader 
             title={education.title} 
             index="03" 
             subtitle="Academic Background" 

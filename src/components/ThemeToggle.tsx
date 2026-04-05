@@ -27,7 +27,7 @@ export const ThemeToggle = (): JSX.Element => {
                         exit={{ opacity: 0 }}
                     >
                         <motion.div
-                            className="absolute top-8 right-8 w-12 h-12 bg-blue-500 rounded-full dark:bg-green-400"
+                            className="absolute top-8 right-8 w-12 h-12 bg-[#385144] rounded-full dark:bg-green-400"
                             initial={{ scale: 0, opacity: 0.8 }}
                             animate={{ scale: 100, opacity: 0 }}
                             transition={{ duration: 0.6, ease: "easeOut" }}

@@ -97,27 +97,32 @@ export const siteConfig = {
   styles: {
     /* Fonts */
     fonts: {
-      primary: "font-['Inter',system-ui,sans-serif]",
+      primary: "font-['Space_Grotesk',system-ui,sans-serif]",
       secondary: "font-['JetBrains_Mono',monospace]",
-      display: "font-['JetBrains_Mono',monospace]",
+      display: "font-['Space_Grotesk',system-ui,sans-serif]",
     },
 
     /* Colors */
     colors: {
-      primary: "text-gray-900 dark:text-green-400",
+      primary: "text-[#B7E5BA] dark:text-green-400",
       secondary: "text-gray-700 dark:text-gray-300",
       muted: "text-gray-500 dark:text-gray-500",
 
-      background: "bg-gray-50 dark:bg-black",
+      background: "bg-[#f8f5f2] dark:bg-black",
       surface: "bg-white dark:bg-neutral-900/80",
 
       border: "border-gray-200 dark:border-green-400/20",
 
-      accent: "text-blue-600 dark:text-cyan-400",
-      accentSoft: "bg-blue-50 dark:bg-cyan-400/10",
+      accent: "text-[#B7E5BA] dark:text-green-400",
+      accentBg: "bg-[#B7E5BA] dark:bg-green-400",
+      accentSoft: "bg-[#B7E5BA]/5 dark:bg-green-400/5",
+      accentSoftHover: "hover:bg-[#B7E5BA]/10 dark:hover:bg-green-400/10",
+      accentBorder: "border-[#B7E5BA]/10 dark:border-green-400/10",
+      accentBorderHover: "hover:border-[#B7E5BA]/30 dark:hover:border-green-400/30",
+      accentBorderFull: "border-[#B7E5BA] dark:border-green-400",
 
       hover: "hover:bg-gray-100 dark:hover:bg-white/5",
-      focus: "focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-400",
+      focus: "focus:ring-2 focus:ring-[#B7E5BA] dark:focus:ring-green-400",
 
       success: "text-green-600 dark:text-green-400",
       warning: "text-yellow-600 dark:text-yellow-400",

@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { BaseSection } from "../components/BaseSection";
 import { siteConfig } from "../config/site";
-import { Lightbulb, Sparkles, Zap, Codepen, Terminal, Cpu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { staggerContainer, staggerItem } from "../lib/animations";
 import { useInView } from "../hooks/useInView";
-import { MinimalHeader } from "../components/MinimalHeader";
+import { SectionHeader } from "../components/SectionHeader";
 
 export const KnowledgeSection = (): JSX.Element => {
   const { knowledge } = siteConfig.sections;
   const { primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
-  const { primary: primaryColor, secondary: secondaryColor, muted: mutedColor } = siteConfig.styles.colors;
+  const { primary: primaryColor, secondary: secondaryColor } = siteConfig.styles.colors;
 
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [activeCategory, setActiveCategory] = useState<number | null>(0);
@@ -26,7 +25,7 @@ export const KnowledgeSection = (): JSX.Element => {
           variants={staggerContainer}
         >
           <div className="lg:col-span-12">
-            <MinimalHeader
+            <SectionHeader
               title={knowledge.title}
               index="04"
               subtitle="Core Competencies"

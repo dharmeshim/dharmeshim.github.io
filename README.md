@@ -1,4 +1,4 @@
-# Dhamesh Prasad - Portfolio Website
+# Dharmesh Prasad - Portfolio Website
 
 A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS, showcasing software engineering skills, projects, and experience.
 
@@ -112,7 +112,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Dhamesh Prasad** - Software Engineer & Full-Stack Developer
+**Dharmesh Prasad** - Software Engineer & Full-Stack Developer
 
 - GitHub: [@dharmeshim](https://github.com/dharmeshim)
 - Portfolio: [https://dharmeshim.github.io](https://dharmeshim.github.io)

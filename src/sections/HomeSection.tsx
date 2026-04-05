@@ -1,91 +1,129 @@
-import { BaseSection } from '../components/BaseSection';
+import { useEffect, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { siteConfig } from '../config/site';
 import profile from '../config/Profile.json';
-import { motion } from 'framer-motion';
 import { Signature } from '../components/Signature';
-import {
-  heroHeadline,
-  heroSubtext,
-} from '../lib/animations';
-import { WireframeTerminal } from '../components/svgs/WireframeTerminal';
+import { TypingAnimation } from '../components/TypingAnimation';
 
 export const HomeSection = (): JSX.Element => {
-  const { display: displayFont, secondary: secondaryFont } = siteConfig.styles.fonts;
-  const { primary: primaryColor, secondary: secondaryColor } = siteConfig.styles.colors;
+  const { secondary: monoFont } = siteConfig.styles.fonts;
+  const { primary: primaryColor, secondary: secondaryColor, accent } = siteConfig.styles.colors;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.4,
-        delayChildren: 0.2
-      }
-    }
-  };
+  // Mouse parallax
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 50, damping: 28 });
+  const springY = useSpring(mouseY, { stiffness: 50, damping: 28 });
 
-  const taglineParts = profile.tagLine.split(',');
+  const layer1X = useTransform(springX, [-0.5, 0.5], ['-10px', '10px']);
+  const layer1Y = useTransform(springY, [-0.5, 0.5], ['-6px', '6px']);
+  const layer2X = useTransform(springX, [-0.5, 0.5], ['5px', '-5px']);
+  const layer2Y = useTransform(springY, [-0.5, 0.5], ['4px', '-4px']);
+
+  const wrapperRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      mouseX.set((e.clientX - rect.width / 2) / rect.width);
+      mouseY.set((e.clientY - rect.height / 2) / rect.height);
+    };
+    el.addEventListener('mousemove', handleMouseMove);
+    return () => el.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
 
   return (
-    <BaseSection title="Home" showTitle={false} variant="fullscreen">
+    <section
+      ref={wrapperRef}
+      className="relative flex flex-col min-h-[100dvh] w-full overflow-hidden"
+      style={{ paddingLeft: 'max(24px, 4vw)', paddingRight: 'max(24px, 4vw)', paddingTop: '10vh', paddingBottom: '8vh' }}
+    >
+      {/* ─── Main content ─── */}
       <motion.div
-        className="flex flex-col min-h-[100dvh] w-full relative overflow-hidden selection:bg-green-400 selection:text-black py-8 md:py-16"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
+        className="relative z-10 flex-1 flex flex-col justify-center"
+        style={{ x: layer1X, y: layer1Y }}
       >
-
-        {/* Awwwards Architectural Graphic: Wireframe Computer Terminal */}
-        <motion.div
-          className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-[20%] z-0 pointer-events-none opacity-10 dark:opacity-20 mix-blend-overlay"
-          animate={{ y: [0, -15, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        {/* Tagline — large display headline */}
+        <h1
+          className="font-black uppercase leading-[0.88] tracking-tighter select-none"
+          style={{
+            fontSize: 'clamp(3rem, 10vw, 13rem)',
+            fontFamily: "'Space Grotesk', system-ui, sans-serif",
+          }}
+          aria-label={profile.tagLine}
         >
-          <WireframeTerminal className={`w-[600px] h-[600px] md:w-[1100px] md:h-[1100px] ${secondaryColor}`} />
-        </motion.div>
+          {/* First half — filled */}
+          <span className="text-gray-900 dark:text-white block">
+            {profile.tagLine.split(' ').slice(0, 3).join(' ')}
+          </span>
+          {/* Second half — outlined */}
+          <span
+            className={`block ${primaryColor}`}
+            style={{
+              WebkitTextStroke: '1.5px currentColor',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            {profile.tagLine.split(' ').slice(3).join(' ')}
+          </span>
+        </h1>
 
-        {/* 1. Primary Tagline - Top Left */}
+        {/* Company — TypingAnimation animation */}
         <motion.div
-          className="relative z-20 max-w-full md:max-w-5xl mt-8 md:mt-12"
-          variants={heroHeadline}
+          className="mt-6 md:mt-10 overflow-hidden"
+          style={{ x: layer2X, y: layer2Y }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <h1 className={`${displayFont} text-4xl sm:text-6xl lg:text-8xl font-black ${primaryColor} leading-[0.9] tracking-tighter uppercase`}>
-            {taglineParts[0]}
-            {taglineParts[1] && (
-              <span className="block opacity-40">
-                {taglineParts[1]}
-              </span>
-            )}
-          </h1>
-
+          <p
+            className={`${monoFont} text-xs md:text-sm tracking-[0.35em] uppercase ${secondaryColor} opacity-70`}
+          >
+            <span className={accent}>@</span>&nbsp;
+            <TypingAnimation
+              text={`${profile.experience[0].company}`}
+              speed={48}
+              delay={600}
+              showCursor={true}
+            />
+          </p>
         </motion.div>
-
-        {/* @ {profile.experience[0].company} */}
-        <motion.div
-          className="relative z-20 max-w-full md:max-w-5xl mt-4"
-          variants={heroSubtext}
-        >
-          <h2 className={`${secondaryFont} text-xl sm:text-2xl lg:text-3xl font-medium ${secondaryColor} tracking-widest uppercase opacity-80`}>
-            @ {profile.experience[0].company}
-          </h2>
-        </motion.div>
-
-        {/* 2. Signature "Sign-Off" - Bottom Right */}
-        <motion.div
-          className="mt-auto relative z-20 flex flex-col items-end self-end gap-2 mb-12"
-          variants={heroSubtext}
-        >
-          <Signature name={profile.name} className={`w-48 md:w-80 -mb-2 opacity-90 ${secondaryColor}`} />
-
-          <div className={`flex flex-col items-end border-r border-gray-300 dark:border-green-400/20 pr-4 py-1`}>
-            <span className={`${secondaryFont} text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 text-right`}>
-              {profile.experience[0].role}
-            </span>
-          </div>
-        </motion.div>
-
-
       </motion.div>
-    </BaseSection>
+
+      {/* ─── Signature block — bottom right ─── */}
+      <motion.div
+        className="relative z-10 flex flex-col items-end self-end gap-3 mt-auto"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <Signature
+          name={profile.name}
+          className={`w-40 md:w-64 opacity-80 ${primaryColor}`}
+        />
+        <div
+          className={`${monoFont} text-[8px] md:text-[9px] tracking-[0.3em] uppercase ${secondaryColor} opacity-40 text-right translate-x-1`}
+        >
+          {profile.experience[0].role}
+        </div>
+      </motion.div>
+
+      {/* ─── Scroll indicator ─── */}
+      <motion.div
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 ${monoFont} text-[9px] tracking-[0.3em] uppercase opacity-30 pointer-events-none`}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 0.3, y: 0 }}
+        transition={{ delay: 2.8, duration: 0.8, ease: 'easeOut' }}
+      >
+        <span>Scroll</span>
+        <motion.div
+          className="w-px h-8 bg-current origin-top"
+          animate={{ scaleY: [0, 1, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+        />
+      </motion.div>
+    </section>
   );
 };

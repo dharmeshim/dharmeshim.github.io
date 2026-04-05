@@ -1,10 +1,14 @@
 {
-  "name": "Dhamesh Prasad",
-  "description": "Associate Engineer at Finzly, delving into fintech solutions with a passion for reshaping finance for positive impact.",
+  "name": "Dharmesh Prasad",
+  "description": "Associate Engineer at Finzly — building fintech solutions that move millions of dollars across borders every day.",
+  "bio": "I'm always open to discussing new opportunities, interesting problems, or just having a conversation about technology and the future of finance. Let's build something meaningful.",
   "about": [
-    "Hello,"
+    "Associate Engineer",
+    "Fintech Developer",
+    "Full-Stack Builder",
+    "Banking Systems"
   ],
-  "tagLine": "I craft solutions, that used to move millions",
+  "tagLine": "I craft solutions that move millions",
   "education": [
     {
       "institution": "Government College of Engineering, Dharmapuri",
@@ -172,12 +176,6 @@
       "name": "HTML & CSS - Course completion certification",
       "issuer": "Udemy",
       "link": "https://www.udemy.com/certificate/UC-19a928ff-87c4-44a8-8616-89f62a2e92c5/",
-      "year": "2022"
-    },
-    {
-      "name": "Scientific computing with python",
-      "issuer": "freeCodeCamp",
-      "link": "https://freecodecamp.org/certification/Dharmeshim/scientific-computing-with-python-v7",
       "year": "2022"
     },
     {

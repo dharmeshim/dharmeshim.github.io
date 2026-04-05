@@ -69,7 +69,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps): JSX.Element =
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className={`px-2.5 py-1 bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded text-[10px] md:text-xs ${secondaryFont} font-medium border border-gray-200/50 dark:border-white/10 uppercase tracking-wider transition-colors duration-300 group-hover:border-blue-500/30 dark:group-hover:border-green-400/30`}
+                className={`px-2.5 py-1 bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded text-[10px] md:text-xs ${secondaryFont} font-medium border border-gray-200/50 dark:border-white/10 uppercase tracking-wider transition-colors duration-300 group-hover:${siteConfig.styles.colors.accentBorder.split(' ')[0].replace('border-', 'border-')} dark:group-hover:${siteConfig.styles.colors.accentBorder.split(' ')[0].replace('border-', 'border-')}`}
               >
                 {tech}
               </span>
@@ -113,7 +113,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps): JSX.Element =
             <Button
               variant="outline"
               size="sm"
-              className="text-[10px] md:text-xs h-8 bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100 dark:bg-green-400/10 dark:text-green-400 dark:border-green-400/20 dark:hover:bg-green-400/20"
+              className={`text-[10px] md:text-xs h-8 ${siteConfig.styles.colors.accentSoft} ${siteConfig.styles.colors.accent} border ${siteConfig.styles.colors.accentBorder} hover:opacity-80 dark:bg-green-400/10 dark:text-green-400 dark:border-green-400/20 dark:hover:bg-green-400/20`}
               onClick={() => window.open(project.liveUrl, '_blank')}
             >
               <ExternalLink className="w-3 h-3 md:w-4 md:h-4 mr-1.5" />
@@ -139,7 +139,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps): JSX.Element =
 
       {/* Animated glow border on hover */}
       <motion.div
-        className="absolute inset-0 z-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 dark:from-green-400/20 dark:via-transparent dark:to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-xl"
+        className={`absolute inset-0 z-0 bg-gradient-to-br from-[#385144]/20 via-transparent to-[#385144]/10 dark:from-green-400/20 dark:via-transparent dark:to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-xl`}
       />
     </motion.div>
   );

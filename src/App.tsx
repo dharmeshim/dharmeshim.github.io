@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { ThemeToggle, ParticleBackground, MagneticCursor, SmoothScroll, Loader } from './components';
+import { MagneticCursor, SmoothScroll, Loader, ScrollProgress } from './components';
 import {
   ContactSection,
   EducationSection,
@@ -11,16 +11,9 @@ import {
   TechStackSection,
   CertificationsSection,
 } from './sections';
+import { ThemeToggle } from './components/ThemeToggle';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import { siteConfig } from './config/site';
-
-const BOOT_STEPS = [
-  'Initializing portfolio...',
-  'Loading modules...',
-  'Mounting components...',
-  'Applying styles...',
-  'Ready.',
-];
 
 export const App = (): JSX.Element => {
   const { background } = siteConfig.styles.colors;
@@ -30,13 +23,11 @@ export const App = (): JSX.Element => {
 
   useKeyboardShortcuts();
 
-  // Functional Asset & Document Loader
   useEffect(() => {
     let currentProgress = 0;
     let targetProgress = 10;
     let frameId: number;
 
-    // Promise resolves when Fonts and DOM are fully ready
     Promise.all([
       document.fonts.ready,
       new Promise((resolve) => {
@@ -45,7 +36,7 @@ export const App = (): JSX.Element => {
         } else {
           window.addEventListener('load', resolve);
         }
-      })
+      }),
     ]).then(() => {
       targetProgress = 100;
     });
@@ -56,25 +47,21 @@ export const App = (): JSX.Element => {
         if (targetProgress === 100 && currentProgress > 99.5) {
           currentProgress = 100;
         }
-
-        // if it's lagging but not loaded yet, slowly creep up
         if (targetProgress < 100 && targetProgress < 90) {
-           targetProgress += 0.2; 
+          targetProgress += 0.2;
         }
-
         setLoadProgress(currentProgress);
       }
-      
+
       if (currentProgress >= 100) {
         setLoadProgress(100);
-        setTimeout(() => setIsLoading(false), 600); // 600ms hold at 100%
+        setTimeout(() => setIsLoading(false), 600);
       } else {
         frameId = requestAnimationFrame(updateProgress);
       }
     };
 
     frameId = requestAnimationFrame(updateProgress);
-    
     return () => cancelAnimationFrame(frameId);
   }, []);
 
@@ -82,37 +69,36 @@ export const App = (): JSX.Element => {
     <SmoothScroll>
       {/* Cinematic boot loader */}
       <AnimatePresence>
-        {isLoading && (
-          <Loader progress={loadProgress} />
-        )}
+        {isLoading && <Loader progress={loadProgress} />}
       </AnimatePresence>
 
       {!isLoading && (
         <div
           className={`${background} w-full min-h-screen transition-colors duration-400 relative overflow-x-hidden`}
         >
-          {/* Blueprint grid */}
+          {/* Subtle architectural grid — light blueprint lines */}
           <div
-            className="fixed inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.06] z-0"
+            className="fixed inset-0 pointer-events-none opacity-[0.025] dark:opacity-[0.04] z-0"
+            aria-hidden="true"
             style={{
               backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
                                 linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-              backgroundSize: '40px 40px',
-              color: 'inherit',
+              backgroundSize: '60px 60px',
               transform: 'translateZ(0)',
             }}
           />
 
-          {/* Particle constellation */}
-          <ParticleBackground />
+          {/* Left-rail scroll progress */}
+          <ScrollProgress />
 
-          {/* Premium cursor (desktop only) */}
+          {/* Context-aware custom cursor (desktop only) */}
           <MagneticCursor />
 
-          {/* Content */}
-          <div className="relative z-10">
-            <ThemeToggle />
+          {/* Theme toggle ripple overlay + button (top-right) */}
+          <ThemeToggle />
 
+          {/* Page content */}
+          <div className="relative z-10">
             <div id="home"><HomeSection /></div>
             <div id="experience"><ExperienceSection /></div>
             <div id="projects"><ProjectsSection /></div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BaseSection } from "../components/BaseSection";
 import { siteConfig } from "../config/site";
-import { MinimalHeader } from "../components/MinimalHeader";
+import { SectionHeader } from "../components/SectionHeader";
 import { Award, ExternalLink, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { staggerContainer, staggerItem, fadeInUp } from "../lib/animations";
@@ -30,7 +30,7 @@ export const CertificationsSection = (): JSX.Element => {
   return (
     <BaseSection title={certifications.title}>
       <div className="relative w-full max-w-7xl mx-auto py-16 lg:py-24" ref={ref}>
-        <MinimalHeader 
+        <SectionHeader 
           title={certifications.title} 
           index="06" 
           subtitle="Achievements" 

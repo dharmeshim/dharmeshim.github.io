@@ -30,7 +30,7 @@ export const JSONCard = ({ data, title, className = '' }: JSONCardProps): JSX.El
         }
 
         if (typeof value === 'number') {
-            return <span className="text-blue-600 dark:text-cyan-400">{value}</span>;
+            return <span className="text-[#385144] dark:text-cyan-400">{value}</span>;
         }
 
         if (typeof value === 'boolean') {

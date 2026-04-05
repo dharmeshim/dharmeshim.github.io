@@ -1,227 +1,213 @@
-
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Moon, Sun } from "lucide-react";
 import { siteConfig } from "../config/site";
 import { scrollToSection, getSectionId } from "../lib/navigation";
-import { ChevronLeft, X, Moon, Sun, Menu } from "lucide-react";
 import { useDarkMode } from "../hooks/useDarkMode";
+
 interface NavigationMenuProps {
   activeSection: string;
   progress: number[];
 }
 
-export const NavigationMenu = ({ activeSection, progress }: NavigationMenuProps): JSX.Element => {
-  const { navigation, styles, layout } = siteConfig;
-  const { position } = layout.navigation;
-  const { primary: primaryFont } = styles.fonts;
-  const { primary: primaryColor } = styles.colors;
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isMobileExpanded, setIsMobileExpanded] = useState(false);
-  const [isSpreading, setIsSpreading] = useState(false);
+export const NavigationMenu = ({ activeSection }: NavigationMenuProps): JSX.Element => {
+  const { navigation, styles } = siteConfig;
+  const { secondary: monoFont } = styles.fonts;
+  const { accent, accentBorderFull } = styles.colors;
+
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const toggleMobileExpanded = () => {
-    setIsMobileExpanded(!isMobileExpanded);
-  };
-
-  const handleNavClick = (href: string) => {
-    if (href === "#") return; // Dark Mode button
-    scrollToSection(href);
-  };
-
-  const handleDarkModeToggle = () => {
-    setIsSpreading(true);
-    setTimeout(() => {
-      toggleDarkMode();
-      setIsSpreading(false);
-    }, 300);
-  };
-
-  // Create navigation items in screen order (excluding Dark Mode)
-  const screenNavItems = navigation.items.map((item) => ({
+  const navItems = navigation.items.map((item) => ({
     ...item,
     isActive: getSectionId(item.href) === activeSection,
   }));
 
-  // Desktop: Show first 6 items by default, rest can be expanded
-  const desktopVisibleItems = screenNavItems.slice(0, 6);
-  const desktopHiddenItems = screenNavItems.slice(6);
+  const handleNavClick = (href: string) => {
+    scrollToSection(href);
+    setIsMobileOpen(false);
+  };
+
+  const handleDarkMode = () => {
+    toggleDarkMode();
+  };
 
   return (
     <>
-      {/* Color Spreading Overlay */}
-      {isSpreading && (
-        <div className="fixed inset-0 z-[70] pointer-events-none">
-          <div className="absolute top-8 right-8 w-12 h-12 bg-blue-500 rounded-full animate-ping dark:bg-green-400" />
-          <div className="absolute top-8 right-8 w-12 h-12 bg-blue-500 rounded-full animate-ping dark:bg-green-400" style={{ animationDelay: '0.1s' }} />
-          <div className="absolute top-8 right-8 w-12 h-12 bg-blue-500 rounded-full animate-ping dark:bg-green-400" style={{ animationDelay: '0.2s' }} />
-        </div>
-      )}
-
-      <nav className={`fixed ${position.top} ${position.right} z-50 flex flex-row items-center p-0 m-0`}>
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex flex-row items-center gap-x-2 lg:gap-x-3">
-          {/* Toggle Button for hidden items */}
-          <button
-            onClick={toggleExpanded}
-            className={`relative whitespace-nowrap ${primaryFont} text-xs lg:text-sm transition-all duration-400 ease-out p-2 border border-gray-300 hover:border-gray-400 rounded-lg ${
-              isExpanded ? 'bg-gray-100' : 'bg-white'
-            } ${primaryColor} dark:border-gray-600 dark:hover:border-gray-500 dark:bg-black dark:${isExpanded ? 'bg-gray-800' : 'bg-black'}`}
-            aria-label={isExpanded ? "Collapse menu" : "Expand menu"}
-          >
-            <ChevronLeft className={`w-3 h-3 transition-transform duration-400 ${isExpanded ? 'rotate-180' : ''}`} />
-          </button>
-
-          {/* First 6 items always visible */}
-          {desktopVisibleItems.map((item, index) => (
-            <button
+      {/* ─── Desktop: Centered floating glassmorphic pill ─── */}
+      <nav
+        className="fixed top-6 left-1/2 -translate-x-1/2 z-50 hidden md:flex items-center"
+        aria-label="Main navigation"
+      >
+        <motion.div
+          className="flex items-center gap-1 px-3 py-2.5 rounded-2xl bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200/60 dark:border-white/10 shadow-xl shadow-black/5 dark:shadow-black/40"
+          initial={{ y: -60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        >
+          {navItems.map((item, index) => (
+            <NavPill
               key={index}
-              onClick={() => handleNavClick(item.href)}
-              className={`relative whitespace-nowrap ${primaryFont} text-xs lg:text-sm transition-all duration-400 ease-out overflow-hidden rounded-lg
-                ${item.isActive
-                  ? "px-3 py-1.5 border-2 border-solid border-blue-500 font-light bg-gray-100 dark:border-green-400 dark:bg-gray-800"
-                  : "font-light hover:opacity-80 px-3 py-1.5"
-                } ${primaryColor}`}
-            >
-              {/* Progress fill for active item */}
-              {item.isActive && (
-                <span
-                  className="absolute top-0 h-full z-0 transition-all duration-400 rounded-lg"
-                  style={{
-                    right: 0,
-                    left: 'auto',
-                    width: `${(progress[screenNavItems.findIndex(navItem => navItem.href === item.href)] ?? 0) * 100}%`,
-                    background: isDarkMode 
-                      ? 'linear-gradient(270deg, #374151 0%, #4b5563 100%)'
-                      : 'linear-gradient(270deg, #e5e7eb 0%, #f3f4f6 100%)',
-                    transition: 'width 0.4s, background 0.4s',
-                  }}
-                />
-              )}
-              <span className="relative z-10 flex items-center gap-2">
-                {item.label}
-              </span>
-            </button>
+              item={item}
+              monoFont={monoFont}
+              onNavigate={handleNavClick}
+            />
           ))}
 
-          {/* Hidden items that appear when expanded */}
-          {isExpanded && (
-            <div className="flex flex-row items-center gap-x-2 lg:gap-x-3 animate-in slide-in-from-right duration-400">
-              {desktopHiddenItems.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleNavClick(item.href)}
-                  className={`relative whitespace-nowrap ${primaryFont} text-xs lg:text-sm transition-all duration-400 ease-out overflow-hidden rounded-lg
-                    ${item.isActive
-                      ? "px-3 py-1.5 border-2 border-solid border-blue-500 font-light bg-gray-100 dark:border-green-400 dark:bg-gray-800"
-                      : "font-light hover:opacity-80 px-3 py-1.5"
-                    } ${primaryColor} cursor-pointer`}
-                >
-                  {/* Progress fill for active item */}
-                  {item.isActive && (
-                    <span
-                      className="absolute top-0 h-full z-0 transition-all duration-400 rounded-lg"
-                      style={{
-                        right: 0,
-                        left: 'auto',
-                        width: `${(progress[screenNavItems.findIndex(navItem => navItem.href === item.href)] ?? 0) * 100}%`,
-                        background: isDarkMode 
-                          ? 'linear-gradient(270deg, #374151 0%, #4b5563 100%)'
-                          : 'linear-gradient(270deg, #e5e7eb 0%, #f3f4f6 100%)',
-                        transition: 'width 0.4s, background 0.4s',
-                      }}
-                    />
-                  )}
-                  <span className="relative z-10">{item.label}</span>
-                </button>
-              ))}
-            </div>
-          )}
+          {/* Divider */}
+          <div className="w-px h-4 bg-gray-200 dark:bg-white/10 mx-1" />
 
-          {/* Dark Mode Button - Always visible and last on desktop */}
-          <button
-            onClick={handleDarkModeToggle}
-            className={`relative p-2 border-2 border-solid font-light cursor-pointer transition-all duration-400 rounded-full
-              ${isDarkMode 
-                ? 'border-white bg-white text-black hover:bg-gray-100' 
-                : 'border-blue-500 bg-blue-500 text-white hover:bg-blue-400'
-              }`}
+          {/* Dark mode toggle */}
+          <motion.button
+            onClick={handleDarkMode}
+            className={`relative p-2 rounded-xl transition-all duration-300 ${
+              isDarkMode
+                ? "bg-white/10 text-white hover:bg-white/20"
+                : "text-gray-600 hover:bg-black/5"
+            }`}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
           >
-            {isDarkMode ? <Sun className="w-3 h-3" /> : <Moon className="w-3 h-3" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation Toggle */}
-        <div className="md:hidden">
-          <button
-            onClick={toggleMobileExpanded}
-            className={`relative whitespace-nowrap ${primaryFont} text-xs transition-all duration-400 ease-out p-2 border border-gray-300 hover:border-gray-400 rounded-lg ${
-              isMobileExpanded ? 'bg-gray-100' : 'bg-white'
-            } ${primaryColor} dark:border-gray-600 dark:hover:border-gray-500 dark:bg-black dark:${isMobileExpanded ? 'bg-gray-800' : 'bg-black'}`}
-            aria-label={isMobileExpanded ? "Close menu" : "Open menu"}
-          >
-            <Menu className={`w-3 h-3 transition-transform duration-400 ${isMobileExpanded ? 'rotate-90' : ''}`} />
-          </button>
-        </div>
+            <motion.div
+              animate={{ rotate: isDarkMode ? 0 : 180 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              {isDarkMode ? (
+                <Sun className="w-3.5 h-3.5" />
+              ) : (
+                <Moon className="w-3.5 h-3.5" />
+              )}
+            </motion.div>
+          </motion.button>
+        </motion.div>
       </nav>
 
-      {/* Mobile Full-Screen Overlay */}
-      {isMobileExpanded && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/20 backdrop-blur-sm">
-          <div className="fixed inset-0 z-50 flex flex-col items-center justify-center">
-            {/* Close Button */}
+      {/* ─── Mobile: Bottom bar + slide-up drawer ─── */}
+      <div className="md:hidden">
+        {/* Bottom bar */}
+        <motion.div
+          className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-white/90 dark:bg-black/90 backdrop-blur-xl border-t border-gray-200/50 dark:border-white/8"
+          initial={{ y: 80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+        >
+          {/* Active section label */}
+          <span className={`${monoFont} text-[10px] uppercase tracking-[0.25em] ${accent}`}>
+            {navItems.find((n) => n.isActive)?.label ?? "Home"}
+          </span>
+
+          <div className="flex items-center gap-3">
+            {/* Dark mode */}
             <button
-              onClick={toggleMobileExpanded}
-              className="absolute top-8 right-8 p-3 border border-gray-300 bg-white hover:bg-gray-100 transition-all duration-400 rounded-lg dark:border-gray-600 dark:bg-black dark:hover:bg-gray-800"
-              aria-label="Close menu"
+              onClick={handleDarkMode}
+              className="p-2 rounded-xl text-gray-500 dark:text-gray-400"
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
-              <X className="w-6 h-6 text-blue-500 dark:text-green-400" />
+              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* Navigation Items */}
-            <div className="flex flex-col items-center space-y-12 text-center px-8">
-              {screenNavItems.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    handleNavClick(item.href);
-                    setIsMobileExpanded(false);
-                  }}
-                  className={`${primaryFont} text-2xl md:text-3xl transition-all duration-400 ease-in-out flex items-center gap-3 rounded-lg px-6 py-3 ${
-                    item.isActive
-                      ? "text-blue-500 font-light dark:text-green-400 bg-gray-100 dark:bg-gray-800"
-                      : "text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Dark Mode Button - Separated in mobile */}
-            <div className="mt-16">
-              <button
-                onClick={() => {
-                  handleDarkModeToggle();
-                  setIsMobileExpanded(false);
-                }}
-                className={`p-6 border-2 border-solid font-light transition-all duration-400 rounded-full
-                  ${isDarkMode 
-                    ? 'border-white bg-white text-black' 
-                    : 'border-blue-500 bg-blue-500 text-white'
-                  }`}
-                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-              >
-                {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-              </button>
-            </div>
+            {/* Hamburger */}
+            <button
+              onClick={() => setIsMobileOpen(true)}
+              className="flex flex-col gap-1.5 p-2 rounded-xl"
+              aria-label="Open navigation"
+            >
+              <span className={`w-5 h-px ${isDarkMode ? "bg-white" : "bg-gray-900"} block`} />
+              <span className={`w-3 h-px ${isDarkMode ? "bg-white" : "bg-gray-900"} block`} />
+            </button>
           </div>
-        </div>
-      )}
+        </motion.div>
+
+        {/* Full-screen drawer */}
+        <AnimatePresence>
+          {isMobileOpen && (
+            <motion.div
+              className="fixed inset-0 z-[60] bg-white dark:bg-black flex flex-col items-center justify-center"
+              initial={{ opacity: 0, y: "100%" }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: "100%" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {/* Close */}
+              <button
+                onClick={() => setIsMobileOpen(false)}
+                className={`absolute top-8 right-8 p-3 rounded-full border ${accentBorderFull} ${accent}`}
+                aria-label="Close navigation"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Nav items */}
+              <nav className="flex flex-col items-center gap-8">
+                {navItems.map((item, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => handleNavClick(item.href)}
+                    className={`text-4xl font-bold tracking-tight transition-colors duration-300 ${
+                      item.isActive
+                        ? accent
+                        : "text-gray-300 dark:text-gray-600 hover:text-gray-900 dark:hover:text-gray-100"
+                    }`}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: index * 0.06,
+                      duration: 0.5,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
+                  >
+                    {item.label}
+                  </motion.button>
+                ))}
+              </nav>
+
+              {/* Index counter */}
+              <motion.div
+                className={`absolute bottom-12 left-8 ${monoFont} text-[10px] tracking-[0.3em] uppercase text-gray-400`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                {String(navItems.findIndex((n) => n.isActive) + 1).padStart(2, "0")} /{" "}
+                {String(navItems.length).padStart(2, "0")}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </>
+  );
+};
+
+/* ─── Nav Pill Item ─────────────────────────────────────────────────────────── */
+interface NavPillProps {
+  item: { label: string; href: string; isActive: boolean };
+  monoFont: string;
+  onNavigate: (href: string) => void;
+}
+
+const NavPill = ({ item, monoFont, onNavigate }: NavPillProps) => {
+  return (
+    <motion.button
+      onClick={() => onNavigate(item.href)}
+      className={`relative px-3 py-1.5 rounded-xl text-xs font-medium tracking-wide transition-colors duration-200 ${
+        item.isActive
+          ? "text-[#385144] dark:text-green-400"
+          : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+      } ${monoFont}`}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {item.isActive && (
+        <motion.div
+          layoutId="navActivePill"
+          className="absolute inset-0 rounded-xl bg-[#385144]/8 dark:bg-green-400/10"
+          transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+        />
+      )}
+      <span className="relative z-10">{item.label}</span>
+    </motion.button>
   );
 };
