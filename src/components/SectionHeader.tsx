@@ -33,8 +33,14 @@ export const SectionHeader = ({ title, subtitle, index }: SectionHeaderProps) =>
 
           {/* Title — ScrambledTitle scramble animation */}
           <h2
-            className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1] font-bold tracking-tight ${primaryColor} uppercase`}
-            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            className={`leading-[1] font-bold tracking-tight ${primaryColor} uppercase`}
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 'clamp(2.8rem, 7vw, 7rem)',
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
+              hyphens: 'none',
+            }}
             aria-label={title}
           >
             {isInView ? (

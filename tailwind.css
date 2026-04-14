@@ -44,13 +44,13 @@
     @apply text-2xl sm:text-3xl lg:text-4xl;
   }
 
-  * {
-    @apply transition-all duration-200 ease-out;
-  }
+  /* NOTE: intentionally no `* { transition-all }` here — that selector
+     fights Framer Motion and GSAP and tanks 60fps. Apply transitions
+     only on specific components that need them. */
 
-  /* Light mode selection */
+  /* Light mode selection — matches sage-green palette */
   ::selection {
-    @apply bg-blue-200 text-gray-900;
+    @apply bg-[#B7E5BA] text-gray-900;
   }
 
   /* Dark mode selection */

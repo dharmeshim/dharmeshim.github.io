@@ -4,6 +4,8 @@ import { siteConfig } from "../config/site";
 import { ExternalLink, Code, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionHeader } from "../components/SectionHeader";
+import { useCountUp } from "../hooks/useCountUp";
+import { useInView } from "../hooks/useInView";
 
 export const ProjectsSection = (): JSX.Element => {
   const { projects } = siteConfig.sections;
@@ -11,6 +13,13 @@ export const ProjectsSection = (): JSX.Element => {
   const { primary: primaryColor, secondary: secondaryColor, accent, accentSoft, accentBorder, accentBorderHover } = siteConfig.styles.colors;
 
   const constraintsRef = useRef<HTMLDivElement>(null);
+  const { ref: statsRef, inView: statsInView } = useInView({ threshold: 0.5, triggerOnce: true });
+
+  const totalProjects = projects.items.length;
+  const totalTechs = Array.from(new Set(projects.items.flatMap(p => p.technologies || []))).length;
+
+  const projectCount = useCountUp({ end: totalProjects, enabled: statsInView, duration: 1200, delay: 100 });
+  const techCount = useCountUp({ end: totalTechs, enabled: statsInView, duration: 1400, delay: 200 });
 
   return (
     <BaseSection title={projects.title}>
@@ -58,6 +67,7 @@ export const ProjectsSection = (): JSX.Element => {
                 key={index}
                 project={project}
                 index={index}
+                total={totalProjects}
                 primaryFont={primaryFont}
                 monoFont={monoFont}
                 primaryColor={primaryColor}
@@ -91,6 +101,7 @@ export const ProjectsSection = (): JSX.Element => {
 
         {/* ─── Stats footer ─── */}
         <motion.div
+          ref={statsRef}
           className="mt-16 pt-8 border-t border-gray-200/50 dark:border-white/5 flex flex-wrap gap-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -99,7 +110,7 @@ export const ProjectsSection = (): JSX.Element => {
         >
           <div>
             <div className={`${monoFont} text-4xl font-black ${primaryColor}`}>
-              {String(projects.items.length).padStart(2, '0')}
+              {String(projectCount).padStart(2, '0')}
             </div>
             <div className={`${monoFont} text-[9px] uppercase tracking-[0.3em] text-gray-500 mt-1`}>
               Projects Built
@@ -107,7 +118,7 @@ export const ProjectsSection = (): JSX.Element => {
           </div>
           <div>
             <div className={`${monoFont} text-4xl font-black ${primaryColor}`}>
-              {String(Array.from(new Set(projects.items.flatMap(p => p.technologies || []))).length).padStart(2, '0')}
+              {String(techCount).padStart(2, '0')}
             </div>
             <div className={`${monoFont} text-[9px] uppercase tracking-[0.3em] text-gray-500 mt-1`}>
               Technologies
@@ -139,9 +150,10 @@ interface CardProps {
   accentSoft: string;
   accentBorder: string;
   accentBorderHover: string;
+  total: number;
 }
 
-const ProjectCard = ({ project, index, primaryFont, monoFont, primaryColor, secondaryColor, accentSoft, accentBorder, accentBorderHover }: CardProps) => {
+const ProjectCard = ({ project, index, total, primaryFont, monoFont, primaryColor, secondaryColor, accentSoft, accentBorder, accentBorderHover }: CardProps) => {
   return (
     <motion.div
       className={`hidden md:flex flex-col justify-between flex-shrink-0 rounded-3xl border border-gray-200/60 dark:border-white/8 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm p-8 lg:p-10 ${accentBorderHover} transition-colors duration-500`}
@@ -156,7 +168,7 @@ const ProjectCard = ({ project, index, primaryFont, monoFont, primaryColor, seco
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <span className={`${monoFont} text-[10px] tracking-[0.3em] uppercase text-gray-400`}>
-            {String(index + 1).padStart(2, '0')} / {String(0).padStart(2, '0').replace('00', String(3).padStart(2,'0'))}
+            {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
           </span>
           {project.duration && (
             <div className={`flex items-center gap-1.5 ${monoFont} text-[10px] text-gray-400`}>

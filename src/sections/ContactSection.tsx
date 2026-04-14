@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { staggerContainer, staggerItem } from "../lib/animations";
 import { useInView } from "../hooks/useInView";
 import profile from "../config/Profile.json";
+import { PaperRocket } from "../components/PaperRocket";
 
 export const ContactSection = (): JSX.Element => {
   const { contact } = siteConfig.sections;
@@ -37,11 +38,25 @@ export const ContactSection = (): JSX.Element => {
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
-          <SectionHeader
-            title={contact.title}
-            index="07"
-            subtitle="Initiate sequence"
-          />
+          {/* Header + Rocket side by side */}
+          <div className="flex items-start justify-between gap-8">
+            <div className="flex-1">
+              <SectionHeader
+                title={contact.title}
+                index="07"
+                subtitle="Initiate sequence"
+              />
+            </div>
+            {/* Paper Rocket — decorative, desktop only */}
+            <motion.div
+              className="hidden lg:block w-20 shrink-0 mt-2 opacity-80"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 0.8, y: 0 } : {}}
+              transition={{ delay: 0.8, duration: 0.8 }}
+            >
+              <PaperRocket className="w-full" />
+            </motion.div>
+          </div>
 
           {/* ─── Bio / intent ─── */}
           <motion.div
@@ -131,7 +146,7 @@ export const ContactSection = (): JSX.Element => {
             <div className="flex items-center gap-3">
               <div className={`w-2 h-2 rounded-full ${accentBg.split(' ')[0]} animate-pulse`} />
               <span className={`${monoFont} text-[9px] uppercase tracking-[0.3em] text-gray-400`}>
-                Hello world
+                Open to opportunities
               </span>
             </div>
           </motion.div>

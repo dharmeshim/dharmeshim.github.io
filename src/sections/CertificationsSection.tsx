@@ -10,7 +10,7 @@ import { useInView } from "../hooks/useInView";
 export const CertificationsSection = (): JSX.Element => {
   const { certifications } = siteConfig.sections;
   const { primary: primaryFont, secondary: secondaryFont } = siteConfig.styles.fonts;
-  const { primary: primaryColor } = siteConfig.styles.colors;
+  const { primary: primaryColor, accentBg, accentSoft, accentBorder } = siteConfig.styles.colors;
 
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
@@ -58,7 +58,7 @@ export const CertificationsSection = (): JSX.Element => {
               {activeYear === year && (
                 <motion.div
                   layoutId="activeYearBg"
-                  className="absolute inset-0 bg-blue-500 dark:bg-green-400 rounded-full -z-10"
+                  className={`absolute inset-0 ${accentBg} rounded-full -z-10`}
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
@@ -94,8 +94,8 @@ export const CertificationsSection = (): JSX.Element => {
                   >
                     {/* Visual Marker */}
                     <div className="flex-shrink-0 relative mt-1">
-                      <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl lg:rounded-[2rem] bg-blue-500/5 dark:bg-green-400/5 border border-blue-500/10 dark:border-green-400/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-500/10 dark:group-hover:bg-green-400/10 transition-all duration-500 shadow-xl dark:shadow-none">
-                        <Award className="w-5 h-5 lg:w-7 lg:h-7 text-blue-500 dark:text-green-400 group-hover:rotate-12 transition-transform" />
+                      <div className={`w-12 h-12 lg:w-16 lg:h-16 rounded-2xl lg:rounded-[2rem] ${accentSoft} border ${accentBorder} flex items-center justify-center group-hover:scale-110 group-hover:bg-[#385144]/10 dark:group-hover:bg-green-400/10 transition-all duration-500 shadow-xl dark:shadow-none`}>
+                        <Award className={`w-5 h-5 lg:w-7 lg:h-7 text-[#385144] dark:text-green-400 group-hover:rotate-12 transition-transform`} />
                       </div>
                     </div>
 
@@ -107,7 +107,7 @@ export const CertificationsSection = (): JSX.Element => {
                         <span className="font-mono text-[10px] lg:text-xs">{cert.year}</span>
                       </div>
 
-                      <h3 className={`${primaryFont} text-xl lg:text-3xl font-bold ${primaryColor} tracking-tight group-hover:text-blue-500 dark:group-hover:text-green-400 transition-colors leading-[1.2]`}>
+                      <h3 className={`${primaryFont} text-xl lg:text-3xl font-bold ${primaryColor} tracking-tight group-hover:text-[#385144] dark:group-hover:text-green-400 transition-colors leading-[1.2]`}>
                         {cert.name}
                       </h3>
 
@@ -117,7 +117,7 @@ export const CertificationsSection = (): JSX.Element => {
                             href={cert.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 lg:gap-3 text-[10px] lg:text-xs font-bold text-gray-500 hover:text-blue-500 dark:hover:text-green-400 transition-colors uppercase tracking-[0.2em]"
+                            className="inline-flex items-center gap-2 lg:gap-3 text-[10px] lg:text-xs font-bold text-gray-500 hover:text-[#385144] dark:hover:text-green-400 transition-colors uppercase tracking-[0.2em]"
                             whileHover={{ x: 5 }}
                           >
                             <span>Verify Credential</span>
@@ -128,7 +128,7 @@ export const CertificationsSection = (): JSX.Element => {
                     </div>
 
                     {/* Accent Background (Fluid) */}
-                    <div className="absolute inset-0 -mx-6 lg:-mx-8 -my-6 lg:-my-8 rounded-[2rem] lg:rounded-[3rem] bg-blue-500/[0.02] dark:bg-green-400/[0.02] opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+                    <div className={`absolute inset-0 -mx-6 lg:-mx-8 -my-6 lg:-my-8 rounded-[2rem] lg:rounded-[3rem] ${accentSoft} opacity-0 group-hover:opacity-100 transition-opacity -z-10`} />
                   </motion.div>
                 ))}
               </div>
@@ -145,7 +145,7 @@ export const CertificationsSection = (): JSX.Element => {
           variants={fadeInUp}
         >
           <div className="flex items-center gap-4 text-gray-500">
-            <span className="w-8 h-px bg-blue-500 dark:bg-green-400" />
+            <span className={`w-8 h-px ${accentBg}`} />
             <span className={`${secondaryFont} text-[10px] lg:text-xs font-bold uppercase tracking-[0.3em]`}>Continuous Validation</span>
           </div>
 

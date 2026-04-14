@@ -5,22 +5,23 @@ import { siteConfig } from "../config/site";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "../hooks/useInView";
 import { Code2, Layers, Database, Cloud, GitBranch, Wrench } from "lucide-react";
-import { ScrollingTicker } from "../components/ScrollingTicker";
+import { useCountUp } from "../hooks/useCountUp";
 
 export const TechStackSection = (): JSX.Element => {
   const { techStack } = siteConfig.sections;
   const { secondary: monoFont } = siteConfig.styles.fonts;
-  const { primary: primaryColor, accent, accentSoft, accentBg, accentBorder, accentBorderHover } = siteConfig.styles.colors;
+  const { primary: primaryColor, accent, accentSoft, accentBg, accentBorderHover } = siteConfig.styles.colors;
 
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [activeTab, setActiveTab] = useState(0);
 
-  // All tech names for the marquee (row 1)
-  const allNames = techStack.items.flatMap((g) => g.items).join('   ');
-  // All types for the marquee (row 2, opposite direction)
-  const allTypes = techStack.items.flatMap((g) =>
-    g.items.map(() => g.type)
-  ).filter((v, i, a) => a.indexOf(v) === i).join('   ');
+  const totalTechs = techStack.items.reduce((acc, g) => acc + g.items.length, 0);
+  const totalDomains = techStack.items.length;
+
+  const techCount = useCountUp({ end: totalTechs, enabled: inView, duration: 1400, delay: 600 });
+  const domainCount = useCountUp({ end: totalDomains, enabled: inView, duration: 1000, delay: 700 });
+
+  // (ticker data reserved for future use)
 
   const getIconForType = (type: string) => {
     const t = type.toLowerCase();
@@ -122,12 +123,12 @@ export const TechStackSection = (): JSX.Element => {
             <div className="flex items-center gap-3">
               <div className={`w-2 h-2 rounded-full ${accentBg} animate-pulse`} />
               <span className={`${monoFont} text-[10px] uppercase tracking-[0.3em] text-gray-500`}>
-                {techStack.items.reduce((acc, g) => acc + g.items.length, 0)} Technologies mastered
+                {techCount} Technologies mastered
               </span>
             </div>
             <div className="flex items-center gap-3">
               <span className={`${monoFont} text-[10px] uppercase tracking-[0.3em] text-gray-500`}>
-                {techStack.items.length} domains
+                {domainCount} domains
               </span>
             </div>
           </motion.div>
