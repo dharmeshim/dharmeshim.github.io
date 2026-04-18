@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -20,7 +20,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7.5deg", "7.5deg"]);
 
     const [spotlightPosition, setSpotlightPosition] = React.useState({ x: 0, y: 0 });
-    const cardRef = React.useRef<HTMLDivElement>(null);
+    const cardRef = React.useRef<HTMLDivElement | null>(null);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
       if (!cardRef.current) return;

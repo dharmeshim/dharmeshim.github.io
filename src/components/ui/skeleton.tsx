@@ -1,6 +1,6 @@
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 import { motion } from "framer-motion";
-import { shimmer } from "../lib/animations";
+import { shimmer } from "../../lib/animations";
 
 interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
     animated?: boolean;

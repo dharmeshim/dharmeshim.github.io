@@ -1,11 +1,8 @@
 export { BaseSection } from "./BaseSection";
 export { ThemeToggle } from "./ThemeToggle";
 export { MagneticCursor } from "./MagneticCursor";
-export { NavigationMenu } from "./NavigationMenu";
 export { Loader } from "./Loader";
 export { SmoothScroll } from "./SmoothScroll";
 export { ScrollProgress } from "./ScrollProgress";
 export { SectionHeader } from "./SectionHeader";
-export { ScrambleReveal } from "./ScrambleReveal";
 export { Signature } from "./Signature";
-export { Toast } from "./Toast";

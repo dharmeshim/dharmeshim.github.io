@@ -38,37 +38,32 @@ export const ContactSection = (): JSX.Element => {
           animate={inView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
-          {/* Header + Rocket side by side */}
-          <div className="flex items-start justify-between gap-8">
-            <div className="flex-1">
-              <SectionHeader
-                title={contact.title}
-                index="07"
-                subtitle="Initiate sequence"
-              />
-            </div>
-            {/* Paper Rocket — decorative, desktop only */}
-            <motion.div
-              className="hidden lg:block w-20 shrink-0 mt-2 opacity-80"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 0.8, y: 0 } : {}}
-              transition={{ delay: 0.8, duration: 0.8 }}
-            >
-              <PaperRocket className="w-full" />
-            </motion.div>
-          </div>
+          <SectionHeader
+            title={contact.title}
+            index="07"
+            subtitle="Initiate sequence"
+          />
 
-          {/* ─── Bio / intent ─── */}
           <motion.div
             variants={staggerItem}
-            className="mb-16 max-w-2xl"
+            className="mb-16 flex flex-col md:flex-row items-start gap-12"
           >
             <p
-              className="text-lg md:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium"
+              className="flex-1 text-lg md:text-2xl leading-relaxed text-gray-600 dark:text-gray-300 font-medium max-w-2xl"
               style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}
             >
               {profile.bio}
             </p>
+
+            {/* Paper Rocket — decorative, visible on md+ screens to avoid crowding */}
+            <motion.div
+              className="hidden md:block w-24 lg:w-32 shrink-0 opacity-80"
+              initial={{ opacity: 0, x: 40, rotate: 15 }}
+              animate={inView ? { opacity: 0.8, x: 0, rotate: 0 } : {}}
+              transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
+            >
+              <PaperRocket className="w-full" />
+            </motion.div>
           </motion.div>
 
           {/* ─── Social links ─── */}
@@ -146,7 +141,7 @@ export const ContactSection = (): JSX.Element => {
             <div className="flex items-center gap-3">
               <div className={`w-2 h-2 rounded-full ${accentBg.split(' ')[0]} animate-pulse`} />
               <span className={`${monoFont} text-[9px] uppercase tracking-[0.3em] text-gray-400`}>
-                Open to opportunities
+                Open to collaboration
               </span>
             </div>
           </motion.div>

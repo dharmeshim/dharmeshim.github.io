@@ -1,6 +1,5 @@
 import React from "react";
 import { siteConfig } from "../config/site";
-import { TextReveal } from "./TextReveal";
 
 interface BaseSectionProps {
   children: React.ReactNode;
@@ -13,12 +12,9 @@ interface BaseSectionProps {
 export const BaseSection: React.FC<BaseSectionProps> = ({
   children,
   className = "",
-  title,
-  showTitle = true,
   variant = "default"
 }) => {
   const { sectionPadding, sectionMaxWidth, sectionGap, containerGap, containerMaxWidth } = siteConfig.styles.spacing;
-  const { display: displayFont } = siteConfig.styles.fonts;
 
   const getVariantClasses = () => {
     switch (variant) {
@@ -35,20 +31,6 @@ export const BaseSection: React.FC<BaseSectionProps> = ({
     }
   };
 
-  const getTitleClasses = () => {
-    switch (variant) {
-      case "centered":
-        return `text-center mx-auto ${containerMaxWidth}`;
-      case "minimal":
-        return `text-left ${containerMaxWidth}`;
-      case "fullscreen":
-        return `text-center mx-auto ${containerMaxWidth}`;
-      case "fluid":
-        return `text-left w-full`; // Title also fluid
-      default:
-        return `text-left ${containerMaxWidth}`;
-    }
-  };
 
   const getContentWidth = () => {
     return variant === "fluid" ? "w-full max-w-none px-4 md:px-8" : containerMaxWidth;

@@ -55,7 +55,6 @@ export interface SocialLink {
     link: string;
 }
 
-// Component prop types
 export interface SectionProps {
     title: string;
     showTitle?: boolean;
@@ -63,23 +62,3 @@ export interface SectionProps {
     children: React.ReactNode;
 }
 
-export interface MetadataItemProps {
-    icon: React.ComponentType<{ className?: string }>;
-    text: string;
-    className?: string;
-    mono?: boolean;
-}
-
-export interface TimelineItemProps {
-    index: number;
-    inView: boolean;
-    children: React.ReactNode;
-    className?: string;
-}
-
-export interface AnimatedCardProps {
-    children: React.ReactNode;
-    variant?: 'default' | 'gradient' | 'glass';
-    hoverEffect?: boolean;
-    className?: string;
-}

@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { siteConfig } from '../config/site';
 import profile from '../config/Profile.json';
 import { Signature } from '../components/Signature';
-import { TypingAnimation } from '../components/TypingAnimation';
+import { TypewriterText } from '../components/TypewriterText';
 
 export const HomeSection = (): JSX.Element => {
   const { secondary: monoFont } = siteConfig.styles.fonts;
@@ -82,11 +82,10 @@ export const HomeSection = (): JSX.Element => {
             className={`${monoFont} text-xs md:text-sm tracking-[0.35em] uppercase ${secondaryColor} opacity-70`}
           >
             <span className={accent}>@</span>&nbsp;
-            <TypingAnimation
-              text={`${profile.experience[0].company}`}
+            <TypewriterText
+              texts={[`${profile.experience[0].company}`]}
               speed={48}
-              delay={600}
-              showCursor={true}
+              repeat={1}
             />
           </p>
         </motion.div>
@@ -101,28 +100,13 @@ export const HomeSection = (): JSX.Element => {
       >
         <Signature
           name={profile.name}
-          className={`w-40 md:w-64 opacity-80 ${primaryColor}`}
+          className={`opacity-80 ${primaryColor}`}
         />
         <div
           className={`${monoFont} text-[8px] md:text-[9px] tracking-[0.3em] uppercase ${secondaryColor} opacity-40 text-right translate-x-1`}
         >
           {profile.experience[0].role}
         </div>
-      </motion.div>
-
-      {/* ─── Scroll indicator ─── */}
-      <motion.div
-        className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 ${monoFont} text-[9px] tracking-[0.3em] uppercase opacity-30 pointer-events-none`}
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 0.3, y: 0 }}
-        transition={{ delay: 2.8, duration: 0.8, ease: 'easeOut' }}
-      >
-        <span>Scroll</span>
-        <motion.div
-          className="w-px h-8 bg-current origin-top"
-          animate={{ scaleY: [0, 1, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-        />
       </motion.div>
     </section>
   );

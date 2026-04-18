@@ -31,7 +31,7 @@ export const EducationSection = (): JSX.Element => {
           <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20 relative pt-12">
             
             {/* Structural Connecting Line for entire timeline */}
-            <div className="absolute left-[23px] lg:left-[39px] top-12 bottom-0 w-[2px] bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-transparent dark:from-green-400/20 dark:via-cyan-400/20 block" />
+            <div className="absolute left-[23px] lg:left-[39px] top-12 bottom-0 w-[2px] bg-gradient-to-b from-[#385144]/20 via-[#385144]/5 to-transparent dark:from-green-400/20 dark:via-green-400/5 block" />
 
             <div className="flex-1 w-full space-y-16 lg:space-y-20 relative z-10 w-full">
               {education.items.map((item, index) => (
@@ -42,8 +42,8 @@ export const EducationSection = (): JSX.Element => {
                 >
                   {/* Visual Node */}
                   <div className="relative z-10 flex-shrink-0">
-                    <div className="w-12 h-12 lg:w-20 lg:h-20 rounded-2xl lg:rounded-[2rem] bg-white dark:bg-neutral-900 border-2 border-blue-500/20 dark:border-green-400/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-500/10 dark:group-hover:bg-green-400/10 transition-all duration-500 shadow-xl dark:shadow-none">
-                      <GraduationCap className="w-5 h-5 lg:w-8 lg:h-8 text-blue-500 dark:text-green-400" />
+                    <div className="w-12 h-12 lg:w-20 lg:h-20 rounded-2xl lg:rounded-[2rem] bg-white dark:bg-neutral-900 border-2 border-[#385144]/20 dark:border-green-400/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#385144]/10 dark:group-hover:bg-green-400/10 transition-all duration-500 shadow-xl dark:shadow-none">
+                      <GraduationCap className="w-5 h-5 lg:w-8 lg:h-8 text-[#385144] dark:text-green-400" />
                     </div>
                   </div>
 
@@ -57,7 +57,7 @@ export const EducationSection = (): JSX.Element => {
                         </span>
                       </div>
 
-                      <h3 className={`${displayFont} text-3xl sm:text-4xl lg:text-5xl font-bold ${primaryColor} tracking-tighter leading-none group-hover:text-blue-500 dark:group-hover:text-green-400 transition-colors`}>
+                      <h3 className={`${displayFont} text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tighter leading-none group-hover:text-[#385144] dark:group-hover:text-green-400 transition-colors`}>
                         {item.course}
                       </h3>
 
@@ -81,7 +81,7 @@ export const EducationSection = (): JSX.Element => {
                     </div>
 
                     {/* Decorative Accent Background */}
-                    <div className="absolute inset-0 -mx-6 lg:-mx-10 -my-6 lg:-my-8 rounded-[2rem] bg-gradient-to-r from-blue-500/[0.03] dark:from-green-400/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+                    <div className="absolute inset-0 -mx-6 lg:-mx-10 -my-6 lg:-my-8 rounded-[2rem] bg-gradient-to-r from-[#385144]/[0.03] dark:from-green-400/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
                   </div>
                 </motion.div>
               ))}
