@@ -52,7 +52,8 @@
         "Visual Basic",
         "Microsoft Access"
       ],
-      "summary": "Simplified student data management with a clean, user-friendly interface."
+      "summary": "Simplified student data management with a clean, user-friendly interface.",
+      "widget": "StudentDatabase"
     },
     {
       "name": "Efficient Search Algorithm in PhoneBook",
@@ -64,7 +65,8 @@
         "Python",
         "SQLite"
       ],
-      "summary": "Optimized phonebook search performance using trie data structures."
+      "summary": "Optimized phonebook search performance using trie data structures.",
+      "widget": "TrieSearch"
     },
     {
       "name": "Math Riddles",
@@ -76,7 +78,8 @@
         "Python",
         "SQLite"
       ],
-      "summary": "Interactive math quiz with adaptive difficulty for student learning."
+      "summary": "Interactive math quiz with adaptive difficulty for student learning.",
+      "widget": "MathRiddle"
     },
     {
       "name": "Global Sales Data Analytics",
@@ -90,7 +93,8 @@
         "Git",
         "Kanban"
       ],
-      "summary": "IBM collaboration project focused on data analytics fundamentals."
+      "summary": "IBM collaboration project focused on data analytics fundamentals.",
+      "widget": "SalesAnalytics"
     },
     {
       "name": "Smart Typing Assistant",
@@ -103,7 +107,8 @@
         "Machine Learning",
         "SQLite"
       ],
-      "summary": "Machine learning-powered typing assistant for speed and accuracy improvement."
+      "summary": "Machine learning-powered typing assistant for speed and accuracy improvement.",
+      "widget": "TypingSpeed"
     }
   ],
   "knowledge": [
